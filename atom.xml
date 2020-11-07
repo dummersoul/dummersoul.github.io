@@ -6,7 +6,7 @@
   <link href="http://dummersoul.xyz/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.xyz/"/>
-  <updated>2020-11-07T15:56:40.725Z</updated>
+  <updated>2020-11-07T17:44:38.838Z</updated>
   <id>http://dummersoul.xyz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://dummersoul.xyz/2020/10/28/%E7%AC%AC%E4%B8%80%E7%AF%87/"/>
     <id>http://dummersoul.xyz/2020/10/28/%E7%AC%AC%E4%B8%80%E7%AF%87/</id>
     <published>2020-10-27T16:32:16.000Z</published>
-    <updated>2020-11-07T15:56:40.725Z</updated>
+    <updated>2020-11-07T17:44:38.838Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><script>console.error("ReferenceError: value is not defined");</script><p>hexo new “postName” #新建文章<br>hexo new page “pageName” #新建页面<br>hexo help # 查看帮助<br>hexo version #查看Hexo的版本</p><p>hexo n == hexo new<br>hexo g == hexo generate<br>hexo s == hexo server<br>hexo d == hexo deploy</p><p>hexo s -g #生成并本地预览<br>hexo d -g #生成并上传</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>    <div id="aplayer-QVnqEflR" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="562598081" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86" data-listfolded="true"    ></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章 </span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo help # 查看帮助 </span><br><span class="line">hexo version #查看Hexo的版本</span><br><span class="line"></span><br><span class="line">hexo n &#x3D;&#x3D; hexo new </span><br><span class="line">hexo g &#x3D;&#x3D; hexo generate </span><br><span class="line">hexo s &#x3D;&#x3D; hexo server </span><br><span class="line">hexo d &#x3D;&#x3D; hexo deploy</span><br><span class="line"></span><br><span class="line">hexo s -g #生成并本地预览 </span><br><span class="line">hexo d -g #生成并上传</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
