@@ -315,6 +315,13 @@ canvas:not(#ribbon-canvas),
   -ms-animation: scroll-down-effect 1.5s infinite;
   animation: scroll-down-effect 1.5s infinite;
 }
+.avatar-img {
+  -webkit-animation: avatar_turn_around 2s linear infinite;
+  -moz-animation: avatar_turn_around 2s linear infinite;
+  -o-animation: avatar_turn_around 2s linear infinite;
+  -ms-animation: avatar_turn_around 2s linear infinite;
+  animation: avatar_turn_around 2s linear infinite;
+}
 .reward-main {
   -webkit-animation: donate_effcet 0.3s 0.1s ease both;
   -moz-animation: donate_effcet 0.3s 0.1s ease both;
@@ -3957,7 +3964,7 @@ _:future,
   position: absolute;
   top: 0;
   left: 0;
-  background: #49b1f5;
+  background: $light-black;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all 0.3s ease-out;
@@ -3990,7 +3997,7 @@ _:future,
   top: 0.78em;
   width: 0.42em;
   height: 0.42em;
-  border: 0.21em solid #49b1f5;
+  border: 0.21em solid #f47466;
   border-radius: 0.42em;
   background: transparent;
   content: '';
