@@ -129,6 +129,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>http://dummersoul.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6-JBoss/</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
 </urlset>
