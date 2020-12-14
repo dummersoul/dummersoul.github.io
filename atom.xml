@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2020-12-03T07:48:26.498Z</updated>
+  <updated>2020-12-14T15:13:10.287Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://dummersoul.github.io/2020/12/14/jboss%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
+    <id>http://dummersoul.github.io/2020/12/14/jboss%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</id>
+    <published>2020-12-14T05:07:19.858Z</published>
+    <updated>2020-12-14T15:13:10.287Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Social-Engineer-Toolkit的使用</title>
+    <link href="http://dummersoul.github.io/2020/12/04/Social-Engineer-Toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://dummersoul.github.io/2020/12/04/Social-Engineer-Toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-12-04T01:30:48.768Z</published>
+    <updated>2020-12-14T01:21:37.811Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="社会工程学 工具" scheme="http://dummersoul.github.io/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6-%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>GitHub+PicGo+Typora搭建免费图床</title>
