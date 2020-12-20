@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2020-12-14T15:16:51.968Z</updated>
+  <updated>2020-12-20T10:15:26.641Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitHub图床图片失效怎么修复</title>
+    <link href="http://dummersoul.github.io/2020/12/20/GitHub%E5%9B%BE%E5%BA%8A%E5%9B%BE%E7%89%87%E5%A4%B1%E6%95%88%E6%80%8E%E4%B9%88%E4%BF%AE%E5%A4%8D/"/>
+    <id>http://dummersoul.github.io/2020/12/20/GitHub%E5%9B%BE%E5%BA%8A%E5%9B%BE%E7%89%87%E5%A4%B1%E6%95%88%E6%80%8E%E4%B9%88%E4%BF%AE%E5%A4%8D/</id>
+    <published>2020-12-20T09:57:54.863Z</published>
+    <updated>2020-12-20T10:15:26.641Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="图床" scheme="http://dummersoul.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+  </entry>
   
   <entry>
     <title>JBoss漏洞</title>
