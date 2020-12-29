@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2020-12-29T01:30:32.975Z</updated>
+  <updated>2020-12-29T07:41:25.422Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>逻辑漏洞挖掘思路</title>
     <link href="http://dummersoul.github.io/2020/12/29/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"/>
     <id>http://dummersoul.github.io/2020/12/29/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/</id>
     <published>2020-12-29T01:19:14.724Z</published>
-    <updated>2020-12-29T01:30:32.975Z</updated>
+    <updated>2020-12-29T07:41:25.422Z</updated>
     
     
       
@@ -35,14 +35,16 @@
     
     
     
+    <category term="逻辑漏洞" scheme="http://dummersoul.github.io/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
+    
   </entry>
   
   <entry>
-    <title></title>
+    <title>KB-VULN 1 内网渗透</title>
     <link href="http://dummersoul.github.io/2020/12/28/KB-VULN%201%20%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
     <id>http://dummersoul.github.io/2020/12/28/KB-VULN%201%20%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</id>
     <published>2020-12-28T02:06:42.165Z</published>
-    <updated>2020-12-29T06:47:58.825Z</updated>
+    <updated>2020-12-29T07:41:35.673Z</updated>
     
     
       
@@ -65,7 +67,7 @@
     <link href="http://dummersoul.github.io/2020/12/25/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     <id>http://dummersoul.github.io/2020/12/25/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
     <published>2020-12-25T06:43:29.851Z</published>
-    <updated>2020-12-29T06:48:37.769Z</updated>
+    <updated>2020-12-29T07:42:00.071Z</updated>
     
     
       
@@ -111,7 +113,7 @@
     <link href="http://dummersoul.github.io/2020/12/14/jboss%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     <id>http://dummersoul.github.io/2020/12/14/jboss%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
     <published>2020-12-14T05:07:19.858Z</published>
-    <updated>2020-12-20T09:54:47.967Z</updated>
+    <updated>2020-12-29T07:42:06.315Z</updated>
     
     
       

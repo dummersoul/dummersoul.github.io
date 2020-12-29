@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dummersoul.github.io/2020/12/14/jboss%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
+    
+    <lastmod>2020-12-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dummersoul.github.io/2020/12/25/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
     
     <lastmod>2020-12-29</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://dummersoul.github.io/2020/12/20/GitHub%E5%9B%BE%E5%BA%8A%E5%9B%BE%E7%89%87%E5%A4%B1%E6%95%88%E6%80%8E%E4%B9%88%E4%BF%AE%E5%A4%8D/</loc>
     
     <lastmod>2020-12-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dummersoul.github.io/2020/12/14/jboss%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    
-    <lastmod>2020-12-20</lastmod>
     
   </url>
   
@@ -173,6 +173,13 @@
   
   <url>
     <loc>http://dummersoul.github.io/tags/redis/</loc>
+    <lastmod>2020-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://dummersoul.github.io/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</loc>
     <lastmod>2020-12-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
