@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2020-12-30T07:24:32.066Z</updated>
+  <updated>2020-12-30T07:38:23.389Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://dummersoul.github.io/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
     <id>http://dummersoul.github.io/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
     <published>2020-12-30T07:10:07.740Z</published>
-    <updated>2020-12-30T07:24:32.066Z</updated>
+    <updated>2020-12-30T07:38:23.389Z</updated>
     
     
       
@@ -36,6 +36,8 @@
     
     
     <category term="vulnhub" scheme="http://dummersoul.github.io/tags/vulnhub/"/>
+    
+    <category term="靶机" scheme="http://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
     
   </entry>
   
@@ -90,7 +92,7 @@
     <link href="http://dummersoul.github.io/2020/12/28/KB-VULN1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
     <id>http://dummersoul.github.io/2020/12/28/KB-VULN1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
     <published>2020-12-28T02:06:42.165Z</published>
-    <updated>2020-12-30T07:24:21.266Z</updated>
+    <updated>2020-12-30T07:38:11.625Z</updated>
     
     
       
@@ -107,6 +109,8 @@
     <category term="vulnhub" scheme="http://dummersoul.github.io/tags/vulnhub/"/>
     
     <category term="内网提权" scheme="http://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+    <category term="靶机" scheme="http://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
     
   </entry>
   
