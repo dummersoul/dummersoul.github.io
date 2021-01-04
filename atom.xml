@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2020-12-31T08:05:52.129Z</updated>
+  <updated>2021-01-04T06:34:27.219Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>KB-VULN：2靶机练习</title>
-    <link href="http://dummersoul.github.io/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
-    <id>http://dummersoul.github.io/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
-    <published>2020-12-30T07:10:07.740Z</published>
-    <updated>2020-12-31T08:05:52.129Z</updated>
+    <title>Cysec1靶机练习</title>
+    <link href="http://dummersoul.github.io/2020/12/31/Cysec1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
+    <id>http://dummersoul.github.io/2020/12/31/Cysec1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
+    <published>2020-12-31T09:03:59.299Z</published>
+    <updated>2021-01-04T06:34:27.219Z</updated>
     
     
       
@@ -36,6 +36,35 @@
     
     
     <category term="vulnhub" scheme="http://dummersoul.github.io/tags/vulnhub/"/>
+    
+    <category term="靶机" scheme="http://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
+    
+    <category term="flag" scheme="http://dummersoul.github.io/tags/flag/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KB-VULN：2靶机练习</title>
+    <link href="http://dummersoul.github.io/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
+    <id>http://dummersoul.github.io/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
+    <published>2020-12-30T07:10:07.740Z</published>
+    <updated>2021-01-04T06:33:02.108Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="vulnhub" scheme="http://dummersoul.github.io/tags/vulnhub/"/>
+    
+    <category term="内网提权" scheme="http://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
     
     <category term="靶机" scheme="http://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
     
