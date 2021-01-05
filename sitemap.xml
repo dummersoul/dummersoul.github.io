@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dummersoul.github.io/2021/01/05/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/</loc>
+    
+    <lastmod>2021-01-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dummersoul.github.io/2020/12/31/Cysec1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</loc>
     
     <lastmod>2021-01-04</lastmod>
@@ -144,7 +151,7 @@
 
   <url>
     <loc>http://dummersoul.github.io/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -152,105 +159,112 @@
   
   <url>
     <loc>http://dummersoul.github.io/tags/hexo/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/cve/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/redis/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/getshell/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/vulnhub/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/JBoss/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/mitu/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://dummersoul.github.io/tags/flag/</loc>
-    <lastmod>2021-01-04</lastmod>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://dummersoul.github.io/tags/CVE/</loc>
+    <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

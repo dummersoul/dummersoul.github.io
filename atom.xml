@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2021-01-04T06:41:02.439Z</updated>
+  <updated>2021-01-05T03:49:30.102Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>脏牛提权（CVE-2016-5195）</title>
+    <link href="http://dummersoul.github.io/2021/01/05/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/"/>
+    <id>http://dummersoul.github.io/2021/01/05/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/</id>
+    <published>2021-01-05T01:50:22.603Z</published>
+    <updated>2021-01-05T03:49:30.102Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="内网提权" scheme="http://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+    <category term="CVE" scheme="http://dummersoul.github.io/tags/CVE/"/>
+    
+  </entry>
   
   <entry>
     <title>Cysec1靶机练习</title>
