@@ -6,7 +6,7 @@
   <link href="http://dummersoul.github.io/atom.xml" rel="self"/>
   
   <link href="http://dummersoul.github.io/"/>
-  <updated>2021-01-11T13:32:29.881Z</updated>
+  <updated>2021-01-12T07:14:04.320Z</updated>
   <id>http://dummersoul.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>djinn-1靶机练习</title>
+    <link href="http://dummersoul.github.io/2021/01/12/djinn-1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
+    <id>http://dummersoul.github.io/2021/01/12/djinn-1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
+    <published>2021-01-12T02:07:17.105Z</published>
+    <updated>2021-01-12T07:14:04.320Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="vulnhub" scheme="http://dummersoul.github.io/tags/vulnhub/"/>
+    
+    <category term="内网提权" scheme="http://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+    <category term="靶机" scheme="http://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux sed命令的使用</title>
