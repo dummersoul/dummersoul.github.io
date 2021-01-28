@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-01-14T01:22:38.573Z</updated>
+  <updated>2021-01-28T03:36:47.614Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,121 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git回溯到上一次commit</title>
+    <link href="https://dummersoul.top/2021/01/28/git%E5%9B%9E%E6%BA%AF%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1commit/"/>
+    <id>https://dummersoul.top/2021/01/28/git%E5%9B%9E%E6%BA%AF%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1commit/</id>
+    <published>2021-01-28T03:21:08.801Z</published>
+    <updated>2021-01-28T03:36:47.614Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="git" scheme="https://dummersoul.top/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>phpmyadmin获取shell</title>
+    <link href="https://dummersoul.top/2021/01/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/"/>
+    <id>https://dummersoul.top/2021/01/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/</id>
+    <published>2021-01-28T03:14:59.751Z</published>
+    <updated>2021-01-28T03:20:14.438Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://dummersoul.top/2021/01/26/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%BA%94)/"/>
+    <id>https://dummersoul.top/2021/01/26/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%BA%94)/</id>
+    <published>2021-01-26T05:41:58.722Z</published>
+    <updated>2021-01-26T05:41:58.722Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vulnhub djinn-3 writeup</title>
+    <link href="https://dummersoul.top/2021/01/20/vulnhub%20djinn3/"/>
+    <id>https://dummersoul.top/2021/01/20/vulnhub%20djinn3/</id>
+    <published>2021-01-20T14:15:37.703Z</published>
+    <updated>2021-01-26T03:51:54.737Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="vulnhub" scheme="https://dummersoul.top/tags/vulnhub/"/>
+    
+    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
+    
+    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://dummersoul.top/2021/01/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    <id>https://dummersoul.top/2021/01/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</id>
+    <published>2021-01-20T13:57:27.583Z</published>
+    <updated>2021-01-20T13:58:35.242Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Windows手动杀毒的方法</title>
@@ -142,31 +257,6 @@
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
     <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>phpmyadmin获取shell</title>
-    <link href="https://dummersoul.top/2021/01/07/phpmyadmin%E8%8E%B7%E5%8F%96shell/"/>
-    <id>https://dummersoul.top/2021/01/07/phpmyadmin%E8%8E%B7%E5%8F%96shell/</id>
-    <published>2021-01-07T03:20:08.921Z</published>
-    <updated>2021-01-08T05:57:16.871Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
-    
-    <category term="phpmyadmin" scheme="https://dummersoul.top/tags/phpmyadmin/"/>
     
   </entry>
   
@@ -417,102 +507,6 @@
     <category term="中间件" scheme="https://dummersoul.top/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
     
     <category term="JBoss" scheme="https://dummersoul.top/tags/JBoss/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Social-Engineer-Toolkit的使用</title>
-    <link href="https://dummersoul.top/2020/12/04/Social-Engineer-Toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://dummersoul.top/2020/12/04/Social-Engineer-Toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-12-04T01:30:48.768Z</published>
-    <updated>2020-12-30T07:24:46.298Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="工具" scheme="https://dummersoul.top/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-    <category term="社会工程学" scheme="https://dummersoul.top/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GitHub+PicGo+Typora搭建免费图床</title>
-    <link href="https://dummersoul.top/2020/12/03/GitHub+PicGo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/"/>
-    <id>https://dummersoul.top/2020/12/03/GitHub+PicGo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/</id>
-    <published>2020-12-03T06:48:25.594Z</published>
-    <updated>2020-12-03T07:58:59.298Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="图床" scheme="https://dummersoul.top/tags/%E5%9B%BE%E5%BA%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【漏洞复现】CVE-2019-0708 远程桌面代码执行</title>
-    <link href="https://dummersoul.top/2020/12/03/CVE-2019-0708%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
-    <id>https://dummersoul.top/2020/12/03/CVE-2019-0708%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
-    <published>2020-12-03T05:14:16.718Z</published>
-    <updated>2020-12-03T07:39:34.648Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="cve" scheme="https://dummersoul.top/tags/cve/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>thinkphp 6.x任意文件写入漏洞</title>
-    <link href="https://dummersoul.top/2020/12/03/thinkphp6.0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%20%E8%8E%B7%E5%8F%96getshell/"/>
-    <id>https://dummersoul.top/2020/12/03/thinkphp6.0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%20%E8%8E%B7%E5%8F%96getshell/</id>
-    <published>2020-12-03T04:03:46.853Z</published>
-    <updated>2020-12-30T08:11:32.117Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
-    
-    <category term="mitu" scheme="https://dummersoul.top/tags/mitu/"/>
     
   </entry>
   
