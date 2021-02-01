@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-01T08:00:07.843Z</updated>
+  <updated>2021-02-01T15:32:36.802Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sublime加入右键</title>
+    <link href="https://dummersoul.top/2021/02/01/sublime%E5%8A%A0%E5%85%A5%E5%8F%B3%E9%94%AE/"/>
+    <id>https://dummersoul.top/2021/02/01/sublime%E5%8A%A0%E5%85%A5%E5%8F%B3%E9%94%AE/</id>
+    <published>2021-02-01T15:14:01.806Z</published>
+    <updated>2021-02-01T15:32:36.802Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="-工具" scheme="https://dummersoul.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>justCTF2020 writeup</title>
@@ -136,7 +159,7 @@
     <link href="https://dummersoul.top/2021/01/26/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/"/>
     <id>https://dummersoul.top/2021/01/26/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/</id>
     <published>2021-01-26T05:41:58.722Z</published>
-    <updated>2021-02-01T07:10:27.445Z</updated>
+    <updated>2021-02-01T09:14:39.046Z</updated>
     
     
       
@@ -184,11 +207,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://dummersoul.top/2021/01/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
-    <id>https://dummersoul.top/2021/01/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</id>
+    <title>常见的未授权访问漏洞</title>
+    <link href="https://dummersoul.top/2021/01/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
+    <id>https://dummersoul.top/2021/01/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</id>
     <published>2021-01-20T13:57:27.583Z</published>
-    <updated>2021-01-20T13:58:35.242Z</updated>
+    <updated>2021-02-01T08:15:45.663Z</updated>
     
     
       
@@ -201,6 +224,8 @@
     
     
     
+    
+    <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
     
   </entry>
   
@@ -482,33 +507,6 @@
     
     
     <category term="逻辑漏洞" scheme="https://dummersoul.top/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>KB-VULN：1靶机练习</title>
-    <link href="https://dummersoul.top/2020/12/28/KB-VULN1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
-    <id>https://dummersoul.top/2020/12/28/KB-VULN1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
-    <published>2020-12-28T02:06:42.165Z</published>
-    <updated>2021-01-05T08:05:08.766Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="vulnhub" scheme="https://dummersoul.top/tags/vulnhub/"/>
-    
-    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
-    
-    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   
