@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-01T06:33:20.723Z</updated>
+  <updated>2021-02-01T07:56:33.887Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>justctf writeup</title>
+    <link href="https://dummersoul.top/2021/02/01/justctf%20writeup/"/>
+    <id>https://dummersoul.top/2021/02/01/justctf%20writeup/</id>
+    <published>2021-02-01T07:49:18.346Z</published>
+    <updated>2021-02-01T07:56:33.887Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf" scheme="https://dummersoul.top/tags/ctf/"/>
+    
+  </entry>
   
   <entry>
     <title>Cobalt Strike的使用</title>
@@ -486,29 +509,6 @@
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
     <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis未授权访问漏洞复现</title>
-    <link href="https://dummersoul.top/2020/12/25/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
-    <id>https://dummersoul.top/2020/12/25/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
-    <published>2020-12-25T06:43:29.851Z</published>
-    <updated>2020-12-29T07:42:00.071Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="redis" scheme="https://dummersoul.top/tags/redis/"/>
     
   </entry>
   
