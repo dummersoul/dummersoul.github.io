@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-04T08:13:01.726Z</updated>
+  <updated>2021-02-04T08:47:00.609Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>BugKu CTF之web12</title>
-    <link href="https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12/"/>
-    <id>https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12/</id>
+    <title>BugKu CTF之web8【文件包含】</title>
+    <link href="https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb8%E3%80%90%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%91/"/>
+    <id>https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb8%E3%80%90%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%91/</id>
+    <published>2021-02-04T08:31:49.160Z</published>
+    <updated>2021-02-04T08:47:00.609Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf" scheme="https://dummersoul.top/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BugKu CTF之web12【XFF伪造】</title>
+    <link href="https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12%E3%80%90XFF%E4%BC%AA%E9%80%A0%E3%80%91/"/>
+    <id>https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12%E3%80%90XFF%E4%BC%AA%E9%80%A0%E3%80%91/</id>
     <published>2021-02-04T08:00:43.123Z</published>
-    <updated>2021-02-04T08:13:01.726Z</updated>
+    <updated>2021-02-04T08:48:14.054Z</updated>
     
     
       
@@ -484,29 +507,6 @@
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
     <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>反弹shell的多种姿势</title>
-    <link href="https://dummersoul.top/2020/12/30/%E5%8F%8D%E5%BC%B9shell/"/>
-    <id>https://dummersoul.top/2020/12/30/%E5%8F%8D%E5%BC%B9shell/</id>
-    <published>2020-12-30T03:18:10.145Z</published>
-    <updated>2021-01-06T09:37:52.691Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
     
   </entry>
   
