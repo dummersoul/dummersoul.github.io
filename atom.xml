@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-01T15:32:36.802Z</updated>
+  <updated>2021-02-04T08:13:01.726Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BugKu CTF之web12</title>
+    <link href="https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12/"/>
+    <id>https://dummersoul.top/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12/</id>
+    <published>2021-02-04T08:00:43.123Z</published>
+    <updated>2021-02-04T08:13:01.726Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf" scheme="https://dummersoul.top/tags/ctf/"/>
+    
+  </entry>
   
   <entry>
     <title>sublime加入右键</title>
@@ -484,29 +507,6 @@
     
     
     <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>逻辑漏洞挖掘思路</title>
-    <link href="https://dummersoul.top/2020/12/29/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"/>
-    <id>https://dummersoul.top/2020/12/29/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/</id>
-    <published>2020-12-29T01:19:14.724Z</published>
-    <updated>2020-12-29T07:41:25.422Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="逻辑漏洞" scheme="https://dummersoul.top/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
