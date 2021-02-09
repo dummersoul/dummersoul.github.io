@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-04T08:47:00.609Z</updated>
+  <updated>2021-02-09T13:09:32.625Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Misc总结之图片隐写</title>
+    <link href="https://dummersoul.top/2021/02/09/CTF%E4%B9%8Bmisc/"/>
+    <id>https://dummersoul.top/2021/02/09/CTF%E4%B9%8Bmisc/</id>
+    <published>2021-02-09T10:53:13.443Z</published>
+    <updated>2021-02-09T13:09:32.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
+    
+  </entry>
   
   <entry>
     <title>BugKu CTF之web8【文件包含】</title>
@@ -480,33 +503,6 @@
     <category term="flag" scheme="https://dummersoul.top/tags/flag/"/>
     
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>KB-VULN：2靶机练习</title>
-    <link href="https://dummersoul.top/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
-    <id>https://dummersoul.top/2020/12/30/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
-    <published>2020-12-30T07:10:07.740Z</published>
-    <updated>2021-01-11T02:30:24.614Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="vulnhub" scheme="https://dummersoul.top/tags/vulnhub/"/>
-    
-    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
-    
-    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   
