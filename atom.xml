@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-10T07:55:27.707Z</updated>
+  <updated>2021-02-10T15:13:02.921Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>免费CDN加速GitHub图床</title>
+    <link href="https://dummersoul.top/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/"/>
+    <id>https://dummersoul.top/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/</id>
+    <published>2021-02-10T10:27:55.932Z</published>
+    <updated>2021-02-10T15:13:02.921Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="图床" scheme="https://dummersoul.top/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+    <category term="CDN加速" scheme="https://dummersoul.top/tags/CDN%E5%8A%A0%E9%80%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Misc总结之编码转换</title>
+    <link href="https://dummersoul.top/2021/02/10/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/"/>
+    <id>https://dummersoul.top/2021/02/10/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/</id>
+    <published>2021-02-10T08:42:33.853Z</published>
+    <updated>2021-02-10T10:27:37.891Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf" scheme="https://dummersoul.top/tags/ctf/"/>
+    
+  </entry>
   
   <entry>
     <title>Misc总结之图片隐写</title>
@@ -451,58 +499,6 @@
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
     <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>脏牛提权（CVE-2016-5195）</title>
-    <link href="https://dummersoul.top/2021/01/05/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/"/>
-    <id>https://dummersoul.top/2021/01/05/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/</id>
-    <published>2021-01-05T01:50:22.603Z</published>
-    <updated>2021-01-05T04:01:58.246Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
-    
-    <category term="CVE" scheme="https://dummersoul.top/tags/CVE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Cysec1靶机练习</title>
-    <link href="https://dummersoul.top/2020/12/31/Cysec1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
-    <id>https://dummersoul.top/2020/12/31/Cysec1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
-    <published>2020-12-31T09:03:59.299Z</published>
-    <updated>2021-01-04T06:41:02.439Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="vulnhub" scheme="https://dummersoul.top/tags/vulnhub/"/>
-    
-    <category term="flag" scheme="https://dummersoul.top/tags/flag/"/>
-    
-    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
   </entry>
   
