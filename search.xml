@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>hexo博客优化篇之搜索功能</title>
+      <link href="2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"/>
+      <url>2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>[TAG]</p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>终于要继续打造我的博客了，今天就上手添加个搜索功能，找东西更方便，说干就干！</p><h2 id="搜索原理"><a href="#搜索原理" class="headerlink" title="搜索原理"></a>搜索原理</h2><h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>由于插件搜索功能是调用hexo-generator-search生成xml数据，所以先安装插件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure><h3 id="配置主题文件"><a href="#配置主题文件" class="headerlink" title="配置主题文件"></a>配置主题文件</h3><p>打开本地搜索功能</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210224120240608.png" alt="image-20210224120240608"></p><h3 id="修改站点配置文件"><a href="#修改站点配置文件" class="headerlink" title="修改站点配置文件"></a>修改站点配置文件</h3><p>添加搜索功能</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210224133058601.png" alt="image-20210224133058601"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows权限维持及防范</title>
       <link href="2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/"/>
       <url>2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/</url>
