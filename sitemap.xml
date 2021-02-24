@@ -347,14 +347,14 @@
   </url>
   
   <url>
-    <loc>https://dummersoul.top/tags/vulnhub/</loc>
+    <loc>https://dummersoul.top/tags/%E5%9B%BE%E5%BA%8A/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://dummersoul.top/tags/flag/</loc>
+    <loc>https://dummersoul.top/tags/vulnhub/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -368,13 +368,6 @@
   </url>
   
   <url>
-    <loc>https://dummersoul.top/tags/%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2021-02-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
@@ -382,7 +375,7 @@
   </url>
   
   <url>
-    <loc>https://dummersoul.top/tags/linux/</loc>
+    <loc>https://dummersoul.top/tags/flag/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -404,6 +397,13 @@
   
   <url>
     <loc>https://dummersoul.top/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/</loc>
+    <lastmod>2021-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://dummersoul.top/tags/linux/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
