@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dummersoul's Blog - fate and night</title><meta name="keywords" content="渗透"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络安全 web、ctf方向">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dummersoul&#39;s Blog">
+<meta property="og:url" content="https://dummersoul.top/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="网络安全 web、ctf方向">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.top/img/dummersoul.jpg">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.top/img/dummersoul.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.top/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-02-24 15:10:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">dummersoul's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@google.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="hexo博客优化篇之搜索功能">     <img class="post_bg" src="/img/hexo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo博客优化篇之搜索功能"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="hexo博客优化篇之搜索功能">hexo博客优化篇之搜索功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-24T03:43:48.623Z" title="发表于 2021-02-24 11:43:48">2021-02-24</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T05:45:13.825Z" title="更新于 2021-02-24 13:45:13">2021-02-24</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content">[TOC]
+前言终于要继续打造我的博客了，今天就上手添加个搜索功能，找东西更方便，说干就干！
+安装插件由于插件搜索功能是调用hexo-generator-search生成xml数据，所以先安装插件
+1npm install hexo-generator-search --save
+
+配置主题文件打开本地搜索功能
+
+修改站点配置文件添加搜索功能
+12345search:  path: search.xml  field: post  format: html  limit: 10000
+
+
+清理缓存配置好之后一定要 hexo clean 才能实现正常功能，不然搜索会跑到最下面
+
+hexo clean 过后效果如下：
+
+搜索反应会有点慢，等一会才能搜索到东西
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范">     <img class="post_bg" src="/img/windows.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows权限维持及防范"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范">Windows权限维持及防范</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-24T02:35:36.866Z" title="发表于 2021-02-24 10:35:36">2021-02-24</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T02:43:12.565Z" title="更新于 2021-02-24 10:43:12">2021-02-24</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a></span></div><div class="content">前言维持权限同样是渗透测试非常重要的一环，他可以让我们方便的再次进入系统并且降低被发现的概率，而维持权限的方式也就是留后门，了解一些常见的后门技术，不仅可以在进攻时提供维持权限的思路，同时，在防守时也可以更准确的发现隐患。
+隐藏账户隐藏账户应该是最常见的后门方式，其设置方式如下：
+首先我们在命令行输入，如下命令创建一个隐藏账号
+1net user leticia$ 123456 &#x2F;add
+
+
+
+这个时候，通过net user并不能看到这个账户。
+
+然后我们将它添加到管理员权限。
+1net localgroup administrators leticia$ &#x2F;add
+
+
+
+
+但是这个“隐藏账户”在用户账户中可以看到，并不能骗过细心的管理员。
+
+这个时候我们可以通过操作注册表，使这个账户在用户账户中也不显示。首先我们输入regedit打开注册表编辑器，找到HKEY_LOCAL_MACHINE\SAM\SAM，我们发现这个时候它是空白的，没有权限进行操作，所以我们要右键权限，将读写权限赋予administrator。
+
+然后我们重启注册表编辑器，发现这个时候已经可以访问 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/19/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析">     <img class="post_bg" src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之流量分析"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/19/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析">Misc总结之流量分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-19T01:44:11.954Z" title="发表于 2021-02-19 09:44:11">2021-02-19</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-23T02:11:57.346Z" title="更新于 2021-02-23 10:11:57">2021-02-23</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">
+[TOC]
+MISC简介Misc为英文miscellaneous的前四个字母，是杂项、混合体、大杂烩的意思
+主要类型有
+
+数据编码、图形编码
+图片隐写
+音频、视频隐写
+流量分析
+内存取证
+游戏隐写
+
+主要工具wireshark
+语法使用：
+查找包含指定页面的流量包
+1http and http.request.uri contains &quot;index.html&quot;
+
+
+HTTPS使用了TLS加密协议，抓包也看不到内容
+
+1oicq    # QQ的协议
+
+
+
+wireshark使用语法1.过滤IP
+12ip.src eq 192.168.1.10 or ip.dst eq 192.168.1.10ip.addr eq 192.168.1.10   # 都显示：来源和目标
+
+2.过滤端口
+1234tcp.port eq 80 or udp.port eq 80    # 来源+目标tcp.dstport &#x3D;&#x3D; 80   # 只显示tcp协议的目标端口tcp.srcport &#x3D;&#x3D; 80   # 只显示tcp协议的来源端口 tcp.p ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/11/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/gif.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图片隐写之GIF"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/11/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF">图片隐写之GIF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-10T18:01:04.403Z" title="发表于 2021-02-11 02:01:04">2021-02-11</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T03:27:45.821Z" title="更新于 2021-02-24 11:27:45">2021-02-24</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">GIF 
+首先想到用stegslove打开，进行逐帧查看，但是看的过程中发现有重影现象，重影的还不止一帧
+
+
+这种状况，要采用工具
+打开后点击f5预览，左右键查看帧
+在有重影的那一页，右键编辑调色板，依次将倒数第二个色块颜色设置为同一种颜色，保存。
+
+
+就可以看清每一帧的字母，拼接起来进行base64解码
+
+参考https://blog.csdn.net/u010391191/article/details/80831998
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210210232654.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="免费CDN加速GitHub图床"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床">免费CDN加速GitHub图床</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-10T10:27:55.932Z" title="发表于 2021-02-10 18:27:55">2021-02-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T15:27:01.299Z" title="更新于 2021-02-10 23:27:01">2021-02-10</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%9B%BE%E5%BA%8A/">图床</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/CDN%E5%8A%A0%E9%80%9F/">CDN加速</a></span></div><div class="content">由于Github的默认图床是https://raw.githubusercontent.com 加上GitHub用户名和自己的仓库组成的，而https://raw.githubusercontent.com 这个地址国内访问速度慢或者访问失效，要解决这种方法，需要将自己的GitHub图床设定一个指定的域名，是可以国内快速的访问的。
+这时候CDN就可以解决这种问题，jsDelivr提供了免费公共的CDN加速服务，其中包括了github加速，所以只要引用自己的资源，就可以实现全球ADN加速效果。
+
+使用方法：cdn.jsdelivr.net/gh/用户名/仓库名@项目主分支
+
+1https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dummersoul&#x2F;Picture@main
+
+在PicGo中自定义域名配置为CDN加速即可（必须加上https://）
+
+参考1、https://www.iszy.cc/2020/05/05/ufjg58/
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/10/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/" title="Misc总结之编码转换">     <img class="post_bg" src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之编码转换"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/10/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/" title="Misc总结之编码转换">Misc总结之编码转换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-10T08:42:33.853Z" title="发表于 2021-02-10 16:42:33">2021-02-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T17:28:40.113Z" title="更新于 2021-02-11 01:28:40">2021-02-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">MISC简介Misc为英文miscellaneous的前四个字母，是杂项、混合体、大杂烩的意思
+主要类型有
+
+数据编码、图形编码
+图片隐写
+音频、视频隐写
+流量分析
+内存取证
+游戏隐写
+
+数据编码分类二进制转换
+十进制
+十六进制
+八进制
+二维码
+图片
+摩尔斯密码
+ASCII码
+…
+
+
+base家族
+编码原理：根据要求把原本的8位字节算2的N次方的N为单位划分字节，再在前面补充0补充到8位一个Byte的形式
+
+
+https://www.qtool.net/baseencode
+
+
+base64：A-Z,a-z,0-9,+,/ 共64个编码字符， =号属于填充字符
+
+base62：A-Z,a-z,0-9 共62个编码字符  
+
+base32：A-Z,2-7  共32个编码字符  （末尾最多6个=）
+
+base16：A-F,0-9  共16个编码字符   （不会出现=）
+
+base36：26个字母不区分大小写（要么全大写，要么全小写）,0-9 共36个编码字符
+
+base58：A-Z,a-z（去掉了容易引起视觉混淆的O，I，l） 1-9 共49+9=58个编码字符
+
+base85：一种类似于 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/09/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" title="Misc总结之图片隐写">     <img class="post_bg" src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之图片隐写"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/09/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" title="Misc总结之图片隐写">Misc总结之图片隐写</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-09T10:53:13.443Z" title="发表于 2021-02-09 18:53:13">2021-02-09</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T07:55:27.707Z" title="更新于 2021-02-10 15:55:27">2021-02-10</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">MISC简介Misc为英文miscellaneous的前四个字母，是杂项、混合体、大杂烩的意思
+主要类型有
+
+数据编码、图形编码
+图片隐写
+音频、视频隐写
+流量分析
+内存取证
+游戏隐写
+
+图片隐写分类右击属性属性————详细信息 中可能会隐藏一些字符串信息
+文件中藏字符串
+strings可直接查看
+grep -a “ctf” grep.jpeg
+file识别文件类型
+
+文件包含
+binwalk -e file 分离文件
+foremost file 提取文件
+dd if=file of=outfile bs=1 skip=开始分离的数字位置
+
+修改文件头
+JPEG (jpg)，文件头：FFD8FF文件尾：FF D9
+PNG (png)，文件头：89504E47文件尾：AE 42 60 82
+GIF (gif)， 　　文件头：47494638 或GIF89A　　　　　　　　　　　　　　　　　　　文件尾：00 3B
+ZIP Archive (zip)，文件头：504B0304　　　　　　　　　　　　　　　　　　　　　　文件尾：50 4B
+
+// 以下不太常见，但也要知道呀
+
+HTML (ht ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/04/BugKu%20CTF%E4%B9%8Bweb8%E3%80%90%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%91/" title="BugKu CTF之web8【文件包含】">     <img class="post_bg" src="https://ctf.bugku.com/upload/20201117/61f4c2f2718ee53b7ff90ef743263143.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BugKu CTF之web8【文件包含】"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/04/BugKu%20CTF%E4%B9%8Bweb8%E3%80%90%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%91/" title="BugKu CTF之web8【文件包含】">BugKu CTF之web8【文件包含】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-04T08:31:49.160Z" title="发表于 2021-02-04 16:31:49">2021-02-04</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-04T08:47:00.609Z" title="更新于 2021-02-04 16:47:00">2021-02-04</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">启动环境http://114.67.246.176:12466/
+123456 &lt;?php    include &quot;flag.php&quot;;    $a = @$_REQUEST[&#x27;hello&#x27;];    eval( &quot;var_dump($a);&quot;);    show_source(__FILE__);?&gt; 
+
+
+var_dump: 函数用于输出变量的相关信息
+1234# 数字var_dump(1); &gt; int(1)# 字符串var_dump(&quot;string&quot;); &gt;  string(6) &quot;string&quot;
+
+解题方法eval是此题的突破口，能够执行php代码
+闭合var_dump函数，利用print_r，file()函数把整个文件读入一个数组中
+例子：
+123&lt;?phpprint_r(file(&quot;test.txt&quot;));?&gt; 
+
+输出：
+1234567Array([0] =&gt; Hello World. Testing test ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12%E3%80%90XFF%E4%BC%AA%E9%80%A0%E3%80%91/" title="BugKu CTF之web12【XFF伪造】">     <img class="post_bg" src="https://ctf.bugku.com/upload/20201117/61f4c2f2718ee53b7ff90ef743263143.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BugKu CTF之web12【XFF伪造】"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/04/BugKu%20CTF%E4%B9%8Bweb12%E3%80%90XFF%E4%BC%AA%E9%80%A0%E3%80%91/" title="BugKu CTF之web12【XFF伪造】">BugKu CTF之web12【XFF伪造】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-04T08:00:43.123Z" title="发表于 2021-02-04 16:00:43">2021-02-04</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-04T08:48:14.054Z" title="更新于 2021-02-04 16:48:14">2021-02-04</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">启动环境 http://114.67.246.176:18149/
+
+1curl http:&#x2F;&#x2F;114.67.246.176:18149&#x2F;
+
+
+末尾的一串一看就是base64,解码是test123
+输入用户名和密码，却说我的IP被禁用，并且通知管理员记录下来了，说明用户十有八九是admin
+加X-Forwarded-For参数绕过X-Forwarded-For:127.0.0.1
+
+但是！用burp不知道为何发送不出去包，这也难不倒我
+用curl工具添加POST、http头的参数访问
+1curl http://114.67.246.176:18149/ -H &quot;X-Forwarded-For:127.0.0.1&quot; -d &quot;user=admin&amp;pass=test123&quot;
+
+
+-H 加HTTP头的参数
+-d 意思是POST访问形式
+
+
+获取到了flag
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/01/sublime%E5%8A%A0%E5%85%A5%E5%8F%B3%E9%94%AE/" title="sublime加入右键">     <img class="post_bg" src="/img/sublime.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sublime加入右键"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/01/sublime%E5%8A%A0%E5%85%A5%E5%8F%B3%E9%94%AE/" title="sublime加入右键">sublime加入右键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-01T15:14:01.806Z" title="发表于 2021-02-01 23:14:01">2021-02-01</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T07:56:06.496Z" title="更新于 2021-02-10 15:56:06">2021-02-10</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">1、打开注册表，win+R输入regedit
+2、在HKEY_CLASSSES_ROOT/ * /Shell 下面找到 Open with Sublime Text 没有就在Shell下新建一项
+在Open with Sublime Text这里新建字符串值，命名为Icon，值为”sublime所在路径，0”
+1D:\Program Files\Sublime Text 3\sublime_text.exe,0
+
+
+3、在Open with Sublime Text下面新建项command,默认值为
+1D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot;
+
+
+不用重启，立马见效
+
+
+
+
+思考由此，应该也可以自己添加自己想要放进右键的软件功能了吧！
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/01/justCTF2020%20writeup/" title="justCTF2020 writeup">     <img class="post_bg" src="/img/justctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="justCTF2020 writeup"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/01/justCTF2020%20writeup/" title="justCTF2020 writeup">justCTF2020 writeup</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-01T07:49:18.346Z" title="发表于 2021-02-01 15:49:18">2021-02-01</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T08:00:07.843Z" title="更新于 2021-02-01 16:00:07">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">位置：https://2020.justctf.team/
+忘记的名字
+搜索证书透明性日志https://crt.sh/?q=jctf.pro
+获取6a开头的一串子域名
+
+xdd解码
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/01/Cobalt%20Strike%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Cobalt Strike的使用">     <img class="post_bg" src="/img/cscs.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Cobalt Strike的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/01/Cobalt%20Strike%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Cobalt Strike的使用">Cobalt Strike的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-01T05:07:33.543Z" title="发表于 2021-02-01 13:07:33">2021-02-01</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T06:33:20.723Z" title="更新于 2021-02-01 14:33:20">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">工具简介Cobalt Strike 一款以Metasploit为基础的GUI框架式渗透测试工具，集成了端口转发、服务扫描，自动化溢出，多模式端口监听，exe、powershell木马生成等。
+还可以进行钓鱼攻击包括：网站克隆、目标信息获取、java执行、浏览器攻击等
+CS主要用于团体协作，可以让多个攻击者同时连接到团体服务器，共享信息。
+环境搭建CS分为客户端和服务端，其中服务端只能运行在Linux系统中，可以搭建在VPS上。
+teamserver是服务端
+在kali服务端中执行：
+1.&#x2F;teamserver 192.168.1.123 123456      
+
+
+ip可以是本地，也可以是远程的服务器公网地址，123456是连接密码
+
+客户端：
+点击其中一个打开
+输入hostIP（刚才设置的），端口默认50050，用户名随便取，再输入密码123456即可
+登录成功后，可以看到如下界面，主要有cs基本设置、视图、攻击、报表等功能
+
+攻击模块
+它可以不同的需求来生成木马文件：HTA木马文件、office宏病毒文件、各种语言版本的payload、USB/CD利用自动播放运行的木马 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全 web、ctf方向</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@google.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="hexo博客优化篇之搜索功能"><img src="/img/hexo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo博客优化篇之搜索功能"/></a><div class="content"><a class="title" href="/2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="hexo博客优化篇之搜索功能">hexo博客优化篇之搜索功能</a><time datetime="2021-02-24T03:43:48.623Z" title="发表于 2021-02-24 11:43:48">2021-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范"><img src="/img/windows.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows权限维持及防范"/></a><div class="content"><a class="title" href="/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范">Windows权限维持及防范</a><time datetime="2021-02-24T02:35:36.866Z" title="发表于 2021-02-24 10:35:36">2021-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/19/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析"><img src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之流量分析"/></a><div class="content"><a class="title" href="/2021/02/19/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析">Misc总结之流量分析</a><time datetime="2021-02-19T01:44:11.954Z" title="发表于 2021-02-19 09:44:11">2021-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/gif.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图片隐写之GIF"/></a><div class="content"><a class="title" href="/2021/02/11/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF">图片隐写之GIF</a><time datetime="2021-02-10T18:01:04.403Z" title="发表于 2021-02-11 02:01:04">2021-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210210232654.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="免费CDN加速GitHub图床"/></a><div class="content"><a class="title" href="/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床">免费CDN加速GitHub图床</a><time datetime="2021-02-10T10:27:55.932Z" title="发表于 2021-02-10 18:27:55">2021-02-10</time></div></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="card-content"><div class="item-headline"><i class="fas fa-bolt"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CDN%E5%8A%A0%E9%80%9F/" style="font-size: 1.1em; color: #999">CDN加速</a> <a href="/tags/CVE/" style="font-size: 1.1em; color: #999">CVE</a> <a href="/tags/JBoss/" style="font-size: 1.1em; color: #999">JBoss</a> <a href="/tags/ctf/" style="font-size: 1.37em; color: #99a4b2">ctf</a> <a href="/tags/cve/" style="font-size: 1.1em; color: #999">cve</a> <a href="/tags/flag/" style="font-size: 1.1em; color: #999">flag</a> <a href="/tags/getshell/" style="font-size: 1.23em; color: #999ea6">getshell</a> <a href="/tags/git/" style="font-size: 1.17em; color: #999c9f">git</a> <a href="/tags/hexo/" style="font-size: 1.17em; color: #999c9f">hexo</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/mitu/" style="font-size: 1.1em; color: #999">mitu</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/vulnhub/" style="font-size: 1.43em; color: #99a6b9">vulnhub</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: #999">中间件</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/" style="font-size: 1.43em; color: #99a6b9">内网提权</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" style="font-size: 1.17em; color: #999c9f">内网渗透</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.23em; color: #999ea6">图床</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.3em; color: #99a1ac">工具</a> <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.1em; color: #999">应急响应</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 1.1em; color: #999">权限维持</a> <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/" style="font-size: 1.1em; color: #999">社会工程学</a> <a href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">逻辑漏洞</a> <a href="/tags/%E9%9D%B6%E6%9C%BA/" style="font-size: 1.5em; color: #99a9bf">靶机</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/01/"><span class="card-archive-list-date">一月 2021</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">38</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-19T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-02-24T07:10:13.432Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "学习永无止境,遇事不决，败者食尘,懒惰是索价极高的奢侈品，一旦到期清付，必定偿还不起".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '学习永无止境'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+    content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+    content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon 
+    let defaultIcon = ''
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    for (let i = 0; i < array.length; i++) {
+      result += '<div class=\'aside-list-item\'>'
+
+      if (true) {
+        result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+      }
+
+      result += `<div class='content'>
+      <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+      <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+      </div></div>`
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getValineData = () => {
+      let serverURL = ''
+      if (false) {
+        serverURL = ''
+      } else {
+        serverURL = 'https://n3p3uLQD.api.lncldglobal.com'
+      }
+
+    var settings = {
+      "url": `${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,
+      "method": "GET",
+      "timeout": 0,
+      "headers": {
+        "X-LC-Id": 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+        "X-LC-Key": 'DzduWleTzfwsWV48PWO1wi1d',
+        "Content-Type": "application/json"
+      },
+    }
+
+    $.ajax(settings).done((response) => {
+      var valineArray = []
+      response.results.forEach((e)=>{
+        valineArray.push({
+          'avatar': e.QQAvatar,
+          'content': changeContent(e.comment),
+          'mail': e.mail,
+          'nick': e.nick,
+          'url': e.url,
+          'date': e.createdAt,
+        })
+      })
+      
+      saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+      generateHtml(valineArray)
+
+    }).fail(()=>{
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.innerHTML= "无法获取资料，请确认相关配置是否正确"
+    })
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('leancloud-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getValineData()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

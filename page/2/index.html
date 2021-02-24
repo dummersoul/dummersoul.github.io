@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dummersoul's Blog - fate and night</title><meta name="keywords" content="渗透"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络安全 web、ctf方向">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dummersoul&#39;s Blog">
+<meta property="og:url" content="https://dummersoul.top/page/2/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="网络安全 web、ctf方向">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.top/img/dummersoul.jpg">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.top/img/dummersoul.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.top/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-02-24 15:10:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">dummersoul's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@google.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/" title="学习git分支">     <img class="post_bg" src="https://learngitbranching.js.org/assets/favicon.ico" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习git分支"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/" title="学习git分支">学习git分支</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-28T03:49:56.520Z" title="发表于 2021-01-28 11:49:56">2021-01-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T09:45:30.517Z" title="更新于 2021-01-28 17:45:30">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/git/">git</a></span></div><div class="content">前提由于今天git操作给我整懵了，虽说之前也接触过，但是长时间不操作就会忘记，并且手忙脚乱，不懂原理怎么打下整个天下，碰巧遇到了一篇写的很详细的文章可视化学习git命令，就按照他的思路来深入探索一下。
+还有学习平台学习git分支
+开始闯关
+git commit
+
+git branch
+1git branch newImage
+
+
+1git commit
+
+
+12git checkout newImage; git commitgit checkout -b newImage  # 直接新建了一个newImage分支，且切换到了新建的分支上去（会有个*号）
+
+
+git merge
+
+1git merge bugFix   # 把 bugFix 合并到 main 里
+
+
+1git checkout bugFix; git merge main  # 再把 bugFix 合并到 main 里
+
+
+
+git rebase
+
+1git rebase main
+
+
+1git rebase bugFix
+
+
+
+HEAD
+
+1git checkout C1; git checkout main; gi ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/28/git%E5%9B%9E%E6%BA%AF%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1commit/" title="git回溯到上一次commit">     <img class="post_bg" src="/img/git.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git回溯到上一次commit"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/28/git%E5%9B%9E%E6%BA%AF%E5%88%B0%E4%B8%8A%E4%B8%80%E6%AC%A1commit/" title="git回溯到上一次commit">git回溯到上一次commit</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-28T03:21:08.801Z" title="发表于 2021-01-28 11:21:08">2021-01-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T03:46:57.367Z" title="更新于 2021-01-28 11:46:57">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/git/">git</a></span></div><div class="content">背景在找博客内容的时候，总感觉少了点什么，还好有一个链接指向，打开发现我之前写的东西怎么不见了！！去GitHub的提交历史记录看，确实在最新一次的commit上，那一篇被误删掉了，现在要把之前的文章找回来，只能回溯到上一次commit，然后再提交到仓库中
+回溯过程在有.git的文件目录下打开git bash
+
+输入命令查看log 也可以直接在GitHub上查看
+1git log
+
+
+这里是回去过后的截图了，要回到指定的commit，需要如下命令
+1git reset --hard [commit]
+
+
+此时HEAD已经是ddcf79a了，那么就要git push传到仓库
+
+发现出错了，为什么，百度一下是没有远程仓库，解决方法如下
+12345678910git add --allgit commit -m &quot;上传&quot;git remote add origin https:&#x2F;&#x2F;github.com&#x2F;dummersoul&#x2F;dummersoul.github.iogit push -f orgin main然后下一次就不用那么麻烦了，直 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/" title="phpmyadmin获取shell">     <img class="post_bg" src="/img/phpmyadmin.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="phpmyadmin获取shell"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/" title="phpmyadmin获取shell">phpmyadmin获取shell</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-28T03:14:59.751Z" title="发表于 2021-01-28 11:14:59">2021-01-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T03:20:14.438Z" title="更新于 2021-01-28 11:20:14">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/getshell/">getshell</a></span></div><div class="content">查找真实路径通过sql语句查询12select @@basedir;   # 得到 /usrselect @@datadir;   # 得到 /var/lib/mysql
+
+而网站实际根路径是 /var/www
+phpinfo查找真实路径
+_SERVER[“SCRIPT_FILENAME”]
+_SERVER[“DOCUMENT_ROOT”]
+_SERVER[“CONTEXT_DOCUMENT_ROOT”]
+Server Root
+
+
+通过log变量查找路径
+getshell找到路径后，就要想办法将木马写入
+查询secure_file_priv12select @@secure_file_priv;   SHOW global VARIABLES LIKE &quot;secure_file_priv&quot;;
+
+
+
+
+值
+解释
+
+
+
+NULL(默认)
+不允许导入导出文件
+
+
+/tmp
+只允许在 /tmp 目录导入导出文件
+
+
+空
+不限制路径，可以任意导入导出文件
+
+
+
+在我用SHOW global VARIABLES LIKE “secure_file_priv”;执行时没有显示N ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/26/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/" title="vulnstack红队评估(七)">     <img class="post_bg" src="/img/cs.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vulnstack红队评估(七)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/26/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/" title="vulnstack红队评估(七)">vulnstack红队评估(七)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-26T05:41:58.722Z" title="发表于 2021-01-26 13:41:58">2021-01-26</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T09:14:39.046Z" title="更新于 2021-02-01 17:14:39">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a></span></div><div class="content">前提靶机位置：http://vulnstack.qiyuanxuetang.net/vuln/detail/2/
+虚拟机密码hongrisec@2019
+环境共有三个主机：
+VM1：win7提供外网
+VM2：winserver 2003内网域成员
+VM3：winserver 2008内网域控
+拓扑如下：
+
+进入win7 启动phpstudy，设置网络模式为nat
+将kali也设置成nat
+信息收集win7主机ip：192.168.233.129
+扫描端口发现80端口，打开是phpinfo，测试mysql数据库，root-root测试成功
+
+还发现了绝对路径 C:/phpstudy/WWW
+
+dirmap目录扫描1python dirmap.py -i 192.168.233.129 -lcf
+
+发现一个备份文件rar： beifen.rar
+发现了根路径: phpmyadmin
+备份文件下载到本地后发现后台是yxcms
+
+并翻找里面的备份文件，发现了关键信息
+
+后台地址：yxcms/index.php?r=admin
+默认的用户名和密码：admin/123456
+
+getshell一： ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/20/vulnhub%20djinn3/" title="vulnhub djinn-3 writeup">     <img class="post_bg" src="/img/Werkzeug.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vulnhub djinn-3 writeup"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/20/vulnhub%20djinn3/" title="vulnhub djinn-3 writeup">vulnhub djinn-3 writeup</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-20T14:15:37.703Z" title="发表于 2021-01-20 22:15:37">2021-01-20</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-26T03:51:54.737Z" title="更新于 2021-01-26 11:51:54">2021-01-26</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">信息探测
+
+5000端口(flask框架)
+发现5000服务是Werkzeug 网站是flask框架，想起了flask有一个SSTI(Server-Side Template Injection) 服务端模板注入漏洞
+漏洞详细描述：flask漏洞探究
+利用原理：在Jinja2引擎中，&#123;&#123;&#125;&#125;不仅仅是变量标示符，也能执行一些简单的表达式
+
+Flask 依赖 Jinja 模板引擎和 Werkzeug WSGI 套件
+
+
+链接可以点开查看
+
+31337端口nc 连接，猜测用户名和密码，因为在5000端口看到一个用户名尝试一下进入
+
+
+1&#123;&#123;config.__class__.__init__.__globals__[&#39;os&#39;].popen(&#39;ls&#39;).read()&#125;&#125;
+
+
+
+再回到5000端口页面下，可以看到出现了新的ID链接
+
+
+利用SSTI注入漏洞反弹shellSSTI payload中找一个payload反弹shell
+1&#123;&#123;request|attr(&#3 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/" title="常见的未授权访问漏洞">     <img class="post_bg" src="/img/unauthorized.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常见的未授权访问漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/" title="常见的未授权访问漏洞">常见的未授权访问漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-20T13:57:27.583Z" title="发表于 2021-01-20 21:57:27">2021-01-20</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T08:15:45.663Z" title="更新于 2021-02-01 16:15:45">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/getshell/">getshell</a></span></div><div class="content">Redis 未授权访问漏洞漏洞描述
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/14/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%89%8B%E5%8A%A8%E6%9D%80%E6%AF%92%E7%9A%84%E6%96%B9%E6%B3%95/" title="Windows手动杀毒的方法">     <img class="post_bg" src="/img/virus.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows手动杀毒的方法"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/14/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%89%8B%E5%8A%A8%E6%9D%80%E6%AF%92%E7%9A%84%E6%96%B9%E6%B3%95/" title="Windows手动杀毒的方法">Windows手动杀毒的方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-14T01:06:40.417Z" title="发表于 2021-01-14 09:06:40">2021-01-14</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-14T01:22:38.573Z" title="更新于 2021-01-14 09:22:38">2021-01-14</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="content">转载自：http://blog.chinaunix.net/uid-69952968-id-5843858.html
+一、注册表清除​    利用注册表加载运行如下所示的注册表位置是木马的藏身之处：　　HKEY_LOCAL_MACHING\Software\Windows\Current Version下所有以“run”开头的键值。　　HKEY_CURRENT_USER\Software\Microsoft\Windows\Current Version下所有以“run”开头的健值。　　HKEY_USERS\Default\Software\Microsoft\Windows\Current Version下所有以“run”开头的健值。
+二、系统文件​    在System.ini中启动，System.ini位于Windows的安装目录下，其“boot”字段的Shell=Explore.exe是木马的隐蔽加载场所，木马通常的做法是将该句变为Shell=Explore.exe，注意这里的Window.exe就是木马服务端程序。
+三、启动命令​    在Win.ini中启动，在Win.in ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/13/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="djinn-2靶机练习">     <img class="post_bg" src="/img/keepass.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="djinn-2靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/13/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="djinn-2靶机练习">djinn-2靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-13T08:24:37.923Z" title="发表于 2021-01-13 16:24:37">2021-01-13</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-20T03:36:42.535Z" title="更新于 2021-01-20 11:36:42">2021-01-20</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">靶机位置：https://www.vulnhub.com/entry/djinn-2,420/
+主机发现123arp-scan -lnetdiscovernmap -sP 192.168.56.0/24
+
+端口探测1nmap -p- -A 192.168.56.109
+
+同样发现了与靶机1一样的ftp匿名登录，里面也是三个文件，文件名一样，不过内容变了
+
+
+
+port
+state
+service
+
+
+
+21
+open
+ftp
+
+
+22
+open
+ssh
+
+
+1337
+open
+waste
+
+
+5000
+open
+upnp
+
+
+7331
+open
+swx
+
+
+这个7331端口和上一个靶机一样，再打开/wish页面，它提示漏洞已修复，也确实没有命令执行漏洞了，两个靶机怎么可能同一处利用点呢，只能尝试其他点了
+目录扫描1dirb http://192.168.56.109:7331 /usr/share/wordlists/dirb/big.txt
+
+
+
+http://192.168.56.109:7331/robots.txt (CODE:200|SIZE:10)
+http://192.1 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/12/djinn-1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="djinn-1靶机练习">     <img class="post_bg" src="/img/djinn1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="djinn-1靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/12/djinn-1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="djinn-1靶机练习">djinn-1靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-12T02:07:17.105Z" title="发表于 2021-01-12 10:07:17">2021-01-12</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-14T01:43:46.197Z" title="更新于 2021-01-14 09:43:46">2021-01-14</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">靶机位置：https://www.vulnhub.com/entry/djinn-1,397/
+主机发现
+端口探测1nmap -p- -A 192.168.56.108
+
+
+
+ftp枚举ftp可以匿名访问，查看到三个文件，说1337是他写的游戏，写给朋友玩的
+1ftp://192.168.56.108
+
+
+
+
+
+
+
+natcat访问http访问1337不行，试试 nc 192.168.56.108 1337
+
+结果这游戏是小学生数学题，还要玩一千次才有礼物！？？？(ﾒ｀ﾛ´)/
+再尝试访问7331端口，发现有网页
+
+gobuster爆破目录1gobuster dir -u http://192.168.56.108:7331 -w /usr/share/wordlists/dirb/big.txt
+
+
+两个目录，/wish 和 /genie
+
+之前发现了一款dirb目录扫描工具，这次用的时候只发现了/genie目录，很奇怪，为什么啊，明明很好用的
+
+命令执行
+试着执行 ifconfig ，跳转到这个页面，可以看到执行成功，返回了正确的信息，看不清可以f12查看源代码
+
+好，接下来就是反 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/11/Linux%20sed%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Linux sed命令的使用">     <img class="post_bg" src="/img/sed.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux sed命令的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/11/Linux%20sed%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Linux sed命令的使用">Linux sed命令的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-11T12:23:47.846Z" title="发表于 2021-01-11 20:23:47">2021-01-11</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-11T13:32:29.881Z" title="更新于 2021-01-11 21:32:29">2021-01-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">Linux sed 命令是利用脚本来处理文本文件。
+sed 可依照脚本的指令来处理、编辑文本文件。
+Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。
+语法
+1sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]
+
+
+
+参数说明
+
+
+-e &lt;script&gt; 或 –expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。
+-f &lt;script文件&gt; 或 –file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。
+-h 或 –help 显示帮助。
+-n 或 –quiet 或 –silent 仅显示script处理后的结果。
+-V 或 –version 显示版本信息。
+
+
+动作说明
+
+
+a ：新增，a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)
+c ：取代，c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+i ： ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/11/billu%20b0x_2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_2靶机练习">     <img class="post_bg" src="/img/drupal.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="billu:b0x_2靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/11/billu%20b0x_2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_2靶机练习">billu:b0x_2靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-11T01:40:29.560Z" title="发表于 2021-01-11 09:40:29">2021-01-11</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-11T13:36:36.484Z" title="更新于 2021-01-11 21:36:36">2021-01-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">主机发现arp-scan -l
+
+端口探测namp -A 192.168.56.105
+
+检测到ssh是有openSSH 6.6.1p1服务支持，貌似可以利用，是用户枚举漏洞，只能检测有哪些用户存在，实际上也是利用自己的字典爆破，没啥大用处（参考文章：OpenSSH 用户名枚举漏洞（CVE-2018-15473）
+80端口还能扫描到一些目录文件
+Drupal 8框架利用该网站使用了 “Drupal 8”框架搭建，从主页也可以发现这个服务
+
+用searchsploit搜索Drupal 8
+
+看到关键词 Drupalgeddon2
+msf搜索 Drupal
+
+1234search Drupaluse exploit&#x2F;unix&#x2F;webapp&#x2F;drupal_drupalgeddon2set rhosts 192.168.56.105run
+
+
+因为没有/bin/bash，手动添加
+1python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;
+
+提权检测linux的自动化脚本
+Linux-exp ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/05/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_1靶机练习">     <img class="post_bg" src="/img/luffy_shanks.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="billu:b0x_1靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/05/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_1靶机练习">billu:b0x_1靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-05T05:32:05.176Z" title="发表于 2021-01-05 13:32:05">2021-01-05</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T03:40:05.450Z" title="更新于 2021-01-28 11:40:05">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">主机发现netdiscover
+
+arp-scan -l 这个贼快
+
+端口扫描
+sql注入
+提示了sql注入
+但是抓包sqlmap -r 1.txt –level=5 -dbs 也没有任何东西。无奈
+扫描目录–dirb123cd &#x2F;usr&#x2F;share&#x2F;dirb&#x2F;wordlistslsdirb http:&#x2F;&#x2F;192.168.56.107 .&#x2F;big.txt
+
+之前没怎么用过这个工具，一直用的御剑，今儿用了才发现，还是用的大字典，结果那叫一个快准狠！！爱了爱了！！！
+
+
+这几个目录都很有用，其中有一个phpmyadmin 还不知道账户密码
+
+文件上传
+
+结果发现上传的文件并没在/images/目录和/uploaded_images/目录里出现
+仅仅是前端的上传页面，不能传东西
+探针信息
+可以知道网站根目录的位置
+文件包含
+这个像个文件包含
+post添加file参数
+
+成功下载文件，再利用这种方式下载其他文件，探测信息
+又下载了一个扫到的c.php 发现 mysql 的账号billu 密码b0x_billu ，这不是有账户 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全 web、ctf方向</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@google.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="hexo博客优化篇之搜索功能"><img src="/img/hexo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo博客优化篇之搜索功能"/></a><div class="content"><a class="title" href="/2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" title="hexo博客优化篇之搜索功能">hexo博客优化篇之搜索功能</a><time datetime="2021-02-24T03:43:48.623Z" title="发表于 2021-02-24 11:43:48">2021-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范"><img src="/img/windows.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows权限维持及防范"/></a><div class="content"><a class="title" href="/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范">Windows权限维持及防范</a><time datetime="2021-02-24T02:35:36.866Z" title="发表于 2021-02-24 10:35:36">2021-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/19/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析"><img src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之流量分析"/></a><div class="content"><a class="title" href="/2021/02/19/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析">Misc总结之流量分析</a><time datetime="2021-02-19T01:44:11.954Z" title="发表于 2021-02-19 09:44:11">2021-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/11/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/gif.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图片隐写之GIF"/></a><div class="content"><a class="title" href="/2021/02/11/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF">图片隐写之GIF</a><time datetime="2021-02-10T18:01:04.403Z" title="发表于 2021-02-11 02:01:04">2021-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210210232654.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="免费CDN加速GitHub图床"/></a><div class="content"><a class="title" href="/2021/02/10/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床">免费CDN加速GitHub图床</a><time datetime="2021-02-10T10:27:55.932Z" title="发表于 2021-02-10 18:27:55">2021-02-10</time></div></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="card-content"><div class="item-headline"><i class="fas fa-bolt"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CDN%E5%8A%A0%E9%80%9F/" style="font-size: 1.1em; color: #999">CDN加速</a> <a href="/tags/CVE/" style="font-size: 1.1em; color: #999">CVE</a> <a href="/tags/JBoss/" style="font-size: 1.1em; color: #999">JBoss</a> <a href="/tags/ctf/" style="font-size: 1.37em; color: #99a4b2">ctf</a> <a href="/tags/cve/" style="font-size: 1.1em; color: #999">cve</a> <a href="/tags/flag/" style="font-size: 1.1em; color: #999">flag</a> <a href="/tags/getshell/" style="font-size: 1.23em; color: #999ea6">getshell</a> <a href="/tags/git/" style="font-size: 1.17em; color: #999c9f">git</a> <a href="/tags/hexo/" style="font-size: 1.17em; color: #999c9f">hexo</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/mitu/" style="font-size: 1.1em; color: #999">mitu</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/vulnhub/" style="font-size: 1.43em; color: #99a6b9">vulnhub</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: #999">中间件</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/" style="font-size: 1.43em; color: #99a6b9">内网提权</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" style="font-size: 1.17em; color: #999c9f">内网渗透</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.23em; color: #999ea6">图床</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.3em; color: #99a1ac">工具</a> <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.1em; color: #999">应急响应</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 1.1em; color: #999">权限维持</a> <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/" style="font-size: 1.1em; color: #999">社会工程学</a> <a href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">逻辑漏洞</a> <a href="/tags/%E9%9D%B6%E6%9C%BA/" style="font-size: 1.5em; color: #99a9bf">靶机</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/02/"><span class="card-archive-list-date">二月 2021</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/01/"><span class="card-archive-list-date">一月 2021</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">38</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-19T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-02-24T07:10:13.432Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "学习永无止境,遇事不决，败者食尘,懒惰是索价极高的奢侈品，一旦到期清付，必定偿还不起".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '学习永无止境'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+    content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+    content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getIcon = (icon, mail) => {
+    if (icon) return icon 
+    let defaultIcon = ''
+    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    return iconUrl
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    for (let i = 0; i < array.length; i++) {
+      result += '<div class=\'aside-list-item\'>'
+
+      if (true) {
+        result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+      }
+
+      result += `<div class='content'>
+      <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+      <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+      </div></div>`
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getValineData = () => {
+      let serverURL = ''
+      if (false) {
+        serverURL = ''
+      } else {
+        serverURL = 'https://n3p3uLQD.api.lncldglobal.com'
+      }
+
+    var settings = {
+      "url": `${serverURL}/1.1/classes/Comment?limit=6&order=-createdAt`,
+      "method": "GET",
+      "timeout": 0,
+      "headers": {
+        "X-LC-Id": 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+        "X-LC-Key": 'DzduWleTzfwsWV48PWO1wi1d',
+        "Content-Type": "application/json"
+      },
+    }
+
+    $.ajax(settings).done((response) => {
+      var valineArray = []
+      response.results.forEach((e)=>{
+        valineArray.push({
+          'avatar': e.QQAvatar,
+          'content': changeContent(e.comment),
+          'mail': e.mail,
+          'nick': e.nick,
+          'url': e.url,
+          'date': e.createdAt,
+        })
+      })
+      
+      saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+      generateHtml(valineArray)
+
+    }).fail(()=>{
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.innerHTML= "无法获取资料，请确认相关配置是否正确"
+    })
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('leancloud-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getValineData()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>
