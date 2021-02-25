@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Windows提权（一）</title>
+      <link href="2021/02/25/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>2021/02/25/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><blockquote><p>Windows提权有很多方式，如系统命令提权，漏洞提权，配置不当提权。本次主记录利用系统命令提权，用于将administrator提升到system</p></blockquote><h2 id="xp-2003提权"><a href="#xp-2003提权" class="headerlink" title="xp,2003提权"></a>xp,2003提权</h2><p><code>at命令</code></p><blockquote><p>AT命令是Windows XP中内置的命令，它也可以媲美Windows中的“计划任务”，而且在计划的安排、任务的管理、工作事务的处理方面，AT命令具有更强大更神通的功能。AT命令可在指定时间和日期、在指定计算机上运行命令和程序。</p></blockquote><p>原理：at默认以system权限运行，所以可以进行提权</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">at 10:30 &#x2F;interactive cmd</span><br></pre></td></tr></table></figure><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095036459.png" alt="image-20210225095036459" style="zoom:80%;" /><p>等待片刻，立即变化权限</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095047278.png" alt="image-20210225095047278" style="zoom:150%;" /><p>虽然cmd是system权限，但是桌面并不是</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095126863.png" alt="image-20210225095126863" style="zoom:50%;" /><p>为了完全提权，在cmd中以刚提权成功的<code>system身份</code>输入 <code>taskmgr.exe</code> 启动任务管理器</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095254119.png" alt="image-20210225095254119"></p><p>在任务管理器中<code>结束之前账号开启的桌面进程</code></p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095331888.png" alt="image-20210225095331888" style="zoom:50%;" /><p>然后自己添加一个有system权限下开启的桌面进程</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095445042.png" alt="image-20210225095445042" style="zoom:50%;" /><p>再点入登入账号</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225095509918.png" alt="image-20210225095509918" style="zoom:50%;" /><p>提权成功了！</p><h2 id="win7-win8提权"><a href="#win7-win8提权" class="headerlink" title="win7,win8提权"></a>win7,win8提权</h2><p>at命令在win7 win8已经被取消了，但是没关系，可以用 <code>sc</code>命令提权</p><blockquote><p>SC命令是XP系统中功能强大的DOS命令,SC命令能与“服务控制器”和已安装设备进行通讯。SC是用于与服务控制管理器和服务进行通信的命令行程序。</p><p>通俗点：sc可以启动一个服务</p></blockquote><p>原理：sc也默认以system权限运行，所以可以进行提权</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc Create systemcmd binPath&#x3D;&quot;cmd&#x2F;k start&quot; type&#x3D; own type&#x3D; interact</span><br></pre></td></tr></table></figure><ul><li>systemcmd 是服务名称</li><li>binpath 是启动的命令</li><li>type=own 是指服务这个服务属于谁</li><li>type=interact 交互状态</li><li>cmd/k start 启动一个新的cmd窗口</li></ul><p>cmd输入命令后看到</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225100612751.png" alt="image-20210225100612751"></p><p>说明服务已经创建了，但是刚创建的服务是默认关闭的，所以要手动开启这个服务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc start systemcmd</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210225100729495.png" alt="image-20210225100729495"></p><p>可以看到新建了一个cmd窗口，且是system权限了，剩下要做的和刚才上面xp,2003桌面提权方式一样，这里就不赘述了。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://mp.weixin.qq.com/s/nEuRhSxrjRqRJCOXabhSmQ">https://mp.weixin.qq.com/s/nEuRhSxrjRqRJCOXabhSmQ</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 内网提权 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo博客优化篇之搜索功能</title>
       <link href="2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"/>
       <url>2021/02/24/hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96%E7%AF%87%E4%B9%8B%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>

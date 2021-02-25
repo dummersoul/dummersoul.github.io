@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-24T08:09:58.698Z</updated>
+  <updated>2021-02-25T02:09:12.130Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows提权（一）</title>
+    <link href="https://dummersoul.top/2021/02/25/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://dummersoul.top/2021/02/25/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2021-02-25T01:34:17.474Z</published>
+    <updated>2021-02-25T02:09:12.130Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo博客优化篇之搜索功能</title>
@@ -460,33 +483,6 @@
     
     
     <category term="应急响应" scheme="https://dummersoul.top/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>djinn-2靶机练习</title>
-    <link href="https://dummersoul.top/2021/01/13/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"/>
-    <id>https://dummersoul.top/2021/01/13/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/</id>
-    <published>2021-01-13T08:24:37.923Z</published>
-    <updated>2021-01-20T03:36:42.535Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="vulnhub" scheme="https://dummersoul.top/tags/vulnhub/"/>
-    
-    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
-    
-    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   
