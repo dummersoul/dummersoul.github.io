@@ -1,0 +1,21 @@
+--------------------------------info[13:19:54]--------------------------------
+System.Exception: v2rayN start up v2rayN - V3.5 - 2020/01/15
+
+ 
+--------------------------------info[22:02:04]--------------------------------
+System.Exception: v2rayN start up v2rayN - V3.5 - 2020/01/15
+
+ 
+--------------------------------不知道这样的主机。[22:10:50]--------------------------------
+System.Net.Sockets.SocketException (0x80004005): 不知道这样的主机。
+   在 System.Net.Dns.InternalGetHostByAddress(IPAddress address, Boolean includeIPv6)
+   在 System.Net.Dns.GetHostEntry(String hostNameOrAddress)
+   在 v2rayN.Handler.SpeedtestHandler.GetTcpingTime(String url, Int32 port)
+
+ 
+--------------------------------操作超时[22:10:59]--------------------------------
+System.Net.WebException: 操作超时
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 v2rayN.Handler.SpeedtestHandler.GetRealPingTime(String url, WebProxy webProxy, Int32& responseTime)
+
+ 
