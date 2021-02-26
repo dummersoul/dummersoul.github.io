@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-25T08:17:59.374Z</updated>
+  <updated>2021-02-26T06:56:31.908Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kali安装docker搭建vulhub靶场</title>
+    <link href="https://dummersoul.top/2021/02/25/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/"/>
+    <id>https://dummersoul.top/2021/02/25/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/</id>
+    <published>2021-02-25T10:00:39.684Z</published>
+    <updated>2021-02-26T06:56:31.908Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="工具" scheme="https://dummersoul.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="docker" scheme="https://dummersoul.top/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Ngrok实现内网映射与穿透</title>
@@ -89,8 +114,8 @@
   
   <entry>
     <title>Windows权限维持及防范</title>
-    <link href="https://dummersoul.top/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/"/>
-    <id>https://dummersoul.top/2021/02/24/Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/</id>
+    <link href="https://dummersoul.top/2021/02/24/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/"/>
+    <id>https://dummersoul.top/2021/02/24/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/</id>
     <published>2021-02-24T02:35:36.866Z</published>
     <updated>2021-02-24T02:43:12.565Z</updated>
     
@@ -462,29 +487,6 @@
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
     <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见的未授权访问漏洞</title>
-    <link href="https://dummersoul.top/2021/01/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
-    <id>https://dummersoul.top/2021/01/20/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</id>
-    <published>2021-01-20T13:57:27.583Z</published>
-    <updated>2021-02-01T08:15:45.663Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="getshell" scheme="https://dummersoul.top/tags/getshell/"/>
     
   </entry>
   
