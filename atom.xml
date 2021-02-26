@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-26T06:56:31.908Z</updated>
+  <updated>2021-02-26T07:02:26.703Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://dummersoul.top/2021/02/25/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/"/>
     <id>https://dummersoul.top/2021/02/25/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/</id>
     <published>2021-02-25T10:00:39.684Z</published>
-    <updated>2021-02-26T06:56:31.908Z</updated>
+    <updated>2021-02-26T07:02:26.703Z</updated>
     
     
       
@@ -38,6 +38,8 @@
     <category term="工具" scheme="https://dummersoul.top/tags/%E5%B7%A5%E5%85%B7/"/>
     
     <category term="docker" scheme="https://dummersoul.top/tags/docker/"/>
+    
+    <category term="struts2" scheme="https://dummersoul.top/tags/struts2/"/>
     
   </entry>
   
