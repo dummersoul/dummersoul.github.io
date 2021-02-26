@@ -6,7 +6,7 @@
   <link href="https://dummersoul.top/atom.xml" rel="self"/>
   
   <link href="https://dummersoul.top/"/>
-  <updated>2021-02-26T07:02:26.703Z</updated>
+  <updated>2021-02-26T08:25:47.696Z</updated>
   <id>https://dummersoul.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>文件被占用无法删除怎么办</title>
+    <link href="https://dummersoul.top/2021/02/26/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/"/>
+    <id>https://dummersoul.top/2021/02/26/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/</id>
+    <published>2021-02-26T08:15:36.182Z</published>
+    <updated>2021-02-26T08:25:47.696Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="工具" scheme="https://dummersoul.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>kali安装docker搭建vulhub靶场</title>
@@ -462,33 +485,6 @@
     <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
     
     <category term="内网渗透" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vulnhub djinn-3 writeup</title>
-    <link href="https://dummersoul.top/2021/01/20/vulnhub%20djinn3/"/>
-    <id>https://dummersoul.top/2021/01/20/vulnhub%20djinn3/</id>
-    <published>2021-01-20T14:15:37.703Z</published>
-    <updated>2021-01-26T03:51:54.737Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="vulnhub" scheme="https://dummersoul.top/tags/vulnhub/"/>
-    
-    <category term="靶机" scheme="https://dummersoul.top/tags/%E9%9D%B6%E6%9C%BA/"/>
-    
-    <category term="内网提权" scheme="https://dummersoul.top/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
     
   </entry>
   

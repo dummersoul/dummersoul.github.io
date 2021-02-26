@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>文件被占用无法删除怎么办</title>
+      <link href="2021/02/26/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/"/>
+      <url>2021/02/26/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>遇到文件被占用想删除，但就是找不到它被占用的进程</p><p>可以使用一个特别棒的工具 <code>IObit Unlocker</code></p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210226162149171.png" alt="image-20210226162149171"></p><p>工具下载地址：<a href="https://www.majorgeeks.com/mg/getmirror/iobit_unlocker,1.html">https://www.majorgeeks.com/mg/getmirror/iobit_unlocker,1.html</a></p><p>安装时勾选添加至右键的功能，在一个文件上右击选择</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210226162301734.png" alt="image-20210226162301734"></p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210226162442649.png" alt="image-20210226162442649"></p><p>可以删除、重命名、移动、复制等任何操作，简直是利器啊朋友们！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>kali安装docker搭建vulhub靶场</title>
       <link href="2021/02/25/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/"/>
       <url>2021/02/25/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/</url>
