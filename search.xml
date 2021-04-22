@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>Windows关闭指定的端口</title>
+      <link href="2021/04/22/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/"/>
+      <url>2021/04/22/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="关闭135端口"><a href="#关闭135端口" class="headerlink" title="关闭135端口"></a>关闭135端口</h2><blockquote><p>135端口 主用于RPC（远程过程调用）协议并提供DCOM（分布式组件对象模型）服务，提供RPC可以保证在一台计算机上运行的程序可以顺利地执行远程计算机上的代码；使用DCOM可以通过网络直接通信，能够跨包括HTTP协议在内的多种网络传输。RPC本身在处理通过TCP/IP的消息交换部分有一个漏洞，该漏洞是由于错误的处理格式不正确的消息造成的。该漏洞会影响到RPC与DCOM之间的一个接口，该接口侦听的端口就是135，所以建议关闭135端口。</p></blockquote><h3 id="winxp系统禁用DCOM和RPC的操作步骤"><a href="#winxp系统禁用DCOM和RPC的操作步骤" class="headerlink" title="winxp系统禁用DCOM和RPC的操作步骤"></a>winxp系统禁用DCOM和RPC的操作步骤</h3><p>打开组件服务</p><p>win+R 运行<code>dcomcnfg</code></p><p>计算机——我的电脑——属性</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422151525716.png" alt="image-20210422151525716" style="zoom: 80%;" /><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422151727112.png" alt="image-20210422151727112" style="zoom:50%;" /><p>选择默认协议 面向连接的TCP/IP 单机移除</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422152052306.png" alt="image-20210422152052306" style="zoom:50%;" /><p>点击确定后，重启即可关闭135端口</p><h2 id="关闭139端口"><a href="#关闭139端口" class="headerlink" title="关闭139端口"></a>关闭139端口</h2><blockquote><p>139端口是为“NETBIOS Session Service”提供的，主要用于提供Windows文件和打印机共享以及Unix中的Samba服务。在Windows中要在局域网中进行文件的共享，必须使用该端口。</p><p>端口漏洞：开启139端口虽然可以提供共享服务，但是常常被利用攻击，比如使用流光、superscan等端口扫描攻击，可以扫描到目标计算机的139端口，如果发现有漏洞，可以试图获取用户名和密码，这是非常危险的。</p></blockquote><h3 id="禁用NetBIOS操作步骤"><a href="#禁用NetBIOS操作步骤" class="headerlink" title="禁用NetBIOS操作步骤"></a>禁用NetBIOS操作步骤</h3><p>在【网络适配器】中的本地连接状态中进行操作（也就是主机改ip的位置）</p><p>选择【高级】</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422162000482.png" alt="image-20210422162000482"></p><p>选择【WINS】  勾选【禁用】</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422162116602.png" alt="image-20210422162116602" style="zoom:80%;" /><p>确定之后，重启即可关闭139端口。</p><h2 id="关闭445端口"><a href="#关闭445端口" class="headerlink" title="关闭445端口"></a>关闭445端口</h2><blockquote><p>局域网共享文件夹或打印机的端口，勒索病毒常利用的端口</p></blockquote><h3 id="注册表关闭方式"><a href="#注册表关闭方式" class="headerlink" title="注册表关闭方式"></a>注册表关闭方式</h3><p>win+R regedit</p><p>找到注册表项 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet\Services\NetBT\Parameters </p><p>在Parameters上右键选择【新建】 根据系统32位还是64位选择【DWORD(32位)】或【QWORD(64位)】</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422163214264.png" alt="image-20210422163214264"></p><p>新建名为 <code>SMBDeviceEnabled</code> 右键单击修改值为 <code>0</code> 即可</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422163647839.png" alt="image-20210422163647839"></p><p>注：win7系统关闭445 还要把操作系统的server服务关闭</p><p>win+R services.msc</p><p>找到server服务，单击，启动类型改为【禁用】，把服务状态改为【停止】，应用即可</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422164250378.png" alt="image-20210422164250378"></p><h2 id="关闭默认共享方法"><a href="#关闭默认共享方法" class="headerlink" title="关闭默认共享方法"></a>关闭默认共享方法</h2><p>使用 “NET SHARE 共享文件夹 /DELETE” 及禁用共享方法（无法禁用IPC$共享）关闭后，但重启后仍会重新共享，永久停用的方法如下：</p><p>1、禁用服务法</p><p>找到server服务，单击，启动类型改为【禁用】，把服务状态改为【停止】，应用即可</p><p>2、注册表改键值法</p><p>找到“HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters”项，双击“AntoShareServer”项，将1改为0，如果没有就自己新建一个再改。 然后还在这里找到“AutoShareWks”项,把1改为0，关闭admin$共享。</p><p>再找到“HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa”处找到“restrictanonymous”将值改为1，关闭IPC$共享。</p><p>重启后即可生效，一经改动就会永远停止共享。</p><p>3、不适用共享服务的话， 也可以在【本地连接】属性中取消对 【Microsoft网络客户端】和【Microsoft网络文件和打印架共享】的勾选，然后直接卸载掉！</p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422170628980.png" alt="image-20210422170628980" style="zoom:50%;" /><h2 id="防火墙禁用指定端口"><a href="#防火墙禁用指定端口" class="headerlink" title="防火墙禁用指定端口"></a>防火墙禁用指定端口</h2><p>【控制面板】-【小图标】-【Windows防火墙】-【高级设置】-【入站规则】-【新建规则】-【端口】-【TCP】-【特点本地端口】-【阻止连接】-【选择作用范围】-【自己起个名】-【完成】</p><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422171758579.png" alt="image-20210422171758579"></p><blockquote><p>同理，可以禁用任何想禁用的端口，没人能访问的了。</p></blockquote><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.doczhi.com/p-889260.html">https://www.doczhi.com/p-889260.html</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 应急响应 </tag>
+            
+            <tag> Windows </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>文件被占用无法删除怎么办</title>
       <link href="2021/02/26/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/"/>
       <url>2021/02/26/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/</url>
