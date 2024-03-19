@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>dummersoul&#39;s Blog</title>
+  
+  <subtitle>fate and night</subtitle>
+  <link href="https://dummersoul.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://dummersoul.github.io/"/>
+  <updated>2024-03-19T15:33:25.750Z</updated>
+  <id>https://dummersoul.github.io/</id>
+  
+  <author>
+    <name>dummersoul</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CVE-2021-42550漏洞复现</title>
+    <link href="https://dummersoul.github.io/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://dummersoul.github.io/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/</id>
+    <published>2024-03-10T06:54:43.353Z</published>
+    <updated>2024-03-19T15:33:25.750Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="java安全" scheme="https://dummersoul.github.io/tags/java%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>webview intent uxss</title>
+    <link href="https://dummersoul.github.io/2024/03/10/webview%20%20intent%20uxss/"/>
+    <id>https://dummersoul.github.io/2024/03/10/webview%20%20intent%20uxss/</id>
+    <published>2024-03-10T06:54:17.108Z</published>
+    <updated>2024-03-19T15:30:47.573Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="android安全" scheme="https://dummersoul.github.io/tags/android%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于Tomcat的内存马分析</title>
+    <link href="https://dummersoul.github.io/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/"/>
+    <id>https://dummersoul.github.io/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/</id>
+    <published>2024-03-10T06:53:39.202Z</published>
+    <updated>2024-03-19T11:08:43.207Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="java安全" scheme="https://dummersoul.github.io/tags/java%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat架构</title>
+    <link href="https://dummersoul.github.io/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/"/>
+    <id>https://dummersoul.github.io/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/</id>
+    <published>2024-03-10T06:53:39.200Z</published>
+    <updated>2024-03-19T11:07:30.399Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="java安全" scheme="https://dummersoul.github.io/tags/java%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文搞懂DEX文件结构</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/</id>
+    <published>2023-11-28T08:48:58.520Z</published>
+    <updated>2021-12-01T08:46:42.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="Android" scheme="https://dummersoul.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>脏牛提权（CVE-2016-5195）</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/</id>
+    <published>2023-11-28T08:48:58.520Z</published>
+    <updated>2021-01-05T04:02:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="内网提权" scheme="https://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+    <category term="CVE" scheme="https://dummersoul.github.io/tags/CVE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一次cappvd引发的思考</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/</id>
+    <published>2023-11-28T08:48:58.519Z</published>
+    <updated>2022-10-14T10:01:12.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="perl" scheme="https://dummersoul.github.io/tags/perl/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习git分支</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/</id>
+    <published>2023-11-28T08:48:58.518Z</published>
+    <updated>2021-01-28T09:45:32.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="git" scheme="https://dummersoul.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信小程序源码反编译操作教程</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E6%BA%90%E7%A0%81/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E6%BA%90%E7%A0%81/</id>
+    <published>2023-11-28T08:48:58.517Z</published>
+    <updated>2021-11-11T08:51:54.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="Android" scheme="https://dummersoul.github.io/tags/Android/"/>
+    
+    <category term="逆向" scheme="https://dummersoul.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件被占用无法删除怎么办</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/</id>
+    <published>2023-11-28T08:48:58.517Z</published>
+    <updated>2021-02-26T08:25:48.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="工具" scheme="https://dummersoul.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图片隐写之GIF</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/</id>
+    <published>2023-11-28T08:48:58.516Z</published>
+    <updated>2021-02-24T03:27:46.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf" scheme="https://dummersoul.github.io/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅析APP代理检测对抗</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E6%B5%85%E6%9E%90APP%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B%E5%AF%B9%E6%8A%97/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E6%B5%85%E6%9E%90APP%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B%E5%AF%B9%E6%8A%97/</id>
+    <published>2023-11-28T08:48:58.515Z</published>
+    <updated>2022-06-28T08:41:10.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="Android" scheme="https://dummersoul.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模拟器检测机制</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/</id>
+    <published>2023-11-28T08:48:58.514Z</published>
+    <updated>2021-11-18T08:25:18.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="Android" scheme="https://dummersoul.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免费CDN加速GitHub图床</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/</id>
+    <published>2023-11-28T08:48:58.513Z</published>
+    <updated>2021-02-10T15:27:02.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="图床" scheme="https://dummersoul.github.io/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+    <category term="CDN加速" scheme="https://dummersoul.github.io/tags/CDN%E5%8A%A0%E9%80%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>逻辑漏洞挖掘思路</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/</id>
+    <published>2023-11-28T08:48:58.513Z</published>
+    <updated>2020-12-29T07:41:26.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="逻辑漏洞" scheme="https://dummersoul.github.io/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>反弹shell的多种姿势</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E5%8F%8D%E5%BC%B9shell/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E5%8F%8D%E5%BC%B9shell/</id>
+    <published>2023-11-28T08:48:58.512Z</published>
+    <updated>2021-01-06T09:37:54.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="getshell" scheme="https://dummersoul.github.io/tags/getshell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows提权（一）</title>
+    <link href="https://dummersoul.github.io/2023/11/28/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://dummersoul.github.io/2023/11/28/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2023-11-28T08:48:58.511Z</published>
+    <updated>2021-02-25T02:09:14.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="内网提权" scheme="https://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常见的未授权访问漏洞</title>
+    <link href="https://dummersoul.github.io/2023/11/28/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
+    <id>https://dummersoul.github.io/2023/11/28/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/</id>
+    <published>2023-11-28T08:48:58.511Z</published>
+    <updated>2021-02-01T08:15:46.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="getshell" scheme="https://dummersoul.github.io/tags/getshell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows关闭指定的端口</title>
+    <link href="https://dummersoul.github.io/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/"/>
+    <id>https://dummersoul.github.io/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/</id>
+    <published>2023-11-28T08:48:58.510Z</published>
+    <updated>2021-04-22T09:44:38.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="应急响应" scheme="https://dummersoul.github.io/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vulnstack红队评估(七)</title>
+    <link href="https://dummersoul.github.io/2023/11/28/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/"/>
+    <id>https://dummersoul.github.io/2023/11/28/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/</id>
+    <published>2023-11-28T08:48:58.508Z</published>
+    <updated>2021-02-01T09:14:40.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="靶机" scheme="https://dummersoul.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
+    
+    <category term="内网渗透" scheme="https://dummersoul.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+</feed>

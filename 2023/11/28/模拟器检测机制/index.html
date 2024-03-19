@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>模拟器检测机制 | dummersoul's Blog</title><meta name="keywords" content="Android"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="传统的检测方法传统的检测方法主要是对模拟器的IMSI、IDS、默认文件等几个方面进行检测。 默认号码12345private static String[] known_numbers &#x3D; &amp;#123;&quot;15555215554&quot;, &quot;15555215556&quot;,            &quot;15555215558&quot;, &quot;15">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟器检测机制">
+<meta property="og:url" content="https://dummersoul.github.io/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="传统的检测方法传统的检测方法主要是对模拟器的IMSI、IDS、默认文件等几个方面进行检测。 默认号码12345private static String[] known_numbers &#x3D; &amp;#123;&quot;15555215554&quot;, &quot;15555215556&quot;,            &quot;15555215558&quot;, &quot;15">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211118162431.png">
+<meta property="article:published_time" content="2023-11-28T08:48:58.514Z">
+<meta property="article:modified_time" content="2021-11-18T08:25:18.000Z">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211118162431.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-18 16:25:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211118162431.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">模拟器检测机制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.514Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-18T08:25:18.000Z" title="更新于 2021-11-18 16:25:18">2021-11-18</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="传统的检测方法"><a href="#传统的检测方法" class="headerlink" title="传统的检测方法"></a>传统的检测方法</h2><p>传统的检测方法主要是对模拟器的IMSI、IDS、默认文件等几个方面进行检测。</p>
+<h3 id="默认号码"><a href="#默认号码" class="headerlink" title="默认号码"></a>默认号码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private static String[] known_numbers &#x3D; &#123;&quot;15555215554&quot;, &quot;15555215556&quot;,</span><br><span class="line">            &quot;15555215558&quot;, &quot;15555215560&quot;, &quot;15555215562&quot;, &quot;15555215564&quot;,</span><br><span class="line">            &quot;15555215566&quot;, &quot;15555215568&quot;, &quot;15555215570&quot;, &quot;15555215572&quot;,</span><br><span class="line">            &quot;15555215574&quot;, &quot;15555215576&quot;, &quot;15555215578&quot;, &quot;15555215580&quot;,</span><br><span class="line">            &quot;15555215582&quot;, &quot;15555215584&quot;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="默认ID"><a href="#默认ID" class="headerlink" title="默认ID"></a>默认ID</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static String[] known_device_ids &#x3D; &#123;&quot;000000000000000&quot;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="默认IMSI"><a href="#默认IMSI" class="headerlink" title="默认IMSI"></a>默认IMSI</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static String[] known_imsi_ids &#x3D; &#123;&quot;310260000000000&quot;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="默认文件路径"><a href="#默认文件路径" class="headerlink" title="默认文件路径"></a>默认文件路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private static String[] known_files &#x3D; &#123;</span><br><span class="line">            &quot;&#x2F;system&#x2F;lib&#x2F;libc_malloc_debug_qemu.so&quot;,</span><br><span class="line">            &quot;&#x2F;sys&#x2F;qemu_trace&quot;,</span><br><span class="line">            &quot;&#x2F;system&#x2F;bin&#x2F;qemu-props&quot;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这些特征一旦是吻合的，说明是模拟器设备，但是现在很多模拟器都可以改变这些值来逃避检测，所以仅仅依靠这些检测方式不太行了</p>
+<h2 id="基于模拟器cpu信息的检测"><a href="#基于模拟器cpu信息的检测" class="headerlink" title="基于模拟器cpu信息的检测"></a>基于模拟器cpu信息的检测</h2><p>cpu信息检测主要是在cpu信息看看是否包含intel、amd等字段，很多模拟器目前对于cpu信息还无法进行模拟</p>
+<p>读取cpu信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public static String readCpuInfo() &#123;</span><br><span class="line">       String result &#x3D; &quot;&quot;;</span><br><span class="line">       try &#123;</span><br><span class="line">           String[] args &#x3D; &#123;&quot;&#x2F;system&#x2F;bin&#x2F;cat&quot;, &quot;&#x2F;proc&#x2F;cpuinfo&quot;&#125;;</span><br><span class="line">           ProcessBuilder cmd &#x3D; new ProcessBuilder(args);</span><br><span class="line"></span><br><span class="line">           Process process &#x3D; cmd.start();</span><br><span class="line">           StringBuffer sb &#x3D; new StringBuffer();</span><br><span class="line">           String readLine &#x3D; &quot;&quot;;</span><br><span class="line">           BufferedReader responseReader &#x3D; new BufferedReader(new InputStreamReader(process.getInputStream(), &quot;utf-8&quot;));</span><br><span class="line">           while ((readLine &#x3D; responseReader.readLine()) !&#x3D; null) &#123;</span><br><span class="line">               sb.append(readLine);</span><br><span class="line">           &#125;</span><br><span class="line">           responseReader.close();</span><br><span class="line">           result &#x3D; sb.toString().toLowerCase();</span><br><span class="line">       &#125; catch (IOException ex) &#123;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>进行判定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String cpuInfo &#x3D; readCpuInfo();</span><br><span class="line">if ((cpuInfo.contains(&quot;intel&quot;) || cpuInfo.contains(&quot;amd&quot;))) &#123;return true;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] blockList &#x3D; &quot;google_sdk,sdk,sdk_x86,vbox86p&quot;.split(&quot;,&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="关键路径检测特定模拟器检测"><a href="#关键路径检测特定模拟器检测" class="headerlink" title="关键路径检测特定模拟器检测"></a>关键路径检测特定模拟器检测</h2><p>bluestacks成功躲避了前两种检测方法</p>
+<p>所以针对它给出一些bluestacks的关键路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private static String[] known_bluestacks &#x3D; &#123;&quot;&#x2F;data&#x2F;app&#x2F;com.bluestacks.appmart-1.apk&quot;, &quot;&#x2F;data&#x2F;app&#x2F;com.bluestacks.BstCommandProcessor-1.apk&quot;,</span><br><span class="line">           &quot;&#x2F;data&#x2F;app&#x2F;com.bluestacks.help-1.apk&quot;, &quot;&#x2F;data&#x2F;app&#x2F;com.bluestacks.home-1.apk&quot;, &quot;&#x2F;data&#x2F;app&#x2F;com.bluestacks.s2p-1.apk&quot;,</span><br><span class="line">           &quot;&#x2F;data&#x2F;app&#x2F;com.bluestacks.searchapp-1.apk&quot;, &quot;&#x2F;data&#x2F;bluestacks.prop&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.androVM.vmconfig&quot;,</span><br><span class="line">           &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.accelerometerui&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.appfinder&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.appmart&quot;,</span><br><span class="line">           &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.appsettings&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.BstCommandProcessor&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.bstfolder&quot;,</span><br><span class="line">           &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.help&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.home&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.s2p&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.searchapp&quot;,</span><br><span class="line">           &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.settings&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.setup&quot;, &quot;&#x2F;data&#x2F;data&#x2F;com.bluestacks.spotlight&quot;, &quot;&#x2F;mnt&#x2F;prebundledapps&#x2F;bluestacks.prop.orig&quot;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>检测方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static boolean checkBlueStacksFiles() &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; known_bluestacks.length; i++) &#123;</span><br><span class="line">            String file_name &#x3D; known_bluestacks[i];</span><br><span class="line">            File qemu_file &#x3D; new File(file_name);</span><br><span class="line">            if (qemu_file.exists()) &#123;</span><br><span class="line">                FkLog.e(&quot;Result : Find BlueStacks Files!&quot;);</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        FkLog.e(&quot;Result : Not Find BlueStacks Files!&quot;);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="其他检测"><a href="#其他检测" class="headerlink" title="其他检测"></a>其他检测</h2><ul>
+<li>检查手机IMEI等一系列编号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TelephonyManager tm &#x3D; (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);  </span><br><span class="line">  String deviceid &#x3D; tm.getDeviceId();&#x2F;&#x2F;获取IMEI号  </span><br><span class="line">  String te1  &#x3D; tm.getLine1Number();&#x2F;&#x2F;获取本机号码  </span><br><span class="line">  String imei &#x3D; tm.getSimSerialNumber();&#x2F;&#x2F;获得SIM卡的序号  </span><br><span class="line">  String imsi &#x3D; tm.getSubscriberId();&#x2F;&#x2F;得到用户Id </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>读取手机品牌信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">android.os.Build.BRAND,</span><br><span class="line">android.os.Build.MANUFACTURER,</span><br><span class="line">android.os.Build.MODEL</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检查mac地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Enumeration networkInterfaces;</span><br><span class="line">String str &#x3D; null;</span><br><span class="line">networkInterfaces &#x3D; NetworkInterface.getNetworkInterfaces();</span><br><span class="line">while (networkInterfaces.hasMoreElements()) &#123;</span><br><span class="line">NetworkInterface networkInterface &#x3D; (NetworkInterface) networkInterfaces.nextElement();</span><br><span class="line">if (networkInterface !&#x3D; null) &#123;</span><br><span class="line">byte[] hardwareAddress;</span><br><span class="line">byte[] bArr &#x3D; new byte[0];</span><br><span class="line">hardwareAddress &#x3D; networkInterface.getHardwareAddress();</span><br><span class="line">if (!(hardwareAddress &#x3D;&#x3D; null || hardwareAddress.length &#x3D;&#x3D; 0)) &#123;</span><br><span class="line">String str2;</span><br><span class="line">StringBuilder stringBuilder &#x3D; new StringBuilder();</span><br><span class="line">...&#x2F;&#x2F;方法太长</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检查电池温度，轮询检查电量，充电状态</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IntentFilter filter &#x3D; new IntentFilter(Intent.ACTION_BATTERY_CHANGED);</span><br><span class="line">Intent batteryStatus &#x3D; context.registerReceiver(null, filter);</span><br><span class="line">if (batteryStatus &#x3D;&#x3D; null) return false;</span><br><span class="line">int chargePlug &#x3D; batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);</span><br><span class="line">return chargePlug &#x3D;&#x3D; BatteryManager.BATTERY_PLUGGED_USB;&#x2F;&#x2F;检测usb充电</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基带信息</li>
+</ul>
+<p>基带是手机上的一块电路板，刷基带实际上就是刷这个电路的控制软件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">     roSecureObj &#x3D; Class.forName(&quot;android.os.SystemProperties&quot;)</span><br><span class="line">                    .getMethod(&quot;get&quot;, String.class)</span><br><span class="line">                    .invoke(null, &quot;gsm.version.baseband&quot;);</span><br><span class="line"> 	if (roSecureObj !&#x3D; null) value &#x3D; (String) roSecureObj;</span><br><span class="line"> 	&#125; catch (Exception e) &#123;</span><br><span class="line">            value &#x3D; null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>处理器信息</li>
+</ul>
+<p>最简单的方法就是直接拿android.os.Build.BOARD，实际上也是去读取ro.product.board值，这个值代表cpu型号，比如msm8998是骁龙835，hi3650是麒麟950。</p>
+<p>这个值真机几乎不为空，AS模拟器会有如gphone的特征值，部分模拟器上是可以随时变更的（因为拿模拟器来玩高帧率模式的手游）。</p>
+<p>可是还有一个ro.board.platform值，这个值代表主板平台，极少的模拟器会去更改这个值，甚至有的模拟器没有这个值，一般来说真机的两值相等。</p>
+<p>当然真机也有例外，测试机一加5T两者都是msm8998，而华为P9 board值EVA-AL10,platform值hi3650。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String productBoard &#x3D; CommandUtil.getSingleInstance().getProperty(&quot;ro.product.board&quot;);</span><br><span class="line">if (productBoard &#x3D;&#x3D; null | &quot;&quot;.equals(productBoard)) ++suspectCount;</span><br><span class="line"></span><br><span class="line">String boardPlatform &#x3D; CommandUtil.getSingleInstance().getProperty(&quot;ro.board.platform&quot;);</span><br><span class="line">if (boardPlatform &#x3D;&#x3D; null | &quot;&quot;.equals(boardPlatform)) ++suspectCount;</span><br><span class="line"></span><br><span class="line">if (productBoard !&#x3D; null &amp;&amp; boardPlatform !&#x3D; null &amp;&amp; !productBoard.equals(boardPlatform))</span><br><span class="line">    ++suspectCount;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>渠道信息</li>
+</ul>
+<p>渠道信息是ro.build.flavor值，在有限的真机和模拟机器的测试情况下，有以下推测 『真机基本上都有这个值，部分模拟器没有这个值，基于vbox的模拟器上有特征值：vbox』</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String buildFlavor &#x3D; CommandUtil.getSingleInstance().getProperty(&quot;ro.build.flavor&quot;);</span><br><span class="line">if (buildFlavor &#x3D;&#x3D; null | &quot;&quot;.equals(buildFlavor) | (buildFlavor !&#x3D; null &amp;&amp; buildFlavor.contains(&quot;vbox&quot;)))</span><br><span class="line">    ++suspectCount;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进程组信息</li>
+</ul>
+<p>利用读取maps文件检测软件多开的时候，在部分模拟器上却遇到了runtimeException异常。 原因是读取/proc/self/cgroup进程组信息的时候，部分模拟器没有这个值，因为个人水平有限，暂时不知道原因是什么，不过却刚好拿这个做检测方案。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">process &#x3D; Runtime.getRuntime().exec(&quot;sh&quot;);</span><br><span class="line">            bufferedOutputStream &#x3D; new BufferedOutputStream(process.getOutputStream());</span><br><span class="line">            bufferedInputStream &#x3D; new BufferedInputStream(process.getInputStream());</span><br><span class="line">            bufferedOutputStream.write(&quot;cat &#x2F;proc&#x2F;self&#x2F;cgroup&quot;);</span><br><span class="line">            bufferedOutputStream.write(&#39;\n&#39;);</span><br><span class="line">            bufferedOutputStream.flush();</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="附图"><a href="#附图" class="headerlink" title="附图"></a>附图</h2><p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/8.png" alt="8"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/722644_2SENQ6BYYPSXAH8.jpg" alt="722644_2SENQ6BYYPSXAH8"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903637840297998#heading-1">一行代码帮你检测Android模拟器</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">dummersoul</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dummersoul.github.io/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/">https://dummersoul.github.io/2023/11/28/模拟器检测机制/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dummersoul.github.io" target="_blank">dummersoul's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211118162431.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/%E6%B5%85%E6%9E%90APP%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B%E5%AF%B9%E6%8A%97/"><img class="prev-cover" src="https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00798-577.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">浅析APP代理检测对抗</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210210232654.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">免费CDN加速GitHub图床</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/28/Android Webview漏洞初探/" title="Android Webview漏洞初探"><img class="cover" src="https://miro.medium.com/max/700/1*WwN78iOX-HC74T9AHGxjOg.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android Webview漏洞初探</div></div></a></div><div><a href="/2023/11/28/Android基础知识总结/" title="Android基础知识总结"><img class="cover" src="/img/Android.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android基础知识总结</div></div></a></div><div><a href="/2023/11/28/Android渗透工具Drozer的使用/" title="Android渗透工具Drozer的使用"><img class="cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/%E4%B8%8B%E8%BD%BD.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android渗透工具Drozer的使用</div></div></a></div><div><a href="/2023/11/28/Android签名校验/" title="Android签名校验"><img class="cover" src="/img/a1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android签名校验</div></div></a></div><div><a href="/2023/11/28/JVM、Dalvik、ART/" title="JVM、Dalvik、ART"><img class="cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164837.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">JVM、Dalvik、ART</div></div></a></div><div><a href="/2023/11/28/一文搞懂DEX文件结构/" title="一文搞懂DEX文件结构"><img class="cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">一文搞懂DEX文件结构</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">传统的检测方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%B7%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">默认号码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4ID"><span class="toc-number">1.2.</span> <span class="toc-text">默认ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4IMSI"><span class="toc-number">1.3.</span> <span class="toc-text">默认IMSI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-number">1.4.</span> <span class="toc-text">默认文件路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E6%8B%9F%E5%99%A8cpu%E4%BF%A1%E6%81%AF%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="toc-number">2.</span> <span class="toc-text">基于模拟器cpu信息的检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84%E6%A3%80%E6%B5%8B%E7%89%B9%E5%AE%9A%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B"><span class="toc-number">3.</span> <span class="toc-text">关键路径检测特定模拟器检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A3%80%E6%B5%8B"><span class="toc-number">4.</span> <span class="toc-text">其他检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%9B%BE"><span class="toc-number">5.</span> <span class="toc-text">附图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">6.</span> <span class="toc-text">参考文章</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  let setting = {
+    appId: '',
+    appKey: '',
+  }
+
+  if (false) {
+    const otherSetting = false
+    setting = Object.assign({}, setting, otherSetting)
+  }
+
+  const init = () => {
+    new Artitalk(setting)
+  }
+
+  if (typeof Artitalk === 'function') {
+    init()
+  } else {
+    $.getScript('https://cdn.jsdelivr.net/npm/artitalk',init)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+      appKey: 'DzduWleTzfwsWV48PWO1wi1d',
+      placeholder: '留下你的昵称和邮箱，可以快速得到回复哦~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

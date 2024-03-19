@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dummersoul's Blog - fate and night</title><meta name="keywords" content="渗透"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络安全从业者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dummersoul&#39;s Blog">
+<meta property="og:url" content="https://dummersoul.github.io/page/5/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="网络安全从业者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/dummersoul.jpg">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/dummersoul.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/page/5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-19 23:33:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">dummersoul's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/BugKu%20CTF%E4%B9%8Bweb12%E3%80%90XFF%E4%BC%AA%E9%80%A0%E3%80%91/" title="BugKu CTF之web12【XFF伪造】">     <img class="post_bg" src="https://ctf.bugku.com/upload/20201117/61f4c2f2718ee53b7ff90ef743263143.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BugKu CTF之web12【XFF伪造】"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/BugKu%20CTF%E4%B9%8Bweb12%E3%80%90XFF%E4%BC%AA%E9%80%A0%E3%80%91/" title="BugKu CTF之web12【XFF伪造】">BugKu CTF之web12【XFF伪造】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.465Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-04T08:48:16.000Z" title="更新于 2021-02-04 16:48:16">2021-02-04</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">启动环境 http://114.67.246.176:18149/
+
+1curl http:&#x2F;&#x2F;114.67.246.176:18149&#x2F;
+
+
+末尾的一串一看就是base64,解码是test123
+输入用户名和密码，却说我的IP被禁用，并且通知管理员记录下来了，说明用户十有八九是admin
+加X-Forwarded-For参数绕过X-Forwarded-For:127.0.0.1
+
+但是！用burp不知道为何发送不出去包，这也难不倒我
+用curl工具添加POST、http头的参数访问
+1curl http://114.67.246.176:18149/ -H &quot;X-Forwarded-For:127.0.0.1&quot; -d &quot;user=admin&amp;pass=test123&quot;
+
+
+-H 加HTTP头的参数
+-d 意思是POST访问形式
+
+
+获取到了flag
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/billu%20b0x_2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_2靶机练习">     <img class="post_bg" src="/img/drupal.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="billu:b0x_2靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/billu%20b0x_2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_2靶机练习">billu:b0x_2靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.465Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-11T13:36:38.000Z" title="更新于 2021-01-11 21:36:38">2021-01-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">主机发现arp-scan -l
+
+端口探测namp -A 192.168.56.105
+
+检测到ssh是有openSSH 6.6.1p1服务支持，貌似可以利用，是用户枚举漏洞，只能检测有哪些用户存在，实际上也是利用自己的字典爆破，没啥大用处（参考文章：OpenSSH 用户名枚举漏洞（CVE-2018-15473）
+80端口还能扫描到一些目录文件
+Drupal 8框架利用该网站使用了 “Drupal 8”框架搭建，从主页也可以发现这个服务
+
+用searchsploit搜索Drupal 8
+
+看到关键词 Drupalgeddon2
+msf搜索 Drupal
+
+1234search Drupaluse exploit&#x2F;unix&#x2F;webapp&#x2F;drupal_drupalgeddon2set rhosts 192.168.56.105run
+
+
+因为没有/bin/bash，手动添加
+1python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;
+
+提权检测linux的自动化脚本
+Linux-exp ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_1靶机练习">     <img class="post_bg" src="/img/luffy_shanks.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="billu:b0x_1靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="billu:b0x_1靶机练习">billu:b0x_1靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.464Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T03:40:06.000Z" title="更新于 2021-01-28 11:40:06">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">主机发现netdiscover
+
+arp-scan -l 这个贼快
+
+端口扫描
+sql注入
+提示了sql注入
+但是抓包sqlmap -r 1.txt –level=5 -dbs 也没有任何东西。无奈
+扫描目录–dirb123cd &#x2F;usr&#x2F;share&#x2F;dirb&#x2F;wordlistslsdirb http:&#x2F;&#x2F;192.168.56.107 .&#x2F;big.txt
+
+之前没怎么用过这个工具，一直用的御剑，今儿用了才发现，还是用的大字典，结果那叫一个快准狠！！爱了爱了！！！
+
+
+这几个目录都很有用，其中有一个phpmyadmin 还不知道账户密码
+
+文件上传
+
+结果发现上传的文件并没在/images/目录和/uploaded_images/目录里出现
+仅仅是前端的上传页面，不能传东西
+探针信息
+可以知道网站根目录的位置
+文件包含
+这个像个文件包含
+post添加file参数
+
+成功下载文件，再利用这种方式下载其他文件，探测信息
+又下载了一个扫到的c.php 发现 mysql 的账号billu 密码b0x_billu ，这不是有账户 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/ATT&amp;CK%EF%BC%88%E4%B8%80%EF%BC%89%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="ATT&amp;CK（一）靶场练习">     <img class="post_bg" src="https://s2.loli.net/2022/10/21/svVaUy1XF3Tn7iu.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ATT&amp;CK（一）靶场练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/ATT&amp;CK%EF%BC%88%E4%B8%80%EF%BC%89%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="ATT&amp;CK（一）靶场练习">ATT&amp;CK（一）靶场练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.463Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-27T09:24:40.000Z" title="更新于 2022-10-27 17:24:40">2022-10-27</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a></span></div><div class="content">外网获取权限phpmyadmin 弱口令root/root 进去，通过日志写webshell，过程简单，略
+
+内网渗透ipconfig发现有域，所以先来一波域信息收集
+域信息收集整理1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253ipconfig /all      查询本机IP段，所在域等net start    或   tasklist /v           查看当前运行的服务cmdkey /l      查看远程连接信息WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntiVirusProduct Get displayName /Format:List   查看杀软route print             路由表netstat -an/ano/anb     网络连接查询whoami /all             查询用户的权限ping 域名称   ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/APP%E6%8A%93%E5%8C%85%E5%AF%B9%E6%8A%97/" title="APP抓包对抗">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20220411113202.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="APP抓包对抗"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/APP%E6%8A%93%E5%8C%85%E5%AF%B9%E6%8A%97/" title="APP抓包对抗">APP抓包对抗</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.462Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-28T08:39:16.000Z" title="更新于 2022-07-28 16:39:16">2022-07-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E6%8A%93%E5%8C%85/">抓包</a></span></div><div class="content">文章首发：https://www.sec-in.com/article/1639
+1.前言在日常渗透过程中我们经常会遇到瓶颈无处下手，这个时候如果攻击者从公众号或者APP进行突破，往往会有很多惊喜。但是目前市场上的APP都会为防止别人恶意盗取和恶意篡改进行一些保护措施，比如模拟器检测、root检测、APK加固、代码混淆、代码反调试、反脱壳、签名校验等等对抗机制。而测试人员对APP进行渗透的首步操作通常就是上burp或者Charles这类抓包工具进行抓包，查看请求记录里的域名及链接地址是否可以进一步利用，但是如果遇到一些APP出现证书报错或者抓不到包的情况该怎么办，读过本篇文章之后，相信你会拥有一些新的解决方案和思考。
+2.数字证书我们都知道http协议传输的是明文信息，是可以直接捕获的，从而造成了数据泄露。为了防止中间人的拦截，出现了HTTPS加密机制。在HTTPS中，使用了证书+数字签名解决了这个问题。
+这部分加密机制的知识可以阅读这篇文章HTTPS整套加密机制是如何实现的？，里面写的非常详细。此篇的重点在于如何应对APP的抓包对抗。
+我总结的HTTPS加密机制如下：
+
+数字签名是发 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/Android%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7Drozer%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Android渗透工具Drozer的使用">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/%E4%B8%8B%E8%BD%BD.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android渗透工具Drozer的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Android%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7Drozer%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Android渗透工具Drozer的使用">Android渗透工具Drozer的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.460Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-20T06:44:34.000Z" title="更新于 2022-04-20 14:44:34">2022-04-20</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">功能介绍Drozer是专属于app的移动端渗透测试工具，分别需要装在PC端成为控制台，装在移动端作为代理APP，通过IPC的通信，动态的发现被测试APP的安全风险。
+实际上就是检测AndroidManifest.xml文件，并对其进行四大控件的可能存在的安全隐患进行检测
+准备工作安装工具下载地址：https://labs.f-secure.com/tools/drozer/
+Agent放在模拟器（真机）上，msi在PC端安装
+移动端的drozer，点击开启按钮，打开后它会监听31415端口
+
+PC端双击安装，一定要选择安装到Python2的目录下，然后不断下一步即可，最后drozer会安装在python下的script路径中
+
+安装需要的第三方库
+1234python2   -m   pip   install   protobufpython2   -m   pip   install   pyOpenSSLpython2   -m   pip   install   twistedpython2   -m   pip   install   service_identity
+
+
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Android%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/" title="Android签名校验">     <img class="post_bg" src="/img/a1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android签名校验"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Android%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/" title="Android签名校验">Android签名校验</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.460Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-16T08:34:12.000Z" title="更新于 2021-11-16 16:34:12">2021-11-16</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%80%86%E5%90%91/">逆向</a></span></div><div class="content">
+签名是Android软件的一种有效身份标识，因为签名所使用的秘钥文件是我们所独有的，而我们APP被重新打包后，APP的签名信息势必会被篡改，所以我们就可以根据软件运行时签名与发布时的签名的相同与否来绝对是否需要将APP中止运行。
+
+Java层签名校验方法签名校验Android SDK中提供了检测软件签名的方法，我们可以使用签名对象的 hashCode() 方法来获取一个Hash值，在代码中比较它的值即可，下面是获取当前运行时的签名信息代码：
+12345678910111213141516public static int getSignature(Context context) &#123;        PackageManager pm = context.getPackageManager();        PackageInfo pi;        StringBuilder sb = new StringBuilder();        // 获取签名信息        try &#123;            pi = pm.getPackageInfo(con ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" title="Android基础知识总结">     <img class="post_bg" src="/img/Android.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android基础知识总结"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" title="Android基础知识总结">Android基础知识总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.459Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-11T09:09:08.000Z" title="更新于 2021-11-11 17:09:08">2021-11-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%80%86%E5%90%91/">逆向</a></span></div><div class="content">安卓的系统架构
+linux内核层：提供Android硬件的各种驱动（显示驱动，音频驱动，蓝牙驱动，WiFi驱动等等）
+系统运行库层：提供各种特性支持（数据库支持，绘图支持，浏览器内核支持）
+应用框架层：构建应用程序的各种API
+应用层：所有安装到手机的应用程序就属于该层。
+
+安卓四大组件
+活动（activity）：所有Android应用程序的根本，应用程序上看到的东西都是放在activity
+服务（service）：不出现在屏幕上，在后台运行，及时应用程序关闭也会在后台运行，比如在微信聊天的时候，酷狗音乐在后台运行
+广播接收器（Broadcast Receiver）：接收其他的广播消息（短信，电话，应用消息等等），比如在微信聊天的时候，收到一条短信在屏幕上方弹出通知
+内容提供器（Content Provider）：与其他应用共享数据资源，比如微信读取手机联系人等
+
+
+这四大组件所涉及的多进程间的通信底层都是依赖于Binder IPC（进程间通信）机制
+当然也存在部分其他的IPC方式，比如Zygote通信便是采用socket。
+
+apk基本结构
+assets  资源文件（图片、音频、数据 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Android%20Webview%E6%BC%8F%E6%B4%9E%E5%88%9D%E6%8E%A2/" title="Android Webview漏洞初探">     <img class="post_bg" src="https://miro.medium.com/max/700/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android Webview漏洞初探"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Android%20Webview%E6%BC%8F%E6%B4%9E%E5%88%9D%E6%8E%A2/" title="Android Webview漏洞初探">Android Webview漏洞初探</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.458Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-15T01:19:14.000Z" title="更新于 2022-07-15 09:19:14">2022-07-15</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">文章首发：https://xz.aliyun.com/t/11505
+一、前言基于java语言开发的android系统，有许多android原生组件存在的问题，webview就是其中一个核心组件，它是app内部与web界面进行交互并进行展示页面的控件，相当于在软件内部嵌入的内置浏览器。由于其中使用的方式和场景复杂多样，所以webview组件在出现以来已经被挖掘出了许多重大漏洞，但是随着android系统版本的换代升级，这个组件的使用规范也被android官方不断的修复。
+二、java与javascript交互webview常用于对url的请求、页面加载、渲染、页面交互等。
+webview加载js又分为：本地加载（file:///android_asset/obj.html）、远程加载（https://vps:8080/exp.html）
+直接加载url：
+1234567891011public class MainActivity extends AppCompatActivity &#123;    WebView webView;    @Override    protected ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%89%8B%E5%8A%A8%E6%9D%80%E6%AF%92%E7%9A%84%E6%96%B9%E6%B3%95/" title="Windows手动杀毒的方法">     <img class="post_bg" src="/img/virus.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows手动杀毒的方法"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%89%8B%E5%8A%A8%E6%9D%80%E6%AF%92%E7%9A%84%E6%96%B9%E6%B3%95/" title="Windows手动杀毒的方法">Windows手动杀毒的方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.457Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-14T01:22:40.000Z" title="更新于 2021-01-14 09:22:40">2021-01-14</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="content">转载自：http://blog.chinaunix.net/uid-69952968-id-5843858.html
+一、注册表清除​    利用注册表加载运行如下所示的注册表位置是木马的藏身之处：　　HKEY_LOCAL_MACHING\Software\Windows\Current Version下所有以“run”开头的键值。　　HKEY_CURRENT_USER\Software\Microsoft\Windows\Current Version下所有以“run”开头的健值。　　HKEY_USERS\Default\Software\Microsoft\Windows\Current Version下所有以“run”开头的健值。
+二、系统文件​    在System.ini中启动，System.ini位于Windows的安装目录下，其“boot”字段的Shell=Explore.exe是木马的隐蔽加载场所，木马通常的做法是将该句变为Shell=Explore.exe，注意这里的Window.exe就是木马服务端程序。
+三、启动命令​    在Win.ini中启动，在Win.in ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范">     <img class="post_bg" src="/img/windows.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows权限维持及防范"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91Windows%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81%E5%8F%8A%E9%98%B2%E8%8C%83/" title="Windows权限维持及防范">Windows权限维持及防范</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.457Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T02:43:14.000Z" title="更新于 2021-02-24 10:43:14">2021-02-24</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a></span></div><div class="content">前言维持权限同样是渗透测试非常重要的一环，他可以让我们方便的再次进入系统并且降低被发现的概率，而维持权限的方式也就是留后门，了解一些常见的后门技术，不仅可以在进攻时提供维持权限的思路，同时，在防守时也可以更准确的发现隐患。
+隐藏账户隐藏账户应该是最常见的后门方式，其设置方式如下：
+首先我们在命令行输入，如下命令创建一个隐藏账号
+1net user leticia$ 123456 &#x2F;add
+
+
+
+这个时候，通过net user并不能看到这个账户。
+
+然后我们将它添加到管理员权限。
+1net localgroup administrators leticia$ &#x2F;add
+
+
+
+
+但是这个“隐藏账户”在用户账户中可以看到，并不能骗过细心的管理员。
+
+这个时候我们可以通过操作注册表，使这个账户在用户账户中也不显示。首先我们输入regedit打开注册表编辑器，找到HKEY_LOCAL_MACHINE\SAM\SAM，我们发现这个时候它是空白的，没有权限进行操作，所以我们要右键权限，将读写权限赋予administrator。
+
+然后我们重启注册表编辑器，发现这个时候已经可以访问 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/10/28/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="hexo搭建个人博客">     <img class="post_bg" src="/img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo搭建个人博客"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/10/28/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="hexo搭建个人博客">hexo搭建个人博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-27T16:32:16.000Z" title="发表于 2020-10-28 00:32:16">2020-10-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-13T07:45:34.000Z" title="更新于 2021-01-13 15:45:34">2021-01-13</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content">123456789101112hexo new &quot;postName&quot; #新建文章 hexo new page &quot;pageName&quot; #新建页面hexo help # 查看帮助 hexo version #查看Hexo的版本hexo n == hexo new hexo g == hexo generate hexo s == hexo server hexo d == hexo deployhexo s -g #生成并本地预览 hexo d -g #生成并上传
+
+
+
+
+
+seo优化百度收录site:dummersoul.top
+搜索后啥也没有，因为还未收录，在百度资源站点管理 里添加我的网站，再选择一种方式验证（我用的CNAME验证）
+在阿里云域名管理里添加一条解析
+
+添加完成后，点击“完成验证”
+
+生成sitemap安装sitemap插件
+12npm install hexo-generator-sitemap --save     npm install hexo-generator-baidu-sitemap --save
+
+修改_conf ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.44em; color: #99a7ba">Android</a> <a href="/tags/CDN%E5%8A%A0%E9%80%9F/" style="font-size: 1.1em; color: #999">CDN加速</a> <a href="/tags/CVE/" style="font-size: 1.1em; color: #999">CVE</a> <a href="/tags/JBoss/" style="font-size: 1.1em; color: #999">JBoss</a> <a href="/tags/android%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">android安全</a> <a href="/tags/ctf/" style="font-size: 1.27em; color: #99a0a9">ctf</a> <a href="/tags/cve/" style="font-size: 1.1em; color: #999">cve</a> <a href="/tags/docker/" style="font-size: 1.1em; color: #999">docker</a> <a href="/tags/flag/" style="font-size: 1.1em; color: #999">flag</a> <a href="/tags/getshell/" style="font-size: 1.21em; color: #999ea4">getshell</a> <a href="/tags/git/" style="font-size: 1.16em; color: #999b9e">git</a> <a href="/tags/hexo/" style="font-size: 1.16em; color: #999b9e">hexo</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/java%E5%AE%89%E5%85%A8/" style="font-size: 1.21em; color: #999ea4">java安全</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/mitu/" style="font-size: 1.1em; color: #999">mitu</a> <a href="/tags/perl/" style="font-size: 1.1em; color: #999">perl</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/struts2/" style="font-size: 1.1em; color: #999">struts2</a> <a href="/tags/vulnhub/" style="font-size: 1.33em; color: #99a2af">vulnhub</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: #999">中间件</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/" style="font-size: 1.39em; color: #99a4b4">内网提权</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" style="font-size: 1.16em; color: #999b9e">内网渗透</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 1.1em; color: #999">内网穿透</a> <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.1em; color: #999">反序列化</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.21em; color: #999ea4">图床</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.33em; color: #99a2af">工具</a> <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.16em; color: #999b9e">应急响应</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 1.1em; color: #999">抓包</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 1.1em; color: #999">权限维持</a> <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/" style="font-size: 1.1em; color: #999">社会工程学</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 1.21em; color: #999ea4">逆向</a> <a href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">逻辑漏洞</a> <a href="/tags/%E9%9D%B6%E6%9C%BA/" style="font-size: 1.5em; color: #99a9bf">靶机</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">55</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-19T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-19T15:33:38.406Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "学习永无止境,兴趣决定成就,分享是一种美德，共享是一种智慧".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '学习永无止境'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Windows关闭指定的端口 | dummersoul's Blog</title><meta name="keywords" content="应急响应"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="关闭135端口 135端口 主用于RPC（远程过程调用）协议并提供DCOM（分布式组件对象模型）服务，提供RPC可以保证在一台计算机上运行的程序可以顺利地执行远程计算机上的代码；使用DCOM可以通过网络直接通信，能够跨包括HTTP协议在内的多种网络传输。RPC本身在处理通过TCP&#x2F;IP的消息交换部分有一个漏洞，该漏洞是由于错误的处理格式不正确的消息造成的。该漏洞会影响到RPC与DCOM之间的一个接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows关闭指定的端口">
+<meta property="og:url" content="https://dummersoul.github.io/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="关闭135端口 135端口 主用于RPC（远程过程调用）协议并提供DCOM（分布式组件对象模型）服务，提供RPC可以保证在一台计算机上运行的程序可以顺利地执行远程计算机上的代码；使用DCOM可以通过网络直接通信，能够跨包括HTTP协议在内的多种网络传输。RPC本身在处理通过TCP&#x2F;IP的消息交换部分有一个漏洞，该漏洞是由于错误的处理格式不正确的消息造成的。该漏洞会影响到RPC与DCOM之间的一个接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210422174431.png">
+<meta property="article:published_time" content="2023-11-28T08:48:58.510Z">
+<meta property="article:modified_time" content="2021-04-22T09:44:38.000Z">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="应急响应">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210422174431.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-22 17:44:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210422174431.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Windows关闭指定的端口</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.510Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-22T09:44:38.000Z" title="更新于 2021-04-22 17:44:38">2021-04-22</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="关闭135端口"><a href="#关闭135端口" class="headerlink" title="关闭135端口"></a>关闭135端口</h2><blockquote>
+<p>135端口 主用于RPC（远程过程调用）协议并提供DCOM（分布式组件对象模型）服务，提供RPC可以保证在一台计算机上运行的程序可以顺利地执行远程计算机上的代码；使用DCOM可以通过网络直接通信，能够跨包括HTTP协议在内的多种网络传输。RPC本身在处理通过TCP/IP的消息交换部分有一个漏洞，该漏洞是由于错误的处理格式不正确的消息造成的。该漏洞会影响到RPC与DCOM之间的一个接口，该接口侦听的端口就是135，所以建议关闭135端口。</p>
+</blockquote>
+<h3 id="winxp系统禁用DCOM和RPC的操作步骤"><a href="#winxp系统禁用DCOM和RPC的操作步骤" class="headerlink" title="winxp系统禁用DCOM和RPC的操作步骤"></a>winxp系统禁用DCOM和RPC的操作步骤</h3><p>打开组件服务</p>
+<p>win+R 运行<code>dcomcnfg</code></p>
+<p>计算机——我的电脑——属性</p>
+<img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422151525716.png" alt="image-20210422151525716" style="zoom: 80%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422151727112.png" alt="image-20210422151727112" style="zoom:50%;" />
+
+<p>选择默认协议 面向连接的TCP/IP 单机移除</p>
+<img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422152052306.png" alt="image-20210422152052306" style="zoom:50%;" />
+
+<p>点击确定后，重启即可关闭135端口</p>
+<h2 id="关闭139端口"><a href="#关闭139端口" class="headerlink" title="关闭139端口"></a>关闭139端口</h2><blockquote>
+<p>139端口是为“NETBIOS Session Service”提供的，主要用于提供Windows文件和打印机共享以及Unix中的Samba服务。在Windows中要在局域网中进行文件的共享，必须使用该端口。</p>
+<p>端口漏洞：开启139端口虽然可以提供共享服务，但是常常被利用攻击，比如使用流光、superscan等端口扫描攻击，可以扫描到目标计算机的139端口，如果发现有漏洞，可以试图获取用户名和密码，这是非常危险的。</p>
+</blockquote>
+<h3 id="禁用NetBIOS操作步骤"><a href="#禁用NetBIOS操作步骤" class="headerlink" title="禁用NetBIOS操作步骤"></a>禁用NetBIOS操作步骤</h3><p>在【网络适配器】中的本地连接状态中进行操作（也就是主机改ip的位置）</p>
+<p>选择【高级】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422162000482.png" alt="image-20210422162000482"></p>
+<p>选择【WINS】  勾选【禁用】</p>
+<img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422162116602.png" alt="image-20210422162116602" style="zoom:80%;" />
+
+<p>确定之后，重启即可关闭139端口。</p>
+<h2 id="关闭445端口"><a href="#关闭445端口" class="headerlink" title="关闭445端口"></a>关闭445端口</h2><blockquote>
+<p>局域网共享文件夹或打印机的端口，勒索病毒常利用的端口</p>
+</blockquote>
+<h3 id="注册表关闭方式"><a href="#注册表关闭方式" class="headerlink" title="注册表关闭方式"></a>注册表关闭方式</h3><p>win+R regedit</p>
+<p>找到注册表项 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet\Services\NetBT\Parameters </p>
+<p>在Parameters上右键选择【新建】 根据系统32位还是64位选择【DWORD(32位)】或【QWORD(64位)】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422163214264.png" alt="image-20210422163214264"></p>
+<p>新建名为 <code>SMBDeviceEnabled</code> 右键单击修改值为 <code>0</code> 即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422163647839.png" alt="image-20210422163647839"></p>
+<p>注：win7系统关闭445 还要把操作系统的server服务关闭</p>
+<p>win+R services.msc</p>
+<p>找到server服务，单击，启动类型改为【禁用】，把服务状态改为【停止】，应用即可</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422164250378.png" alt="image-20210422164250378"></p>
+<h2 id="关闭默认共享方法"><a href="#关闭默认共享方法" class="headerlink" title="关闭默认共享方法"></a>关闭默认共享方法</h2><p>使用 “NET SHARE 共享文件夹 /DELETE” 及禁用共享方法（无法禁用IPC$共享）关闭后，但重启后仍会重新共享，永久停用的方法如下：</p>
+<p>1、禁用服务法</p>
+<p>找到server服务，单击，启动类型改为【禁用】，把服务状态改为【停止】，应用即可</p>
+<p>2、注册表改键值法</p>
+<p>找到“HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters”项，双击“AntoShareServer”项，将1改为0，如果没有就自己新建一个再改。 然后还在这里找到“AutoShareWks”项,把1改为0，关闭admin$共享。</p>
+<p>再找到“HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa”处找到“restrictanonymous”将值改为1，关闭IPC$共享。</p>
+<p>重启后即可生效，一经改动就会永远停止共享。</p>
+<p>3、不适用共享服务的话， 也可以在【本地连接】属性中取消对 【Microsoft网络客户端】和【Microsoft网络文件和打印架共享】的勾选，然后直接卸载掉！</p>
+<img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422170628980.png" alt="image-20210422170628980" style="zoom:50%;" />
+
+
+
+<h2 id="防火墙禁用指定端口"><a href="#防火墙禁用指定端口" class="headerlink" title="防火墙禁用指定端口"></a>防火墙禁用指定端口</h2><p>【控制面板】-【小图标】-【Windows防火墙】-【高级设置】-【入站规则】-【新建规则】-【端口】-【TCP】-【特点本地端口】-【阻止连接】-【选择作用范围】-【自己起个名】-【完成】</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20210422171758579.png" alt="image-20210422171758579"></p>
+<blockquote>
+<p>同理，可以禁用任何想禁用的端口，没人能访问的了。</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.doczhi.com/p-889260.html">https://www.doczhi.com/p-889260.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">dummersoul</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dummersoul.github.io/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/">https://dummersoul.github.io/2023/11/28/Windows关闭指定的端口/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dummersoul.github.io" target="_blank">dummersoul's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210422174431.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"><img class="prev-cover" src="/img/unauthorized.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">常见的未授权访问漏洞</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/"><img class="next-cover" src="/img/cs.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">vulnstack红队评估(七)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/28/【转载】Windows手动杀毒的方法/" title="Windows手动杀毒的方法"><img class="cover" src="/img/virus.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Windows手动杀毒的方法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD135%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.</span> <span class="toc-text">关闭135端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#winxp%E7%B3%BB%E7%BB%9F%E7%A6%81%E7%94%A8DCOM%E5%92%8CRPC%E7%9A%84%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">winxp系统禁用DCOM和RPC的操作步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD139%E7%AB%AF%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">关闭139端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%81%E7%94%A8NetBIOS%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.1.</span> <span class="toc-text">禁用NetBIOS操作步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD445%E7%AB%AF%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text">关闭445端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%85%B3%E9%97%AD%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">注册表关闭方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E9%BB%98%E8%AE%A4%E5%85%B1%E4%BA%AB%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">关闭默认共享方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E7%A6%81%E7%94%A8%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3"><span class="toc-number">5.</span> <span class="toc-text">防火墙禁用指定端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  let setting = {
+    appId: '',
+    appKey: '',
+  }
+
+  if (false) {
+    const otherSetting = false
+    setting = Object.assign({}, setting, otherSetting)
+  }
+
+  const init = () => {
+    new Artitalk(setting)
+  }
+
+  if (typeof Artitalk === 'function') {
+    init()
+  } else {
+    $.getScript('https://cdn.jsdelivr.net/npm/artitalk',init)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+      appKey: 'DzduWleTzfwsWV48PWO1wi1d',
+      placeholder: '留下你的昵称和邮箱，可以快速得到回复哦~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

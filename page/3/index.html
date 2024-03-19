@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dummersoul's Blog - fate and night</title><meta name="keywords" content="渗透"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络安全从业者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dummersoul&#39;s Blog">
+<meta property="og:url" content="https://dummersoul.github.io/page/3/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="网络安全从业者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/dummersoul.jpg">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/dummersoul.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/page/3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-19 23:33:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">dummersoul's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="redis未授权访问漏洞复现">     <img class="post_bg" src="/img/redis.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis未授权访问漏洞复现"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="redis未授权访问漏洞复现">redis未授权访问漏洞复现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.494Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-29T07:42:02.000Z" title="更新于 2020-12-29 15:42:02">2020-12-29</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/redis/">redis</a></span></div><div class="content">安装src/redis-cli
+1、wget https://download.redis.io/releases/redis-6.0.9.tar.gz
+2、tar xzf redis-6.0.9.tar.gz
+3、cd redis-6.0.9&amp;&amp;make
+连接redis数据库
+1src&#x2F;redis-cli -h &lt;hostname&gt; -p &lt;port&gt;
+
+然后执行下述命令完成密码验证
+12127.0.0.1:6379 &gt; AUTH &lt;password&gt;ok
+
+出现OK说明成功进入
+然后可以输入info查看基本数据库的信息
+1127.0.0.1:6379 &gt; info
+
+
+
+查看目录
+1127.0.0.1:6379 &gt; config get dir
+
+
+端口占用如何关闭
+Ncat: bind to :::1111: Address already in use. QUITTING
+12netstat -anp | grep 1111kill -9 &lt;进程&gt;
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/" title="phpmyadmin获取shell">     <img class="post_bg" src="/img/phpmyadmin.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="phpmyadmin获取shell"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/phpmyadmin%E8%8E%B7%E5%8F%96shell/" title="phpmyadmin获取shell">phpmyadmin获取shell</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.493Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T03:20:16.000Z" title="更新于 2021-01-28 11:20:16">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/getshell/">getshell</a></span></div><div class="content">查找真实路径通过sql语句查询12select @@basedir;   # 得到 /usrselect @@datadir;   # 得到 /var/lib/mysql
+
+而网站实际根路径是 /var/www
+phpinfo查找真实路径
+_SERVER[“SCRIPT_FILENAME”]
+_SERVER[“DOCUMENT_ROOT”]
+_SERVER[“CONTEXT_DOCUMENT_ROOT”]
+Server Root
+
+
+通过log变量查找路径
+getshell找到路径后，就要想办法将木马写入
+查询secure_file_priv12select @@secure_file_priv;   SHOW global VARIABLES LIKE &quot;secure_file_priv&quot;;
+
+
+
+
+值
+解释
+
+
+
+NULL(默认)
+不允许导入导出文件
+
+
+/tmp
+只允许在 /tmp 目录导入导出文件
+
+
+空
+不限制路径，可以任意导入导出文件
+
+
+
+在我用SHOW global VARIABLES LIKE “secure_file_priv”;执行时没有显示N ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Ngrok%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E6%98%A0%E5%B0%84%E4%B8%8E%E7%A9%BF%E9%80%8F/" title="Ngrok实现内网映射与穿透">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210225153935.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ngrok实现内网映射与穿透"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Ngrok%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E6%98%A0%E5%B0%84%E4%B8%8E%E7%A9%BF%E9%80%8F/" title="Ngrok实现内网映射与穿透">Ngrok实现内网映射与穿透</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.492Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-25T08:18:00.000Z" title="更新于 2021-02-25 16:18:00">2021-02-25</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a></span></div><div class="content">前言本想说用博客实现一个提供下载文件夹的功能，尝试了一下，貌似只能下载图片、pdf这类的文件，并不能实现大文件的传输，且效率也十分低下，所以想到了可以将内网映射出一个公网ip或域名实现快速访问下载的功能。
+Ngrok实现操作内网穿透工具也非常多，我个人比较喜欢Sunny-Ngrok
+Ngrok官网也有详细的使用教程
+为了提供我之前想实现的文件传输工作，首先我要先把自己的文件建在内网服务器上，这个办法可以是PHPstudy，或者用python，内网渗透的时候经常会用到
+1python -m SimpleHTTPServer 8000
+
+我为了省事，放在phpstudy下
+
+只需访问http://127.0.0.1/doc/kxsw.zip 即可实现下载
+所以要把这个IP映射到公网上
+而我自己的ip是 192.168.1.92
+在Ngrok.cc上注册账号
+
+选择免费的
+
+填写相关信息，后面两个验证可以先不写
+
+添加成功后，已经看到赠送给自己的域名了，通过域名可以实现内网穿透了
+
+点击客户端下载，选择需要的版本
+
+启动客户端，输入id后 回车
+
+
+可以看到已经在映射了，那个域名就相当于本地 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" title="Misc总结之图片隐写">     <img class="post_bg" src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之图片隐写"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" title="Misc总结之图片隐写">Misc总结之图片隐写</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.481Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T07:55:28.000Z" title="更新于 2021-02-10 15:55:28">2021-02-10</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">MISC简介Misc为英文miscellaneous的前四个字母，是杂项、混合体、大杂烩的意思
+主要类型有
+
+数据编码、图形编码
+图片隐写
+音频、视频隐写
+流量分析
+内存取证
+游戏隐写
+
+图片隐写分类右击属性属性————详细信息 中可能会隐藏一些字符串信息
+文件中藏字符串
+strings可直接查看
+grep -a “ctf” grep.jpeg
+file识别文件类型
+
+文件包含
+binwalk -e file 分离文件
+foremost file 提取文件
+dd if=file of=outfile bs=1 skip=开始分离的数字位置
+
+修改文件头
+JPEG (jpg)，文件头：FFD8FF文件尾：FF D9
+PNG (png)，文件头：89504E47文件尾：AE 42 60 82
+GIF (gif)， 　　文件头：47494638 或GIF89A　　　　　　　　　　　　　　　　　　　文件尾：00 3B
+ZIP Archive (zip)，文件头：504B0304　　　　　　　　　　　　　　　　　　　　　　文件尾：50 4B
+
+// 以下不太常见，但也要知道呀
+
+HTML (ht ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析">     <img class="post_bg" src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之流量分析"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Misc总结之流量分析">Misc总结之流量分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.481Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T08:10:10.000Z" title="更新于 2021-02-24 16:10:10">2021-02-24</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">MISC简介Misc为英文miscellaneous的前四个字母，是杂项、混合体、大杂烩的意思
+主要类型有
+
+数据编码、图形编码
+图片隐写
+音频、视频隐写
+流量分析
+内存取证
+游戏隐写
+
+主要工具wireshark
+语法使用：
+查找包含指定页面的流量包
+1http and http.request.uri contains &quot;index.html&quot;
+
+
+HTTPS使用了TLS加密协议，抓包也看不到内容
+
+1oicq    # QQ的协议
+
+
+
+wireshark使用语法1.过滤IP
+12ip.src eq 192.168.1.10 or ip.dst eq 192.168.1.10ip.addr eq 192.168.1.10   # 都显示：来源和目标
+
+2.过滤端口
+1234tcp.port eq 80 or udp.port eq 80    # 来源+目标tcp.dstport &#x3D;&#x3D; 80   # 只显示tcp协议的目标端口tcp.srcport &#x3D;&#x3D; 80   # 只显示tcp协议的来源端口 tcp.port &gt ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/" title="Misc总结之编码转换">     <img class="post_bg" src="/img/ctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc总结之编码转换"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Misc%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/" title="Misc总结之编码转换">Misc总结之编码转换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.480Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-10T17:28:42.000Z" title="更新于 2021-02-11 01:28:42">2021-02-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">MISC简介Misc为英文miscellaneous的前四个字母，是杂项、混合体、大杂烩的意思
+主要类型有
+
+数据编码、图形编码
+图片隐写
+音频、视频隐写
+流量分析
+内存取证
+游戏隐写
+
+数据编码分类二进制转换
+十进制
+十六进制
+八进制
+二维码
+图片
+摩尔斯密码
+ASCII码
+…
+
+
+base家族
+编码原理：根据要求把原本的8位字节算2的N次方的N为单位划分字节，再在前面补充0补充到8位一个Byte的形式
+
+
+https://www.qtool.net/baseencode
+
+
+base64：A-Z,a-z,0-9,+,/ 共64个编码字符， =号属于填充字符
+
+base62：A-Z,a-z,0-9 共62个编码字符  
+
+base32：A-Z,2-7  共32个编码字符  （末尾最多6个=）
+
+base16：A-F,0-9  共16个编码字符   （不会出现=）
+
+base36：26个字母不区分大小写（要么全大写，要么全小写）,0-9 共36个编码字符
+
+base58：A-Z,a-z（去掉了容易引起视觉混淆的O，I，l） 1-9 共49+9=58个编码字符
+
+base85：一种类似于 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/Linux%20sed%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Linux sed命令的使用">     <img class="post_bg" src="/img/sed.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux sed命令的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/Linux%20sed%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Linux sed命令的使用">Linux sed命令的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.479Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-11T13:32:30.000Z" title="更新于 2021-01-11 21:32:30">2021-01-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">Linux sed 命令是利用脚本来处理文本文件。
+sed 可依照脚本的指令来处理、编辑文本文件。
+Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。
+语法
+1sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]
+
+
+
+参数说明
+
+
+-e &lt;script&gt; 或 –expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。
+-f &lt;script文件&gt; 或 –file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。
+-h 或 –help 显示帮助。
+-n 或 –quiet 或 –silent 仅显示script处理后的结果。
+-V 或 –version 显示版本信息。
+
+
+动作说明
+
+
+a ：新增，a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)
+c ：取代，c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+i ： ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/KB-VULN1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="KB-VULN：1靶机练习">     <img class="post_bg" src="/img/vulnhub.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KB-VULN：1靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/KB-VULN1%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="KB-VULN：1靶机练习">KB-VULN：1靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.478Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-05T08:05:10.000Z" title="更新于 2021-01-05 16:05:10">2021-01-05</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">VirtualBox环境搭建下载地址：http://www.vulnhub.com/entry/kb-vuln-1,540/
+靶机有两个flag：user.txt和flag.txt
+接下来就是寻找它的过程
+
+
+获取虚拟机的ip地址1netdiscover 
+
+或者用nmap的主机存活扫描获取虚拟机ip
+1nmap -sP 192.168.0.0&#x2F;16
+
+ 
+kali下运行netdiscover总是找不到，可能我kali是桥接模式，靶机是host-only模式
+当然也试过nat模式，也是不行的，总之找到了就好，开心。
+
+现在找到了方法，只需要将kali桥接到靶机host-only的网卡上，就可以实现通信，netdiscover十分迅速就能找到ip
+
+端口检测发现只有21、22、80端口开放
+
+打开网页查看
+
+查看源码
+
+爆破密码找到了用户名，爆破走一波
+本想web登录抓包，但是登录处写了需要填写邮箱地址，显然不能用sysadmin登录，22端口开放，于是用ssh登录爆破
+
+找到密码了，上
+ssh登录找到一个flag
+
+查看自己是不是最高权限，有几种方法
+
+cat /etc/sh ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="KB-VULN：2靶机练习">     <img class="post_bg" src="/img/vulnhub.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KB-VULN：2靶机练习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/KB-VULN2%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0/" title="KB-VULN：2靶机练习">KB-VULN：2靶机练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.478Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-11T02:30:26.000Z" title="更新于 2021-01-11 10:30:26">2021-01-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E9%9D%B6%E6%9C%BA/">靶机</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/vulnhub/">vulnhub</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a></span></div><div class="content">VirtualBox环境搭建下载地址：https://www.vulnhub.com/entry/kb-vuln-2,562/
+
+扫描靶机ip，根据Mac地址确认
+
+netdiscover
+
+扫描端口开放的端口：21,22,80,137,139,445
+
+80端口：
+
+其他端口爆破尝试
+
+好家伙，smb弱口令出来了，其实就是可以匿名访问,smb是共享文件的一个服务
+smb探测Windows下进入192.168.56.103的共享文件夹
+
+
+
+
+发现了admin密码MachineBoy141
+也就是说wp这个站点的用户名和密码已经知道了
+wp登陆访问http://192.168.56.103/wordpress/ ，发现了一个登陆点
+
+但是打开是kb.vuln域名下的，打不开，再一想，我直接用ip访问不行吗
+
+输入刚刚获取到的用户名和密码，点击登陆，又自动跳到kb.vuln下了。。。
+
+这咋整，只能添加域名映射了。
+打开主机的C:\Windows\System32\drivers\etc\hosts文件，添加
+
+然后再登陆进去
+
+
+msf获取shell运行msfconsole并加载wp_ ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/" title="kali安装docker搭建vulhub靶场">     <img class="post_bg" src="/img/vulhub_docker.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali安装docker搭建vulhub靶场"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/kali%E5%AE%89%E8%A3%85docker%E6%90%AD%E5%BB%BAvulhub%E9%9D%B6%E5%9C%BA/" title="kali安装docker搭建vulhub靶场">kali安装docker搭建vulhub靶场</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.477Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-26T07:02:28.000Z" title="更新于 2021-02-26 15:02:28">2021-02-26</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/docker/">docker</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/struts2/">struts2</a></span></div><div class="content">kali安装docker12apt-get update &amp;&amp; apt-get install docker.iodocker version   # 检测安装是否成功
+
+设为开机自启动12service docker startupdate-rc.d docker enable
+
+
+
+安装docker-compose1pip install docker-compose
+
+
+Compose 是 Docker 容器进行编排的工具，定义和运行多容器的应用，可以一条命令启动多个容器，使用Docker Compose不再需要使用shell脚本来启动容器。
+
+下载vulhub环境https://github.com/vulhub/vulhub 直接下载后拖到kali中
+或 git clone https://github.com/vulhub/vulhub.git
+
+ Vulhub是一个面向大众的开源漏洞靶场，无需docker知识，简单执行两条命令即可编译、运行一个完整的漏洞靶场镜像。旨在让漏洞复现变得更加简单，让安全研究者更加专注于漏洞原理本身。
+
+使用vulhub靶场进入v ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/JVM%E3%80%81Dalvik%E3%80%81ART/" title="JVM、Dalvik、ART">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164837.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM、Dalvik、ART"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/JVM%E3%80%81Dalvik%E3%80%81ART/" title="JVM、Dalvik、ART">JVM、Dalvik、ART</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.476Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-01T08:48:50.000Z" title="更新于 2021-12-01 16:48:50">2021-12-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">JVMJVM本质上就是一个软件，是计算机硬件的一层软件抽象，在这之上才能够运行Java程序，JAVA在编译后会生成类似于汇编语言的.class字节码文件，与C语言编译后产生的汇编语言不同的是，C编译成的汇编语言会直接在硬件上跑，但JAVA编译后生成的.class字节码是在JVM上跑，需要由JVM把字节码翻译成机器指令，才能使JAVA程序跑起来，更确切的说是能够与底层沟通。    JVM运行在操作系统上，屏蔽了底层实现的差异，从而有了JAVA平台独立性和Write Once Run Anywhere。
+根据JVM规范实现的具体虚拟机有几十种，主流的JVM包括Hotspot、Jikes RVM等，都是用C/C++和汇编编写的，每个JRE编译的时候针对每个平台编译，因此下载JRE（JVM、Java核心类库和支持文件）的时候是分平台的，JVM的作用是把平台无关的.class里面的字节码翻译成平台相关的机器码，来实现跨平台。
+DalvikAndroid 运行环境主要指的Dalvik虚拟机技术，也就是安卓虚拟机DVM。每个Android应用进程对应着一个独立的Dalvik虚拟机实例并在其解释下执行 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/justCTF2020%20writeup/" title="justCTF2020 writeup">     <img class="post_bg" src="/img/justctf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="justCTF2020 writeup"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/justCTF2020%20writeup/" title="justCTF2020 writeup">justCTF2020 writeup</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.475Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-01T08:00:08.000Z" title="更新于 2021-02-01 16:00:08">2021-02-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">位置：https://2020.justctf.team/
+忘记的名字
+搜索证书透明性日志https://crt.sh/?q=jctf.pro
+获取6a开头的一串子域名
+
+xdd解码
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.44em; color: #99a7ba">Android</a> <a href="/tags/CDN%E5%8A%A0%E9%80%9F/" style="font-size: 1.1em; color: #999">CDN加速</a> <a href="/tags/CVE/" style="font-size: 1.1em; color: #999">CVE</a> <a href="/tags/JBoss/" style="font-size: 1.1em; color: #999">JBoss</a> <a href="/tags/android%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">android安全</a> <a href="/tags/ctf/" style="font-size: 1.27em; color: #99a0a9">ctf</a> <a href="/tags/cve/" style="font-size: 1.1em; color: #999">cve</a> <a href="/tags/docker/" style="font-size: 1.1em; color: #999">docker</a> <a href="/tags/flag/" style="font-size: 1.1em; color: #999">flag</a> <a href="/tags/getshell/" style="font-size: 1.21em; color: #999ea4">getshell</a> <a href="/tags/git/" style="font-size: 1.16em; color: #999b9e">git</a> <a href="/tags/hexo/" style="font-size: 1.16em; color: #999b9e">hexo</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/java%E5%AE%89%E5%85%A8/" style="font-size: 1.21em; color: #999ea4">java安全</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/mitu/" style="font-size: 1.1em; color: #999">mitu</a> <a href="/tags/perl/" style="font-size: 1.1em; color: #999">perl</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/struts2/" style="font-size: 1.1em; color: #999">struts2</a> <a href="/tags/vulnhub/" style="font-size: 1.33em; color: #99a2af">vulnhub</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: #999">中间件</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/" style="font-size: 1.39em; color: #99a4b4">内网提权</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" style="font-size: 1.16em; color: #999b9e">内网渗透</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 1.1em; color: #999">内网穿透</a> <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.1em; color: #999">反序列化</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.21em; color: #999ea4">图床</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.33em; color: #99a2af">工具</a> <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.16em; color: #999b9e">应急响应</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 1.1em; color: #999">抓包</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 1.1em; color: #999">权限维持</a> <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/" style="font-size: 1.1em; color: #999">社会工程学</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 1.21em; color: #999ea4">逆向</a> <a href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">逻辑漏洞</a> <a href="/tags/%E9%9D%B6%E6%9C%BA/" style="font-size: 1.5em; color: #99a9bf">靶机</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">55</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-19T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-19T15:33:38.406Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "学习永无止境,兴趣决定成就,分享是一种美德，共享是一种智慧".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '学习永无止境'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

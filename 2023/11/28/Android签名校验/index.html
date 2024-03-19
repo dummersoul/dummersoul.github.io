@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Android签名校验 | dummersoul's Blog</title><meta name="keywords" content="Android,逆向"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="签名是Android软件的一种有效身份标识，因为签名所使用的秘钥文件是我们所独有的，而我们APP被重新打包后，APP的签名信息势必会被篡改，所以我们就可以根据软件运行时签名与发布时的签名的相同与否来绝对是否需要将APP中止运行。  Java层签名校验方法签名校验Android SDK中提供了检测软件签名的方法，我们可以使用签名对象的 hashCode() 方法来获取一个Hash值，在代码中比较它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android签名校验">
+<meta property="og:url" content="https://dummersoul.github.io/2023/11/28/Android%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="签名是Android软件的一种有效身份标识，因为签名所使用的秘钥文件是我们所独有的，而我们APP被重新打包后，APP的签名信息势必会被篡改，所以我们就可以根据软件运行时签名与发布时的签名的相同与否来绝对是否需要将APP中止运行。  Java层签名校验方法签名校验Android SDK中提供了检测软件签名的方法，我们可以使用签名对象的 hashCode() 方法来获取一个Hash值，在代码中比较它">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/a1.jpg">
+<meta property="article:published_time" content="2023-11-28T08:48:58.460Z">
+<meta property="article:modified_time" content="2021-11-16T08:34:12.000Z">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="逆向">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/a1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/2023/11/28/Android%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-16 16:34:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/a1.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Android签名校验</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.460Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-16T08:34:12.000Z" title="更新于 2021-11-16 16:34:12">2021-11-16</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>签名是Android软件的一种有效身份标识，因为签名所使用的秘钥文件是我们所独有的，而我们APP被重新打包后，APP的签名信息势必会被篡改，所以我们就可以根据软件运行时签名与发布时的签名的相同与否来绝对是否需要将APP中止运行。</p>
+</blockquote>
+<h2 id="Java层签名校验方法"><a href="#Java层签名校验方法" class="headerlink" title="Java层签名校验方法"></a>Java层签名校验方法</h2><h3 id="签名校验"><a href="#签名校验" class="headerlink" title="签名校验"></a>签名校验</h3><p>Android SDK中提供了检测软件签名的方法，我们可以使用签名对象的 hashCode() 方法来获取一个Hash值，在代码中比较它的值即可，下面是获取当前运行时的签名信息代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getSignature</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        PackageManager pm = context.getPackageManager();</span><br><span class="line">        PackageInfo pi;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="comment">// 获取签名信息</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);</span><br><span class="line">            Signature[] signatures = pi.signatures;</span><br><span class="line">            <span class="keyword">for</span> (Signature signature : signatures) &#123;</span><br><span class="line">                sb.append(signature.toCharsString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString().hashCode();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们需要跟我们发布时的签名信息比较，在这里已经把Hash值MD5加密了:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> signature = getSignature(getApplicationContext());</span><br><span class="line">    <span class="keyword">if</span>(!MD5Util.getMD5(String.valueOf(signature)).equals(<span class="string">&quot;发布时签名值&quot;</span>))&#123;</span><br><span class="line">        <span class="comment">// 可能被重编译了，需要退出</span></span><br><span class="line">        android.os.Process.killProcess(android.os.Process.myPid());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="classes-dex的crc32校验"><a href="#classes-dex的crc32校验" class="headerlink" title="classes.dex的crc32校验"></a>classes.dex的crc32校验</h3><p>通常重编译 apk 就是重编译 classes 文件，而代码重新编译后，生成的 classes.dex 文件的Hash值就会改变，所以我们可以检查程序安装后 classes.dex 文件的Hash值来判断软件是否被重新打包过。</p>
+<p>至于Hash算法MD5和CRC都可以，在这里就直接使用CRC算法获取当前运行的app的crc32值了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getApkCRC</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        ZipFile zf;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zf = <span class="keyword">new</span> ZipFile(context.getPackageCodePath());</span><br><span class="line">            <span class="comment">// 获取apk安装后的路径</span></span><br><span class="line">            ZipEntry ze = zf.getEntry(<span class="string">&quot;classes.dex&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> ze.getCrc();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了当前的crc32值了，那么我们只需要将其与我们app发布时的crc32原始值做比较了，这是我们的java逻辑，R.string.classes_txt 的值我们我们可以先随意赋予一个（不影响），随后AndroidStudio开始正式打包：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String srcStr = MD5Util.getMD5(String.valueOf(CommentUtils.getApkCRC(getApplicationContext())));</span><br><span class="line">    <span class="keyword">if</span>(!srcStr.equals(getString(R.string.classes_txt)))&#123;</span><br><span class="line">        <span class="comment">// 可能被重编译了，需要退出</span></span><br><span class="line">        android.os.Process.killProcess(android.os.Process.myPid());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当打包成功后，我们获取apk的classes.dex的crc32值，随后将该crc32值赋予R.string.classes_txt，最后通过AndroidStudio再重新打包即可（因为更改资源文件并不会改变classe.dex的crc32值，改变代码才会）。获取classes.dex的crc32值的方法，可使用工具如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116102506420.png" alt="image-20211116102506420"></p>
+<p>Java层面的校验方法都是脆弱的，因为破解者可以直接更改我们的判断逻辑以达到绕开校验的目的，所以我们只能通过增加其破解工作量，来达到一点点防破解的夙愿。</p>
+<blockquote>
+<p>建议将crc32值或签名的hash值进行MD5加密，在代码中使用加密后的值进行比较，防止反编译后的全局搜索；建议将签名校验与  classes.dex 校验结合起来使用，先进行签名校验，校验成功后将正确签名hash值作为参数去后台请求 classes.dex  的crc32值，再与当前运行crc32值进行比较；建议进行多处校验，每处使用变形判断语句，并与其他判断条件组合使用，以增加破解时的工作量。</p>
+</blockquote>
+<h2 id="反编译与二次打包"><a href="#反编译与二次打包" class="headerlink" title="反编译与二次打包"></a>反编译与二次打包</h2><h3 id="apk反编译"><a href="#apk反编译" class="headerlink" title="apk反编译"></a>apk反编译</h3><ul>
+<li>apktool d xx.apk   得到一个同名文件夹，里面是smali文件</li>
+<li>apktool d -s xx.apk -o xx   指定的目录下里面是dex文件</li>
+</ul>
+<blockquote>
+<p>如果不指定 -s 参数，反编译出来的就是smali代码<br>    smali文件是dex文件反编译的结果，但不同于dex2jar的反编译过程</p>
+</blockquote>
+<h3 id="二次打包"><a href="#二次打包" class="headerlink" title="二次打包"></a>二次打包</h3><blockquote>
+<p>由smali语言即Davlik的寄存器语言，smali有自己的语法并且可以修改，修改后可以被二次打包为apk</p>
+</blockquote>
+<ul>
+<li>apktool b 需要编译的文件夹</li>
+</ul>
+<blockquote>
+<p>如遇到报错：No resource identifier found for attribute ‘keyboardNavigationCluster’ in package ‘android’</p>
+<p>解决方法：将 C:\Users\用户\AppData\Local\apktool\framework\1.apk文件删除，重新打包一次即可，该处又会重新生成新的1.apk</p>
+<p>我们二次打包好的apk会在要编译的文件夹下新生成的dist目录下，但是这个apk文件由于没有进行过签名，所以是不能够安装和运行的</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116110523854.png" alt="image-20211116110523854"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116110440597.png" alt="image-20211116110440597"></p>
+<h3 id="使用Auto-sign对二次打包后的apk文件进行签名"><a href="#使用Auto-sign对二次打包后的apk文件进行签名" class="headerlink" title="使用Auto-sign对二次打包后的apk文件进行签名"></a>使用Auto-sign对二次打包后的apk文件进行签名</h3><ul>
+<li><p>Auto-sign工具下载好放在apktool所在目录下</p>
+</li>
+<li><p>将我们待签名的apk文件复制到Auto-sign目录之下，并更改名称为<code>update.zip</code> </p>
+</li>
+<li><p>双击<code>Sign.bat</code>文件，将同目录下生成的update_signed.zip文件更改为xx.apk文件即可，这就是签名后的apk</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116112018582.png" alt="image-20211116112018582"></p>
+</li>
+</ul>
+<blockquote>
+<p>如果app没有做签名校验，那么重新打包后的apk与原始apk功能完全一样（我自己测试的apk是存在签名校验的，能安装但是打不开APP）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116112323389.png" alt="image-20211116112323389"></p>
+<p>所以说如果我们不进行签名校验，那么不法者仅仅只凭借apktool和Auto-sign工具就可以轻松破解我们的app并重新打包成新的apk</p>
+</blockquote>
+<h2 id="绕过Java代码签名校验"><a href="#绕过Java代码签名校验" class="headerlink" title="绕过Java代码签名校验"></a>绕过Java代码签名校验</h2><p>需要将apk经过<code>apktool</code>或者<code>jadx</code>或<code>dex2jar</code>或者<code>jd-jui</code>反编译代码后，对代码进行审计，查找apk签名校验代码的位置，然后对其进行修改，即可绕过。</p>
+<p>一般通过解压apk文件获取到dex文件，可能会有多个dex，那这个时候使用dex2jar2.0之前的版本只能一个一个进行反编译，这样很麻烦，使用2.1或2.2版本可以直接反编译所有的dex文件并合并到一个jar文件，之后再用jd-jui打开即可</p>
+<ul>
+<li>dex2jar2.2下载地址：<a target="_blank" rel="noopener" href="https://github.com/pxb1988/dex2jar/releases">https://github.com/pxb1988/dex2jar/releases</a></li>
+</ul>
+<p>然后把需要反编译的apk放到dex2jar文件目录下，运行命令完成后，会在当前目录生成一个xx-dex2jar.jar文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat xx.apk</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行可能会出现报错信息</p>
+<ul>
+<li>Exception in thread “main” java.lang.OutOfMemoryError: GC overhead limit exceeded</li>
+<li>Exception in thread “main” java.lang.OutOfMemoryError: Java heap space</li>
+</ul>
+<p>解决方法：</p>
+<p>用记事本打开 d2j_invoke.bat 文件， 修改最后一行内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xms512m -Xmx1024m -cp <span class="string">&quot;%CP%&quot;</span> %*</span><br></pre></td></tr></table></figure>
+
+<p>具体可以参考这篇文章 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bolang100/p/6478537.html">java heap space解决方法和JVM参数设置</a></p>
+<p>根据他说的 初始空间(即-Xms)是物理内存的1/64，最大空间(-Xmx)是物理内存的1/4。修改后如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xms512m -Xmx8192m -cp &quot;%CP%&quot; %*</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116160124390.png" alt="image-20211116160124390"></p>
+<p>虽然会有很多警告，但是还是能用 jd-gui 打开</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116160232145.png" alt="image-20211116160232145"></p>
+<p>然后就可以查看java代码了。通过查看Java代码我们可以快速搜索出需要的Android API方法，再通过API方法的位置来定位到相应smali文件的大概位置。</p>
+<p>比较简单通用的签名校验是用signatures来获取，所以可以全局搜索关键字来尝试，并找到相应的调用方法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116160807061.png" alt="image-20211116160807061"></p>
+<p>再查找f()方法被调用的地方，我们可以先通过AndroidManifest.xml文件找到Application和主Activity，一般在这里都会进行一些校验和身份状态的判断，改好一处之后，通过运行app，再根据app退出或者卡住的位置来定位下一处校验代码的位置，直到运行成功。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/image-20211116160914543.png" alt="image-20211116160914543"></p>
+<p>搜索”F010AF8CFE611E1CC74845F80266”，定位签名校验的反编译代码位置</p>
+<blockquote>
+<p>网上这一步直接在smali代码中寻找并修改逻辑关系：将判断语句<strong>if-nezv0, :cond_1</strong>更改为<strong>if-eqz v0, :cond_1</strong></p>
+<p>然后通过apktool重新打包并签名，就能成功运行APP</p>
+</blockquote>
+<p><em>关于hook绕过的方式参考末尾文章，里面有详细讲解，这里先不做学习</em></p>
+<h2 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h2><p>还有些涉及so层或者其他方面的校验机制没有写，之后再做添加。</p>
+<p>所谓绕过的关键点就在把apk成功反编译为java代码再进行阅读查找，还是代码审计。。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/1B1399BF.jpg" alt="img"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389584833">Android反编译工具 apktool 、dex2jar、jd-gui、jadx的对比及使用</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bolang100/p/6478537.html">java heap space解决方法和JVM参数设置</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363049166">【Android进阶】什么？你的签名校验形同虚设？？？</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">dummersoul</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dummersoul.github.io/2023/11/28/Android%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C/">https://dummersoul.github.io/2023/11/28/Android签名校验/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dummersoul.github.io" target="_blank">dummersoul's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/%E9%80%86%E5%90%91/">逆向</a></div><div class="post_share"><div class="social-share" data-image="/img/a1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/28/Android%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7Drozer%E7%9A%84%E4%BD%BF%E7%94%A8/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/%E4%B8%8B%E8%BD%BD.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Android渗透工具Drozer的使用</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/28/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"><img class="next-cover" src="/img/Android.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Android基础知识总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/28/Android基础知识总结/" title="Android基础知识总结"><img class="cover" src="/img/Android.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android基础知识总结</div></div></a></div><div><a href="/2023/11/28/微信小程序获取源码/" title="微信小程序源码反编译操作教程"><img class="cover" src="/img/wx.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">微信小程序源码反编译操作教程</div></div></a></div><div><a href="/2023/11/28/Android Webview漏洞初探/" title="Android Webview漏洞初探"><img class="cover" src="https://miro.medium.com/max/700/1*WwN78iOX-HC74T9AHGxjOg.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android Webview漏洞初探</div></div></a></div><div><a href="/2023/11/28/Android渗透工具Drozer的使用/" title="Android渗透工具Drozer的使用"><img class="cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/%E4%B8%8B%E8%BD%BD.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">Android渗透工具Drozer的使用</div></div></a></div><div><a href="/2023/11/28/JVM、Dalvik、ART/" title="JVM、Dalvik、ART"><img class="cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164837.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">JVM、Dalvik、ART</div></div></a></div><div><a href="/2023/11/28/一文搞懂DEX文件结构/" title="一文搞懂DEX文件结构"><img class="cover" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-28</div><div class="title">一文搞懂DEX文件结构</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%B1%82%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">Java层签名校验方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.1.</span> <span class="toc-text">签名校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#classes-dex%E7%9A%84crc32%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">classes.dex的crc32校验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B8%8E%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85"><span class="toc-number">2.</span> <span class="toc-text">反编译与二次打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apk%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="toc-number">2.1.</span> <span class="toc-text">apk反编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85"><span class="toc-number">2.2.</span> <span class="toc-text">二次打包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Auto-sign%E5%AF%B9%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85%E5%90%8E%E7%9A%84apk%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%AD%BE%E5%90%8D"><span class="toc-number">2.3.</span> <span class="toc-text">使用Auto-sign对二次打包后的apk文件进行签名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%95%E8%BF%87Java%E4%BB%A3%E7%A0%81%E7%AD%BE%E5%90%8D%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.</span> <span class="toc-text">绕过Java代码签名校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B"><span class="toc-number">4.</span> <span class="toc-text">总结一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">参考文章</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  let setting = {
+    appId: '',
+    appKey: '',
+  }
+
+  if (false) {
+    const otherSetting = false
+    setting = Object.assign({}, setting, otherSetting)
+  }
+
+  const init = () => {
+    new Artitalk(setting)
+  }
+
+  if (typeof Artitalk === 'function') {
+    init()
+  } else {
+    $.getScript('https://cdn.jsdelivr.net/npm/artitalk',init)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'n3p3uLQDNt0AhK7HstJIX6hw-gzGzoHsz',
+      appKey: 'DzduWleTzfwsWV48PWO1wi1d',
+      placeholder: '留下你的昵称和邮箱，可以快速得到回复哦~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '//i0.hdslb.com/bfs/emote/',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dummersoul's Blog - fate and night</title><meta name="keywords" content="渗透"><meta name="author" content="dummersoul"><meta name="copyright" content="dummersoul"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络安全从业者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dummersoul&#39;s Blog">
+<meta property="og:url" content="https://dummersoul.github.io/index.html">
+<meta property="og:site_name" content="dummersoul&#39;s Blog">
+<meta property="og:description" content="网络安全从业者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummersoul.github.io/img/dummersoul.jpg">
+<meta property="article:author" content="dummersoul">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummersoul.github.io/img/dummersoul.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummersoul.github.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-03-19 23:33:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="dummersoul's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">dummersoul's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 好友链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">dummersoul's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">     <img class="post_bg" src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-19T15:33:25.750Z" title="更新于 2024-03-19 23:33:25">2024-03-19</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/java%E5%AE%89%E5%85%A8/">java安全</a></span></div><div class="content">漏洞描述攻击者可以通过更改 Logback 配置文件添加或构造恶意配置，从而可以执行 LDAP 服务器上加载的任意代码
+影响版本
+Logback版本 &lt; 1.2.9
+Logback版本 &lt; 1.3.0-alpha11
+
+利用条件
+拥有对logback.xml的修改权限
+使用的Logback版本 &lt; 1.2.9
+重新加载了恶意的配置数据，这意味着应用程序重新启动或者之前设置了scan=”true”。
+
+复现过程
+1.2.7版本logback
+文件上传，可以借此功能更改Logback 配置文件
+
+启动实验环境后，上传文件，burp抓包至repeater
+http://localhost:8080/upload.html
+
+test.txt上传到了下面这个文件夹下
+
+与此同时，开启ldap服务器，进行jndi注入
+1java -jar JNDI-Injection-Exploit-1.0-SNAPSHOT-all.jar -C &quot;calc.exe&quot; -A 127.0.0.1
+
+
+burp上传配置文件 logback-spring.xml，内容如下：
+12 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">     <img class="post_bg" src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-19T15:30:47.573Z" title="更新于 2024-03-19 23:30:47">2024-03-19</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/android%E5%AE%89%E5%85%A8/">android安全</a></span></div><div class="content">域控制不严格android中使用js的file域加载的js代码能够进行同源策略跨域访问。
+
+当设置webView.getSettings().setAllowFileAccess(true); 允许webview使用file协议
+当设置webView.getSettings().setAllowFileAccessFromFileURLs(true);  允许通过file协议加载的js读取其他本地文件
+当设置webView.getSettings().setAllowUniversalAccessFromFileURLs(true);**允许通过file协议加载的js访问任意域**
+
+结合intent传递，A应用可以通过B应用导出的webviewactivity让B加载一个恶意的file协议加载url，从而获取B应用的内部数据。
+123Intent intent = getIntent();String url = intent.getData().toString();webView.loadUrl(url);
+
+
+
+UXSSUXSS（Universal Cross-Site Scf ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">     <img class="post_bg" src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-19T11:08:43.207Z" title="更新于 2024-03-19 19:08:43">2024-03-19</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/java%E5%AE%89%E5%85%A8/">java安全</a></span></div><div class="content">前言之前简单了解了tomcat的架构，这次就基于tomcat架构来学习内存马。
+Context学习内存马之前，我们要将最常用的三个context搞清楚：ServletContext、ApplicationContext、StandardContext
+context叫做上下文容器，可以看成一个web 应用，一个host可以有很多web应用，而一个context又有很多wrapper，也就是一个context有很多客户端请求，servlet就是专门处理客户端请求的动态资源。
+ServletContextServletContext是用来保存一个web应用中所有servlet的上下文信息，可以通过ServletContext来对某个应用的资源进行访问和操作，其对应的类是javax.servlet.ServletContext
+ApplicationContext在tomcat中，ServletContext接口的具体实现就是ApplicationContext类。
+StandardContextorg.apache.catalina.core.StandardContext是子容器Cont ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">     <img class="post_bg" src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-19T11:07:30.399Z" title="更新于 2024-03-19 19:07:30">2024-03-19</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/java%E5%AE%89%E5%85%A8/">java安全</a></span></div><div class="content">前言为了对内存马进行学习研究，本篇为tomcat架构的学习笔记
+Tomcat简介Tomcat = Web服务器 + Servlet容器
+
+Tomcat能够通过Connector组件接收并解析HTTP请求，然后将一个ServletRequest对象发送给Container处理。容器处理完之后会将响应封装成ServletRespone返回给Connector，然后Connector再将ServletRespone解析为HTTP响应文本格式发送给客户端，至此Tomcat就完成了一次网络通信。
+Tomcat架构
+Tomcat Server分为三大组件：Service、Connector、Container
+Service其中一个Tomcat Server可以包含多个Service，比如Tomcat默认的Service服务Catalina。每一个Service都是独立的，他们共享一个JVM以及系统类库，并且一个Service负责维护多个Connector和一个Container。
+ConnectorConnector用于连接Service和Container，解析客户端的请求并转发到Contai ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-01T08:46:42.000Z" title="更新于 2021-12-01 16:46:42">2021-12-01</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">什么是DEX文件DEX文件就是Android Dalvik虚拟机运行的程序， Dalvik 虚拟机会对JAVA编译生成的.class文件进行翻译、重构、解释、压缩等处理，这个过程由SDK的dx 工具进行，完成之后就是dex文件。
+dex的生成如下
+12javac Hellodx --dex --output&#x3D;Hello.dex Hello.class
+
+
+
+为什么使用DEXclass文件的特点：
+
+class文件中包含各种数据如常量池、field等，而一个应用中有成百乃至更多的类，使用字节码文件存储类信息，内存占用过大，不适合移动端；
+class文件是堆栈的加栈模式，加载速度慢；
+文件IO操作多，类查找慢；因为每个class文件中只存储了一个Java源文件信息
+
+这些特征表明class文件不适合移动设备的加载使用，所以dex文件是对众多class文件做出了整合及优化，空间占用小，基于寄存器易加载。
+
+dex文件的具体格式就像 MP3，MP4，JPG，PNG 文件一样，Dex 文件也有它自己的格式，只有遵守了这些格式，才能被 Android 运行时环境正确识别。
+
+
+文件头：h ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/" title="脏牛提权（CVE-2016-5195）">     <img class="post_bg" src="/img/dirtycow.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="脏牛提权（CVE-2016-5195）"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E8%84%8F%E7%89%9B%E6%8F%90%E6%9D%83(CVE-2016-5195)/" title="脏牛提权（CVE-2016-5195）">脏牛提权（CVE-2016-5195）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-05T04:02:00.000Z" title="更新于 2021-01-05 12:02:00">2021-01-05</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/">内网提权</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/CVE/">CVE</a></span></div><div class="content">漏洞介绍漏洞编号：CVE-2016-5195
+漏洞名称：脏牛（Dirty COW）
+漏洞危害：低权限用户利用该漏洞技术可以在全版本Linux系统上实现本地提权
+影响范围：Linux内核&gt;=2.6.22（2007年发行，到2016年10月18日才修复，存在Linux内核中已经有长达9年的时间）
+简要分析：该漏洞具体为，Linux内核的内存子系统在处理写入复制（copy-on-write, COW）时产生了竞争条件（race condition）。恶意用户可利用此漏洞，来获取高权限，对只读内存映射进行写访问。竞争条件，指的是任务执行顺序异常，可导致应用崩溃，或令攻击者有机可乘，进一步执行其他代码。利用这一漏洞，攻击者可在其目标系统提升权限，甚至可能获得root权限。
+复现查看内核版本123uname -rlsb release -acat &#x2F;proc&#x2F;version
+
+
+只要低于以下版本，标识存在脏牛漏洞
+Centos7 /RHEL7  3.10.0-327.36.3.el7
+Cetnos6/RHEL6   2.6.32-642.6.2.el6
+Ubuntu 16 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/" title="一次cappvd引发的思考">     <img class="post_bg" src="https://s2.loli.net/2022/10/14/Pzv4Is8yTGJrFCZ.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一次cappvd引发的思考"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E4%B8%80%E6%AC%A1cappvd%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/" title="一次cappvd引发的思考">一次cappvd引发的思考</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.519Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-14T10:01:12.000Z" title="更新于 2022-10-14 18:01:12">2022-10-14</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/perl/">perl</a></span></div><div class="content">前言在挖cappvd时遇到一个后台为webmin，前面shrio反序列化已经打进去了，所以尝试一下内网是否有用户名和密码的信息。
+
+翻看了一下内网发现有redis和mysql服务，mysql且没有设置密码
+
+
+查找webmin的密码，发现webmin的密码是与/etc/shadow联动的
+
+
+查阅资料说，webmin是用于Unix系统管理的一个web服务，相当于是以root权限进行登录，所以理所当然密码也是root密码，于是翻看了下/etc/shadow确认root账户名称是否有变更
+1root:$6$Gx1Dj&#x2F;.p0$uJEaQDHAiKe.Xg&#x2F;4ROVV5.QpROw4td7lTe6TPONpXGFSAS6Ok.t3sJl6CyTe.dPa.yQo2yU3ePfsu61sbwTVL.:18403:0:99999:7::: 
+
+lastlog查看上次管理员登录时间，发现是上周五登录过一次，估计短时间不会再登录了，所以没有抓取密码的必要。尝试用脚本进行爆破，把/etc/shadow文件内容复制下来，在本机进行爆破
+脚本：
+12345678910111213141 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/" title="学习git分支">     <img class="post_bg" src="https://learngitbranching.js.org/assets/favicon.ico" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习git分支"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E5%AD%A6%E4%B9%A0git%E5%88%86%E6%94%AF/" title="学习git分支">学习git分支</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.518Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-28T09:45:32.000Z" title="更新于 2021-01-28 17:45:32">2021-01-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/git/">git</a></span></div><div class="content">前提由于今天git操作给我整懵了，虽说之前也接触过，但是长时间不操作就会忘记，并且手忙脚乱，不懂原理怎么打下整个天下，碰巧遇到了一篇写的很详细的文章可视化学习git命令，就按照他的思路来深入探索一下。
+还有学习平台学习git分支
+开始闯关
+git commit
+
+git branch
+1git branch newImage
+
+
+1git commit
+
+
+12git checkout newImage; git commitgit checkout -b newImage  # 直接新建了一个newImage分支，且切换到了新建的分支上去（会有个*号）
+
+
+git merge
+
+1git merge bugFix   # 把 bugFix 合并到 main 里
+
+
+1git checkout bugFix; git merge main  # 再把 bugFix 合并到 main 里
+
+
+
+git rebase
+
+1git rebase main
+
+
+1git rebase bugFix
+
+
+
+HEAD
+
+1git checkout C1; git checkout main; gi ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E6%BA%90%E7%A0%81/" title="微信小程序源码反编译操作教程">     <img class="post_bg" src="/img/wx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微信小程序源码反编译操作教程"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96%E6%BA%90%E7%A0%81/" title="微信小程序源码反编译操作教程">微信小程序源码反编译操作教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.517Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-11T08:51:54.000Z" title="更新于 2021-11-11 16:51:54">2021-11-11</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E9%80%86%E5%90%91/">逆向</a></span></div><div class="content">原理微信目前还没有对小程序的源码进行高级别的安全加密。仅仅是完成 Wxml -&gt; Html、 Wxml -&gt; JS、Wxss -&gt; Css的格式转换，然后再很简单地将图片、js和json文件压缩成一个包。获取到这个包，一步一步的倒退回去，就能获取到微信小程序源码。
+获取微信小程序的wxapkg包微信小程序的目录为
+/data/data/com.tencent.mm/MicroMsg/xxxxxx(很长名字的一个文件夹，可根据时间来判断)/appbrand/pkg
+微信小程序的格式是:.wxapkg
+
+要用adb进行调试时，需要拥有root权限，这里是在模拟器操作演示的，绝对的root权限
+
+首先，将这里面的文件拖到电脑
+adb pull &lt;设备里的文件路径&gt; [电脑上的目录]
+1adb pull &#x2F;data&#x2F;data&#x2F;com.tencent.mm&#x2F;MicroMsg&#x2F;3522c136c6b56430b3c1dcce0dfbf533&#x2F;appbrand&#x2F;pkg D:&#x2F;wxtmp&#x ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/" title="文件被占用无法删除怎么办">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20210226162014.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="文件被占用无法删除怎么办"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E6%96%87%E4%BB%B6%E8%A2%AB%E5%8D%A0%E7%94%A8%E6%97%A0%E6%B3%95%E5%88%A0%E9%99%A4%E6%80%8E%E4%B9%88%E5%8A%9E/" title="文件被占用无法删除怎么办">文件被占用无法删除怎么办</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.517Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-26T08:25:48.000Z" title="更新于 2021-02-26 16:25:48">2021-02-26</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">遇到文件被占用想删除，但就是找不到它被占用的进程
+可以使用一个特别棒的工具 IObit Unlocker
+
+工具下载地址：https://www.majorgeeks.com/mg/getmirror/iobit_unlocker,1.html
+安装时勾选添加至右键的功能，在一个文件上右击选择
+
+
+可以删除、重命名、移动、复制等任何操作，简直是利器啊朋友们！
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2023/11/28/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/gif.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图片隐写之GIF"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%B9%8BGIF/" title="图片隐写之GIF">图片隐写之GIF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.516Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T03:27:46.000Z" title="更新于 2021-02-24 11:27:46">2021-02-24</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a></span></div><div class="content">GIF 
+首先想到用stegslove打开，进行逐帧查看，但是看的过程中发现有重影现象，重影的还不止一帧
+
+
+这种状况，要采用工具
+打开后点击f5预览，左右键查看帧
+在有重影的那一页，右键编辑调色板，依次将倒数第二个色块颜色设置为同一种颜色，保存。
+
+
+就可以看清每一帧的字母，拼接起来进行base64解码
+
+参考https://blog.csdn.net/u010391191/article/details/80831998
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2023/11/28/%E6%B5%85%E6%9E%90APP%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B%E5%AF%B9%E6%8A%97/" title="浅析APP代理检测对抗">     <img class="post_bg" src="https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00798-577.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="浅析APP代理检测对抗"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/28/%E6%B5%85%E6%9E%90APP%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B%E5%AF%B9%E6%8A%97/" title="浅析APP代理检测对抗">浅析APP代理检测对抗</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T08:48:58.515Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-28T08:41:10.000Z" title="更新于 2022-06-28 16:41:10">2022-06-28</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">文章首发：https://xz.aliyun.com/t/11398
+1.前言 本文将从网络通信原理浅析在android中出现的一些代理转发检测，这些功能会使我们测试app时出现抓不到包或者应用闪退等情况，针对这种场景，我搭建了测试环境，并对其场景展开分析与实施应对方案。
+2.OSI 7层网络模型网络通信嘛，首先得知道什么是OSI 7层模型。下面是百度的解释：
+
+  为了使不同计算机厂家生产的计算机能够相互通信，以便在更大的范围内建立计算机网络，国际标准化组织（ISO）在1978年提出了“开放系统互联参考模型”，即著名的OSI/RM模型（Open System Interconnection/Reference Model）。
+它将计算机网络体系结构的通信协议划分为七层，自下而上依次为：
+物理层（Physics Layer）、数据链路层（Data Link Layer）、网络层（Network Layer）、传输层（Transport Layer）、会话层（Session Layer）、表示层（Presentation Layer）、应用层（Application Layer）
+
+使用 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/dummersoul.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">dummersoul</div><div class="author-info__description">网络安全从业者</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummersoul"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/dummersoul" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dummersoul@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到dummersoul的技术小窝</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现"><img src="https://techterms.com/img/sm/cve_1618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CVE-2021-42550漏洞复现"/></a><div class="content"><a class="title" href="/2024/03/10/CVE-2021-42550%E5%A4%8D%E7%8E%B0/" title="CVE-2021-42550漏洞复现">CVE-2021-42550漏洞复现</a><time datetime="2024-03-10T06:54:43.353Z" title="发表于 2024-03-10 14:54:43">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*WwN78iOX-HC74T9AHGxjOg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webview intent uxss"/></a><div class="content"><a class="title" href="/2024/03/10/webview%20%20intent%20uxss/" title="webview intent uxss">webview intent uxss</a><time datetime="2024-03-10T06:54:17.108Z" title="发表于 2024-03-10 14:54:17">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析"><img src="https://picx.zhimg.com/70/v2-fd69dc15d82e0d4b54cfba25e7e15443_1440w.avis?source=172ae18b&amp;biz_tag=Post" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于Tomcat的内存马分析"/></a><div class="content"><a class="title" href="/2024/03/10/%E5%9F%BA%E4%BA%8ETomcat%E7%9A%84%E5%86%85%E5%AD%98%E9%A9%AC%E5%88%86%E6%9E%90/" title="基于Tomcat的内存马分析">基于Tomcat的内存马分析</a><time datetime="2024-03-10T06:53:39.202Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构"><img src="https://images.ytao.top/tomcat.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat架构"/></a><div class="content"><a class="title" href="/2024/03/10/Tomcat%E6%9E%B6%E6%9E%84/" title="Tomcat架构">Tomcat架构</a><time datetime="2024-03-10T06:53:39.200Z" title="发表于 2024-03-10 14:53:39">2024-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构"><img src="https://cdn.jsdelivr.net/gh/dummersoul/Picture@main/img/20211201164619.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一文搞懂DEX文件结构"/></a><div class="content"><a class="title" href="/2023/11/28/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82DEX%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="一文搞懂DEX文件结构">一文搞懂DEX文件结构</a><time datetime="2023-11-28T08:48:58.520Z" title="发表于 2023-11-28 16:48:58">2023-11-28</time></div></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Android/" style="font-size: 1.44em; color: #99a7ba">Android</a> <a href="/tags/CDN%E5%8A%A0%E9%80%9F/" style="font-size: 1.1em; color: #999">CDN加速</a> <a href="/tags/CVE/" style="font-size: 1.1em; color: #999">CVE</a> <a href="/tags/JBoss/" style="font-size: 1.1em; color: #999">JBoss</a> <a href="/tags/android%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">android安全</a> <a href="/tags/ctf/" style="font-size: 1.27em; color: #99a0a9">ctf</a> <a href="/tags/cve/" style="font-size: 1.1em; color: #999">cve</a> <a href="/tags/docker/" style="font-size: 1.1em; color: #999">docker</a> <a href="/tags/flag/" style="font-size: 1.1em; color: #999">flag</a> <a href="/tags/getshell/" style="font-size: 1.21em; color: #999ea4">getshell</a> <a href="/tags/git/" style="font-size: 1.16em; color: #999b9e">git</a> <a href="/tags/hexo/" style="font-size: 1.16em; color: #999b9e">hexo</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/java%E5%AE%89%E5%85%A8/" style="font-size: 1.21em; color: #999ea4">java安全</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/mitu/" style="font-size: 1.1em; color: #999">mitu</a> <a href="/tags/perl/" style="font-size: 1.1em; color: #999">perl</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/struts2/" style="font-size: 1.1em; color: #999">struts2</a> <a href="/tags/vulnhub/" style="font-size: 1.33em; color: #99a2af">vulnhub</a> <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: #999">中间件</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/" style="font-size: 1.39em; color: #99a4b4">内网提权</a> <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" style="font-size: 1.16em; color: #999b9e">内网渗透</a> <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 1.1em; color: #999">内网穿透</a> <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.1em; color: #999">反序列化</a> <a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.21em; color: #999ea4">图床</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.33em; color: #99a2af">工具</a> <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" style="font-size: 1.16em; color: #999b9e">应急响应</a> <a href="/tags/%E6%8A%93%E5%8C%85/" style="font-size: 1.1em; color: #999">抓包</a> <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" style="font-size: 1.1em; color: #999">权限维持</a> <a href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/" style="font-size: 1.1em; color: #999">社会工程学</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 1.21em; color: #999ea4">逆向</a> <a href="/tags/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 1.1em; color: #999">逻辑漏洞</a> <a href="/tags/%E9%9D%B6%E6%9C%BA/" style="font-size: 1.5em; color: #99a9bf">靶机</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">55</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-10-19T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-19T15:33:38.406Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 <i id="heartbeat" class="fa fas fa-heartbeat"></i> dummersoul</div><div class="framework-info"><!--span= _p('footer.framework') + ' '--><!--a(href='https://hexo.io')= 'Hexo'--><!--span.footer-separator |--><!--span= _p('footer.theme') + ' '--><!--a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'--></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "学习永无止境,兴趣决定成就,分享是一种美德，共享是一种智慧".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '学习永无止境'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/js/third-party/switch_comments.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/cqinyzbakrsti8bz4wjlaffn3gkjplgj.js" async="async"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>
